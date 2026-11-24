@@ -36,6 +36,15 @@
   .arr-mini { font-size: 10px; padding: 0 4px; background: transparent; border: 1px solid #2b3868; color: var(--dim); border-radius: 3px; cursor: pointer; }
   .arr-mini:hover { color: var(--fg); border-color: #6278bd; }
   .arr-prog { position: absolute; left: 0; bottom: 0; height: 3px; width: 0%; background: var(--gold); pointer-events: none; }
+  .fx-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: #14142b; border: 1px solid #3c3478; border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; font-size: 12px; }
+  .fx-group { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+  .fx-lbl { font-size: 11px; color: #b5a7ff; font-weight: 700; letter-spacing: 0.3px; }
+  .fx-div { width: 1px; height: 20px; background: #2c2d5c; }
+  button.ht-on { background: #3b1d6e; border-color: #c77dff; color: #f3dcff; box-shadow: 0 0 10px #c77dff44; }
+  .fx-pill { font-size: 11px; padding: 3px 8px; background: #181c38; border: 1px solid #353f78; border-radius: 4px; color: var(--dim); cursor: pointer; }
+  .fx-pill:hover { color: var(--fg); border-color: #6678cc; }
+  .fx-pill.on { background: #2d1f59; border-color: #b58cff; color: #f0e4ff; font-weight: 700; }
+  .fx-bar select { font: inherit; font-size: 11px; background: #0d1020; color: var(--fg); border: 1px solid #3c4c86; border-radius: 4px; padding: 3px 6px; }
   .timeline { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px; margin-bottom: 14px; }
   .bars-grid { display: grid; grid-template-columns: repeat(16, 1fr); gap: 3px; margin-bottom: 8px; }
   .bar-cell { background: #1a2038; border: 1px solid #2b355e; border-radius: 4px; padding: 5px 3px; text-align: center; cursor: pointer; user-select: none; transition: background 0.1s; }
@@ -85,6 +94,33 @@
   <div class="readout" id="readout">Bar 1.1 · 0.00s</div>
 </div>
 
+<div class="fx-bar">
+  <div class="fx-group">
+    <button id="btn-ht" title="Cableguys-style beat-synced HalfTime FX: slices on the grid at 0.5× speed (-1 octave) while locked to tempo! [H]">⏳ HalfTime FX: OFF</button>
+    <span class="fx-lbl" style="margin-left:2px;">Loop</span>
+    <button class="fx-pill ht-loop" data-bars="0.25">1/4</button>
+    <button class="fx-pill ht-loop" data-bars="0.5">1/2</button>
+    <button class="fx-pill ht-loop on" data-bars="1">1 Bar</button>
+    <button class="fx-pill ht-loop" data-bars="2">2 Bars</button>
+    <select id="ht-target" title="Which stems go through the HalfTime FX processor">
+      <option value="melodies" selected>Target: Melodies (Keep Drums+Bass)</option>
+      <option value="leads">Target: Lead + Fugue + Prelude</option>
+      <option value="all">Target: All (Full Master)</option>
+    </select>
+    <span class="fx-lbl" style="margin-left:2px;">Mix</span>
+    <input id="ht-mix" type="range" min="0" max="1" step="0.02" value="0.80" style="width:76px;" title="Wet/Dry HalfTime blend (50–70% = dark octave underlayer, 100% = full HalfTime)">
+    <span id="ht-mix-pct" style="font-size:11px;color:#e0c8ff;min-width:32px;">80%</span>
+  </div>
+  <div class="fx-div"></div>
+  <div class="fx-group">
+    <span class="fx-lbl">Tape Speed</span>
+    <button class="fx-pill tape-btn" data-rate="0.5" title="Half-speed slowed + pitched down 1 octave (48 BPM)">0.5×</button>
+    <button class="fx-pill tape-btn" data-rate="0.75" title="Chopped &amp; slowed (72 BPM)">0.75×</button>
+    <button class="fx-pill tape-btn on" data-rate="1" title="Original tempo (96 BPM)">1×</button>
+    <button class="fx-pill tape-btn" data-rate="1.15" title="Sped-up arcade mode (110 BPM)">1.15×</button>
+  </div>
+</div>
+
 <div class="arr-box">
   <div class="arr-head">
     <strong style="color:var(--gold);font-size:12px;">Song Arrangement</strong>
@@ -128,6 +164,139 @@ const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store'
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
 let ctx = null, master = null, initPromise = null;
+let busRhythm = null, busChords = null, busLead = null;
+let fxBuses = null, htNode = null, htWorkletReady = false;
+let htEnabled = false, htLoopBars = 1, htTarget = 'melodies', htMix = 0.80;
+let tapeRate = 1.0;
+
+const HT_WORKLET_SRC = `
+class HalfTimeProcessor extends AudioWorkletProcessor {
+  constructor() {
+    super();
+    this.maxLen = Math.ceil(sampleRate * 14);
+    this.bufL = new Float32Array(this.maxLen);
+    this.bufR = new Float32Array(this.maxLen);
+    this.w = 0;
+    this.loopLen = Math.max(1024, Math.round(sampleRate * 2.5));
+    this.xfadeLen = Math.max(128, Math.round(sampleRate * 0.025));
+    this.cyclePos = 0;
+    this.curRead = 0;
+    this.prevRead = 0;
+    this.xfadeLeft = 0;
+    this.port.onmessage = (e) => {
+      const d = e.data || {};
+      if (typeof d.loopLen === 'number') {
+        this.loopLen = Math.max(1024, Math.min(this.maxLen - 2048, Math.round(d.loopLen)));
+      }
+      if (typeof d.xfadeLen === 'number') {
+        this.xfadeLen = Math.max(64, Math.min(Math.floor(this.loopLen * 0.25), Math.round(d.xfadeLen)));
+      }
+      if (typeof d.syncPos === 'number') {
+        const sp = ((Math.round(d.syncPos) % this.loopLen) + this.loopLen) % this.loopLen;
+        this.cyclePos = sp;
+        this.prevRead = this.curRead;
+        this.curRead = ((this.w - 1 - 0.5 * sp) % this.maxLen + this.maxLen) % this.maxLen;
+        this.xfadeLeft = this.xfadeLen;
+      }
+      if (d.clear) {
+        this.bufL.fill(0);
+        this.bufR.fill(0);
+      }
+    };
+  }
+  readInterp(buf, pos) {
+    const len = this.maxLen;
+    let p = pos % len;
+    if (p < 0) p += len;
+    const i0 = p | 0;
+    const i1 = (i0 + 1) % len;
+    const f = p - i0;
+    return buf[i0] + (buf[i1] - buf[i0]) * f;
+  }
+  process(inputs, outputs) {
+    const inp = inputs[0], out = outputs[0];
+    if (!out || !out.length) return true;
+    const outL = out[0], outR = out[1] || out[0];
+    const inL = inp && inp[0] ? inp[0] : null;
+    const inR = inp && inp[1] ? inp[1] : inL;
+    const n = outL.length;
+    const maxLen = this.maxLen;
+    for (let i = 0; i < n; i++) {
+      this.bufL[this.w] = inL ? inL[i] : 0;
+      this.bufR[this.w] = inR ? inR[i] : 0;
+      if (this.cyclePos >= this.loopLen) {
+        this.cyclePos = 0;
+        this.prevRead = this.curRead;
+        this.curRead = (this.w - 1 + maxLen) % maxLen;
+        this.xfadeLeft = this.xfadeLen;
+      }
+      let sL = this.readInterp(this.bufL, this.curRead);
+      let sR = this.readInterp(this.bufR, this.curRead);
+      this.curRead += 0.5;
+      if (this.curRead >= maxLen) this.curRead -= maxLen;
+      if (this.xfadeLeft > 0) {
+        const pL = this.readInterp(this.bufL, this.prevRead);
+        const pR = this.readInterp(this.bufR, this.prevRead);
+        this.prevRead += 0.5;
+        if (this.prevRead >= maxLen) this.prevRead -= maxLen;
+        const t = 1.0 - (this.xfadeLeft / this.xfadeLen);
+        const gNew = Math.sin(t * Math.PI * 0.5);
+        const gOld = Math.cos(t * Math.PI * 0.5);
+        sL = sL * gNew + pL * gOld;
+        sR = sR * gNew + pR * gOld;
+        this.xfadeLeft--;
+      }
+      outL[i] = sL;
+      if (outR !== outL) outR[i] = sR;
+      this.w++;
+      if (this.w >= maxLen) this.w = 0;
+      this.cyclePos++;
+    }
+    return true;
+  }
+}
+registerProcessor('halftime-processor', HalfTimeProcessor);
+`;
+
+function trackBus(id) {
+  if (!busRhythm) return master;
+  if (id.startsWith('01') || id.startsWith('02')) return busRhythm;
+  if (id.startsWith('04') || id.startsWith('05') || id.startsWith('06')) return busLead;
+  return busChords;
+}
+
+function updateFxRouting() {
+  if (!ctx || !fxBuses) return;
+  const now = ctx.currentTime;
+  const useHt = htEnabled && htWorkletReady && !!htNode;
+  const tgtR = (htTarget === 'all');
+  const tgtC = (htTarget === 'all' || htTarget === 'melodies');
+  const tgtL = true;
+  const setG = (node, v) => node.gain.setTargetAtTime(v, now, 0.018);
+  if (!useHt) {
+    setG(fxBuses.rDry, 1); setG(fxBuses.cDry, 1); setG(fxBuses.lDry, 1);
+    setG(fxBuses.rSend, tgtR ? 1 : 0); setG(fxBuses.cSend, tgtC ? 1 : 0); setG(fxBuses.lSend, tgtL ? 1 : 0);
+    setG(fxBuses.htDry, 0); setG(fxBuses.htWet, 0);
+  } else {
+    setG(fxBuses.rDry, tgtR ? 0 : 1); setG(fxBuses.rSend, tgtR ? 1 : 0);
+    setG(fxBuses.cDry, tgtC ? 0 : 1); setG(fxBuses.cSend, tgtC ? 1 : 0);
+    setG(fxBuses.lDry, tgtL ? 0 : 1); setG(fxBuses.lSend, tgtL ? 1 : 0);
+    setG(fxBuses.htDry, Math.cos(htMix * Math.PI * 0.5));
+    setG(fxBuses.htWet, Math.sin(htMix * Math.PI * 0.5) * 1.12);
+  }
+}
+
+function syncHalfTimePhase(musicSec = null, clearBuf = false) {
+  if (!ctx || !htNode) return;
+  const mSec = musicSec !== null ? musicSec : currentSec();
+  const sliceMusicSec = htLoopBars * barSec;
+  const loopRealSec = sliceMusicSec / tapeRate;
+  const loopLen = Math.round(loopRealSec * ctx.sampleRate);
+  const xfadeLen = Math.round(Math.min(0.032, loopRealSec * 0.08) * ctx.sampleRate);
+  const phaseInSlice = ((mSec % sliceMusicSec) + sliceMusicSec) % sliceMusicSec;
+  const syncPos = Math.round((phaseInSlice / tapeRate) * ctx.sampleRate);
+  htNode.port.postMessage({ loopLen, xfadeLen, syncPos, clear: clearBuf });
+}
 const buffers = {};
 const trackState = {};
 for (const tr of S.tracks) trackState[tr.id] = { gain: tr.defaultGain ?? 1, mute: !!tr.defaultMute, solo: false };
@@ -243,10 +412,11 @@ function attachRunningTrack(tr) {
   if (sources[tr.id]) return;
   const l0 = loopStartBar * barSec, l1 = loopEndBar * barSec, span = Math.max(0.01, l1 - l0);
   const tStart = ctx.currentTime + 0.02;
-  const elapsed = Math.max(0, tStart - playStartCtx);
+  const elapsed = Math.max(0, (tStart - playStartCtx) * tapeRate);
   const pos = l0 + (((playOffsetSec - l0) + elapsed) % span);
   const src = ctx.createBufferSource();
   src.buffer = buffers[tr.id];
+  src.playbackRate.setValueAtTime(tapeRate, tStart);
   src.loop = true;
   src.loopStart = l0;
   src.loopEnd = Math.min(l1, buffers[tr.id].duration);
@@ -254,7 +424,7 @@ function attachRunningTrack(tr) {
   g.gain.setValueAtTime(effectiveGain(tr.id, 'full'), tStart);
   const an = ctx.createAnalyser();
   an.fftSize = 128;
-  src.connect(g); g.connect(an); an.connect(master);
+  src.connect(g); g.connect(an); an.connect(trackBus(tr.id));
   src.start(tStart, pos);
   sources[tr.id] = src; gains[tr.id] = g; analysers[tr.id] = an;
 }
@@ -266,10 +436,41 @@ async function ensureAudio() {
     const comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -8; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.12;
     master.connect(comp); comp.connect(ctx.destination);
+
+    // 3-Bus + True Beat-Synced HalfTime AudioWorklet Routing
+    busRhythm = ctx.createGain(); busChords = ctx.createGain(); busLead = ctx.createGain();
+    const rDry = ctx.createGain(), cDry = ctx.createGain(), lDry = ctx.createGain();
+    const rSend = ctx.createGain(), cSend = ctx.createGain(), lSend = ctx.createGain();
+    const htIn = ctx.createGain(), htDry = ctx.createGain(), htWet = ctx.createGain();
+    busRhythm.connect(rDry); rDry.connect(master); busRhythm.connect(rSend); rSend.connect(htIn);
+    busChords.connect(cDry); cDry.connect(master); busChords.connect(cSend); cSend.connect(htIn);
+    busLead.connect(lDry); lDry.connect(master); busLead.connect(lSend); lSend.connect(htIn);
+    htIn.connect(htDry); htDry.connect(master);
+    fxBuses = { rDry, cDry, lDry, rSend, cSend, lSend, htIn, htDry, htWet };
+
+    const workletInit = (async () => {
+      if (!ctx.audioWorklet) return;
+      try {
+        const blobUrl = URL.createObjectURL(new Blob([HT_WORKLET_SRC], { type: 'application/javascript' }));
+        await ctx.audioWorklet.addModule(blobUrl);
+        URL.revokeObjectURL(blobUrl);
+        htNode = new AudioWorkletNode(ctx, 'halftime-processor', { numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [2] });
+        const htHp = ctx.createBiquadFilter(); htHp.type = 'highpass'; htHp.frequency.value = 34; htHp.Q.value = 0.7;
+        const htLp = ctx.createBiquadFilter(); htLp.type = 'lowpass'; htLp.frequency.value = 8800; htLp.Q.value = 0.65;
+        htIn.connect(htNode); htNode.connect(htHp); htHp.connect(htLp); htLp.connect(htWet); htWet.connect(master);
+        htWorkletReady = true;
+        updateFxRouting();
+        syncHalfTimePhase(0, true);
+      } catch (err) {
+        console.warn('HalfTime AudioWorklet unavailable:', err);
+      }
+    })();
+    updateFxRouting();
+
     statusEl.textContent = 'Loading active mix stems…';
     const activeTrs = S.tracks.filter((t) => effectiveGain(t.id, 'full') > 0.001);
     const mutedTrs = S.tracks.filter((t) => effectiveGain(t.id, 'full') <= 0.001);
-    initPromise = Promise.all(activeTrs.map(loadOneTrack)).then(() => {
+    initPromise = Promise.all([workletInit, ...activeTrs.map(loadOneTrack)]).then(() => {
       Promise.all(mutedTrs.map(async (tr) => { await loadOneTrack(tr); attachRunningTrack(tr); }));
     });
   }
@@ -313,6 +514,10 @@ function activeSongSegment() {
   for (const seg of songSegments) if (now >= seg.startCtx && now < seg.endCtx) return seg;
   return songSegments[songSegments.length - 1] || null;
 }
+function segWithin(seg, t = (ctx ? ctx.currentTime : 0)) {
+  const r = seg.rate || 1;
+  return Math.max(0, Math.min(seg.durSec, seg.offsetInStep + (t - seg.startCtx) * r));
+}
 
 function applySceneEnvelopes(seg, fromCtxTime = null) {
   const sc = SCENES[seg.scene] || SCENES.full;
@@ -324,7 +529,7 @@ function applySceneEnvelopes(seg, fromCtxTime = null) {
     const g = seg.gains[tr.id], flt = seg.filters ? seg.filters[tr.id] : null;
     if (!g) continue;
     g.gain.cancelScheduledValues(t0);
-    const u0 = Math.max(0, Math.min(1, (seg.offsetInStep + (t0 - seg.startCtx)) / Math.max(0.01, seg.durSec)));
+    const u0 = Math.max(0, Math.min(1, segWithin(seg, t0) / Math.max(0.01, seg.durSec)));
     const v0 = effectiveGain(tr.id, seg.scene, u0);
     if (fromCtxTime === null) {
       g.gain.setValueAtTime(0.0001, t0);
@@ -341,7 +546,7 @@ function applySceneEnvelopes(seg, fromCtxTime = null) {
     for (let k = 1; k <= steps; k++) {
       const frac = k / steps;
       const tk = t0 + frac * Math.max(0.005, remDur - fadeOut);
-      const uk = Math.max(0, Math.min(1, (seg.offsetInStep + (tk - seg.startCtx)) / Math.max(0.01, seg.durSec)));
+      const uk = Math.max(0, Math.min(1, segWithin(seg, tk) / Math.max(0.01, seg.durSec)));
       g.gain.linearRampToValueAtTime(Math.max(0.0001, effectiveGain(tr.id, seg.scene, uk)), tk);
       if (flt) {
         const fk = sc.filterAt(tr.id, uk);
@@ -394,25 +599,29 @@ function stopPlayback(fadeSec = 0) {
 }
 
 function scheduleSongStep(step, tStart, offsetInStep = 0, xfadeIn = 0.003) {
-  const segDur = Math.max(0.02, step.durSec - offsetInStep);
+  const rate = tapeRate;
+  const bufSpan = Math.max(0.02, step.durSec - offsetInStep);
+  const realDur = bufSpan / rate;
   const bufOffset = step.startBar * barSec + offsetInStep;
-  const tEnd = tStart + segDur;
+  const tEnd = tStart + realDur;
   const sc = SCENES[step.scene] || SCENES.full;
   const segSources = {}, segGains = {}, segFilters = {}, segAnalysers = {};
   for (const tr of S.tracks) {
     const buf = buffers[tr.id]; if (!buf) continue;
     const src = ctx.createBufferSource(); src.buffer = buf; src.loop = false;
+    src.playbackRate.setValueAtTime(rate, tStart);
     const g = ctx.createGain();
     const an = ctx.createAnalyser(); an.fftSize = 128;
     if (sc.filterAt(tr.id, 0.5) !== null) {
       const flt = ctx.createBiquadFilter(); flt.type = 'lowpass';
       src.connect(flt); flt.connect(g); segFilters[tr.id] = flt;
     } else src.connect(g);
-    g.connect(an); an.connect(master);
-    src.start(tStart, Math.min(bufOffset, Math.max(0, buf.duration - 0.02)), segDur + 0.01);
+    g.connect(an); an.connect(trackBus(tr.id));
+    src.start(tStart, Math.min(bufOffset, Math.max(0, buf.duration - 0.02)));
+    src.stop(tEnd + 0.015);
     segSources[tr.id] = src; segGains[tr.id] = g; segAnalysers[tr.id] = an;
   }
-  const seg = { ...step, startCtx: tStart, endCtx: tEnd, offsetInStep, xfadeIn, sources: segSources, gains: segGains, filters: segFilters, analysers: segAnalysers };
+  const seg = { ...step, rate, startCtx: tStart, endCtx: tEnd, offsetInStep, xfadeIn, sources: segSources, gains: segGains, filters: segFilters, analysers: segAnalysers };
   applySceneEnvelopes(seg, null);
   songSegments.push(seg);
   return tEnd;
@@ -427,6 +636,7 @@ async function startSongAt(stepIdx = 0, offsetInStep = 0, xfadeSec = 0) {
   const t0 = ctx.currentTime + 0.04;
   const step = queue[idx];
   const off = Math.max(0, Math.min(step.durSec - 0.05, offsetInStep));
+  syncHalfTimePhase(step.startBar * barSec + off, xfadeSec <= 0);
   songNextCtxTime = scheduleSongStep(step, t0, off, xfadeSec > 0 ? xfadeSec : 0.004);
   songNextStepIdx = (idx + 1 < queue.length) ? (idx + 1) : loopIdx;
   songPausedStepIdx = idx; songPausedOffsetSec = off; playing = true;
@@ -454,14 +664,16 @@ async function startAt(offsetSec) {
   let pos = offsetSec;
   if (pos < l0 || pos >= l1) pos = l0;
   const t0 = ctx.currentTime + 0.04;
+  syncHalfTimePhase(pos, true);
   for (const tr of S.tracks) {
     if (!buffers[tr.id]) continue;
     const src = ctx.createBufferSource();
     src.buffer = buffers[tr.id];
+    src.playbackRate.setValueAtTime(tapeRate, t0);
     src.loop = true; src.loopStart = l0; src.loopEnd = Math.min(l1, buffers[tr.id].duration);
     const g = ctx.createGain(); g.gain.setValueAtTime(effectiveGain(tr.id, 'full'), t0);
     const an = ctx.createAnalyser(); an.fftSize = 128;
-    src.connect(g); g.connect(an); an.connect(master);
+    src.connect(g); g.connect(an); an.connect(trackBus(tr.id));
     src.start(t0, pos);
     sources[tr.id] = src; gains[tr.id] = g; analysers[tr.id] = an;
   }
@@ -473,17 +685,14 @@ async function startAt(offsetSec) {
 function currentSec() {
   if (songMode) {
     const seg = activeSongSegment();
-    if (seg && ctx) {
-      const within = Math.max(0, Math.min(seg.durSec, seg.offsetInStep + (ctx.currentTime - seg.startCtx)));
-      return seg.startBar * barSec + within;
-    }
+    if (seg && ctx) return seg.startBar * barSec + segWithin(seg);
     const { queue } = buildSongQueue();
     const st = queue[songPausedStepIdx % Math.max(1, queue.length)];
     return st ? (st.startBar * barSec + songPausedOffsetSec) : 0;
   }
   const l0 = loopStartBar * barSec, l1 = loopEndBar * barSec, span = Math.max(0.01, l1 - l0);
   if (!playing || !ctx) return playOffsetSec;
-  const elapsed = Math.max(0, ctx.currentTime - playStartCtx);
+  const elapsed = Math.max(0, (ctx.currentTime - playStartCtx) * tapeRate);
   return l0 + (((playOffsetSec - l0) + elapsed) % span);
 }
 
@@ -493,14 +702,15 @@ const arrInfoEl = document.getElementById('arr-info');
 const btnModeEl = document.getElementById('btn-mode');
 function updateModeBtn() {
   const { totalSec } = buildSongQueue();
-  if (songMode) { btnModeEl.textContent = `🎵 Song Mode (${fmtTime(totalSec)})`; btnModeEl.classList.add('on'); }
+  if (songMode) { btnModeEl.textContent = `🎵 Song Mode (${fmtTime(totalSec / tapeRate)})`; btnModeEl.classList.add('on'); }
   else { btnModeEl.textContent = '🔁 Loop Mode'; btnModeEl.classList.remove('on'); }
 }
 function rebuildArrangement() {
   const { queue, totalSec, loopIdx } = buildSongQueue();
   const totalBars = queue.reduce((a, x) => a + (x.endBar - x.startBar), 0);
   const loopLbl = queue[loopIdx] ? queue[loopIdx].label : 'Start';
-  arrInfoEl.textContent = `${totalBars} bars · ${fmtTime(totalSec)} · loops smoothly → ${loopLbl}`;
+  const rateTxt = tapeRate !== 1 ? ` @ ${tapeRate}×` : '';
+  arrInfoEl.textContent = `${totalBars} bars · ${fmtTime(totalSec / tapeRate)}${rateTxt} · loops smoothly → ${loopLbl}`;
   arrChainEl.innerHTML = ''; arrChipEls = [];
   arrangement.forEach((blk, bi) => {
     if (bi > 0) { const ar = document.createElement('span'); ar.className = 'arr-arrow'; ar.textContent = '→'; arrChainEl.appendChild(ar); }
@@ -523,13 +733,13 @@ function rebuildArrangement() {
       else if ((blk.repeats || 1) >= 4) { blk.once = true; blk.repeats = 1; }
       else { blk.repeats = (blk.repeats || 1) + 1; }
       rebuildArrangement();
-      if (playing && songMode) { const seg = activeSongSegment(); startSongAt(seg ? seg.stepIdx : 0, seg ? (seg.offsetInStep + (ctx.currentTime - seg.startCtx)) : 0, 0.05); }
+      if (playing && songMode) { const seg = activeSongSegment(); startSongAt(seg ? seg.stepIdx : 0, seg ? segWithin(seg) : 0, 0.05); }
     };
     const bSc = document.createElement('button'); bSc.className = 'arr-pill'; bSc.textContent = (SCENES[blk.scene] || SCENES.full).label;
     bSc.onclick = () => {
       blk.scene = SCENE_ORDER[(SCENE_ORDER.indexOf(blk.scene || 'full') + 1) % SCENE_ORDER.length];
       rebuildArrangement();
-      if (playing && songMode) { const seg = activeSongSegment(); if (seg && seg.blockIdx === bi) startSongAt(seg.stepIdx, ctx ? Math.max(0, seg.offsetInStep + (ctx.currentTime - seg.startCtx)) : 0, 0.05); }
+      if (playing && songMode) { const seg = activeSongSegment(); if (seg && seg.blockIdx === bi) startSongAt(seg.stepIdx, ctx ? segWithin(seg) : 0, 0.05); }
     };
     const bL = document.createElement('button'); bL.className = 'arr-mini'; bL.textContent = '◀';
     bL.onclick = () => { if (bi > 0) { [arrangement[bi - 1], arrangement[bi]] = [arrangement[bi], arrangement[bi - 1]]; rebuildArrangement(); } };
@@ -742,12 +952,12 @@ function drawRoll() {
   g2d.lineWidth = 1;
 
   const anySolo = Object.values(trackState).some((x) => x.solo);
-  const segU = (activeSeg && ctx) ? Math.max(0, Math.min(1, (activeSeg.offsetInStep + (ctx.currentTime - activeSeg.startCtx)) / Math.max(0.01, activeSeg.durSec))) : 1.0;
+  const segU = (activeSeg && ctx) ? Math.max(0, Math.min(1, segWithin(activeSeg) / Math.max(0.01, activeSeg.durSec))) : 1.0;
   for (const item of arrChipEls) {
     const isNow = !!(activeSeg && activeSeg.blockIdx === item.bi);
     item.chip.classList.toggle('playing', isNow);
     if (isNow && ctx) {
-      const within = Math.max(0, Math.min(activeSeg.durSec, activeSeg.offsetInStep + (ctx.currentTime - activeSeg.startCtx)));
+      const within = segWithin(activeSeg);
       item.prog.style.width = `${Math.min(100, ((activeSeg.rep + within / Math.max(0.01, activeSeg.durSec)) / Math.max(1, activeSeg.totalReps)) * 100).toFixed(1)}%`;
     } else item.prog.style.width = '0%';
   }
@@ -797,13 +1007,14 @@ function drawRoll() {
 
   const barIdx = Math.floor(sec / barSec) % S.bars;
   const beatInBar = Math.floor(((sec % barSec) / barSec) * 4) + 1;
+  const fxTag = (htEnabled ? ` · ½Time` : '') + (tapeRate !== 1 ? ` · ${tapeRate}× (${Math.round(S.bpm * tapeRate)} BPM)` : '');
   if (activeSeg && ctx) {
     const { totalSec } = buildSongQueue();
-    const within = Math.max(0, Math.min(activeSeg.durSec, activeSeg.offsetInStep + (ctx.currentTime - activeSeg.startCtx)));
+    const within = segWithin(activeSeg);
     const repTxt = activeSeg.totalReps > 1 ? ` (${activeSeg.rep + 1}/${activeSeg.totalReps})` : '';
-    document.getElementById('readout').textContent = `Song ${fmtTime(activeSeg.songStartSec + within)}/${fmtTime(totalSec)} · ${activeSeg.label}${repTxt} · Bar ${barIdx + 1}.${beatInBar} (${S.chords[barIdx]})`;
+    document.getElementById('readout').textContent = `Song ${fmtTime((activeSeg.songStartSec + within) / tapeRate)}/${fmtTime(totalSec / tapeRate)} · ${activeSeg.label}${repTxt} · Bar ${barIdx + 1}.${beatInBar} (${S.chords[barIdx]})${fxTag}`;
   } else {
-    document.getElementById('readout').textContent = `Bar ${barIdx + 1}.${beatInBar} (${S.chords[barIdx]}) · ${sec.toFixed(2)}s`;
+    document.getElementById('readout').textContent = `Bar ${barIdx + 1}.${beatInBar} (${S.chords[barIdx]}) · ${sec.toFixed(2)}s${fxTag}`;
   }
   syncBarUI(barIdx);
   requestAnimationFrame(drawRoll);
@@ -816,7 +1027,7 @@ document.getElementById('btn-play').onclick = () => {
       const seg = activeSongSegment();
       if (seg && ctx) {
         songPausedStepIdx = seg.stepIdx;
-        songPausedOffsetSec = Math.max(0, Math.min(seg.durSec - 0.05, seg.offsetInStep + (ctx.currentTime - seg.startCtx)));
+        songPausedOffsetSec = Math.max(0, Math.min(seg.durSec - 0.05, segWithin(seg)));
       }
     } else playOffsetSec = currentSec();
     stopPlayback();
@@ -834,9 +1045,65 @@ document.getElementById('btn-reset').onclick = () => {
   for (const tr of S.tracks) trackState[tr.id] = { gain: tr.defaultGain ?? 1, mute: !!tr.defaultMute, solo: false };
   applyGains(); rebuildMixer();
 };
+
+// ---- HalfTime FX & Tape Speed Controls ----
+const btnHt = document.getElementById('btn-ht');
+function syncHtUi() {
+  btnHt.textContent = htEnabled ? '⏳ HalfTime FX: ON' : '⏳ HalfTime FX: OFF';
+  btnHt.classList.toggle('ht-on', htEnabled);
+}
+btnHt.onclick = async () => {
+  htEnabled = !htEnabled;
+  syncHtUi();
+  if (ctx) {
+    if (htEnabled) syncHalfTimePhase(currentSec(), false);
+    updateFxRouting();
+  }
+};
+document.querySelectorAll('.ht-loop').forEach((btn) => {
+  btn.onclick = () => {
+    htLoopBars = Number(btn.dataset.bars);
+    document.querySelectorAll('.ht-loop').forEach((b) => b.classList.toggle('on', b === btn));
+    if (ctx) syncHalfTimePhase(currentSec(), false);
+  };
+});
+document.getElementById('ht-target').onchange = (e) => {
+  htTarget = e.target.value;
+  updateFxRouting();
+};
+const htMixEl = document.getElementById('ht-mix');
+const htMixPctEl = document.getElementById('ht-mix-pct');
+htMixEl.oninput = () => {
+  htMix = Number(htMixEl.value);
+  htMixPctEl.textContent = `${Math.round(htMix * 100)}%`;
+  updateFxRouting();
+};
+document.querySelectorAll('.tape-btn').forEach((btn) => {
+  btn.onclick = () => {
+    const newRate = Number(btn.dataset.rate);
+    if (Math.abs(newRate - tapeRate) < 1e-4) return;
+    const wasPlaying = playing;
+    let curStepIdx = songPausedStepIdx, curWithin = songPausedOffsetSec, curPos = currentSec();
+    if (wasPlaying && songMode) {
+      const seg = activeSongSegment();
+      if (seg) { curStepIdx = seg.stepIdx; curWithin = segWithin(seg); }
+    }
+    tapeRate = newRate;
+    document.querySelectorAll('.tape-btn').forEach((b) => b.classList.toggle('on', b === btn));
+    rebuildArrangement();
+    if (wasPlaying) {
+      if (songMode) startSongAt(curStepIdx, curWithin, 0.035);
+      else startAt(curPos);
+    } else if (ctx) {
+      syncHalfTimePhase(curPos, false);
+    }
+  };
+});
+
 window.addEventListener('keydown', (e) => {
   if (e.ctrlKey || e.metaKey || e.altKey) return;
   if (e.code === 'Space') { e.preventDefault(); document.getElementById('btn-play').click(); }
+  if (e.code === 'KeyH') { e.preventDefault(); btnHt.click(); }
 });
 </script>
 </body>
