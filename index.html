@@ -296,7 +296,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '40b-7140af3b';
+const BUILD_ID = '40b-9aae376f';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
@@ -310,28 +310,42 @@ class HalfTimeProcessor extends AudioWorkletProcessor {
     this.bufL = new Float32Array(this.maxLen);
     this.bufR = new Float32Array(this.maxLen);
     this.w = 0;
-    this.loopLen = Math.max(1024, Math.round(sampleRate * 2.5));
-    this.xfadeLen = Math.max(128, Math.round(sampleRate * 0.025));
-    this.cyclePos = 0;
+    this.xfadeLen = Math.max(64, Math.round(sampleRate * 0.006));
     this.curRead = 0;
     this.prevRead = 0;
     this.xfadeLeft = 0;
+    // Sample-accurate DAW transport clock (uses AudioWorkletGlobalScope.currentTime!)
+    this.hasClock = false;
+    this.originCtxTime = 0;
+    this.originMusicSec = 0;
+    this.sliceMusicSec = 2.5;
+    this.tapeRate = 1.0;
+    this.lastSliceIdx = -999999;
+    this.pendingStartNow = false;
     this.port.onmessage = (e) => {
       const d = e.data || {};
-      if (typeof d.loopLen === 'number') {
-        this.loopLen = Math.max(1024, Math.min(this.maxLen - 2048, Math.round(d.loopLen)));
+      if (typeof d.originCtxTime === 'number') {
+        this.originCtxTime = d.originCtxTime;
+        this.originMusicSec = typeof d.originMusicSec === 'number' ? d.originMusicSec : 0;
+        this.hasClock = true;
+        this.lastSliceIdx = -999999;
       }
-      if (typeof d.xfadeLen === 'number') {
-        this.xfadeLen = Math.max(64, Math.min(Math.floor(this.loopLen * 0.25), Math.round(d.xfadeLen)));
+      if (typeof d.sliceMusicSec === 'number') {
+        this.sliceMusicSec = Math.max(0.1, d.sliceMusicSec);
+        this.xfadeLen = Math.max(64, Math.round(0.006 * sampleRate));
+        this.lastSliceIdx = -999999;
       }
-      if (typeof d.syncPos === 'number') {
-        const sp = ((Math.round(d.syncPos) % this.loopLen) + this.loopLen) % this.loopLen;
-        this.cyclePos = sp;
-        this.prevRead = this.curRead;
-        this.curRead = ((this.w - 1 - 0.5 * sp) % this.maxLen + this.maxLen) % this.maxLen;
-        this.xfadeLeft = this.xfadeLen;
+      if (typeof d.tapeRate === 'number') {
+        this.tapeRate = Math.max(0.25, d.tapeRate);
+        this.xfadeLen = Math.max(64, Math.round(0.006 * sampleRate));
       }
-      if (d.clear) { this.bufL.fill(0); this.bufR.fill(0); }
+      if (d.clear) {
+        this.bufL.fill(0);
+        this.bufR.fill(0);
+      }
+      if (d.startFromNow) {
+        this.pendingStartNow = true;
+      }
     };
   }
   readInterp(buf, pos) {
@@ -350,14 +364,32 @@ class HalfTimeProcessor extends AudioWorkletProcessor {
     const inL = inp && inp[0] ? inp[0] : null;
     const inR = inp && inp[1] ? inp[1] : inL;
     const n = outL.length, maxLen = this.maxLen;
+    const invSr = 1.0 / sampleRate;
+    const baseTime = currentTime;
+    if (this.pendingStartNow) {
+      this.pendingStartNow = false;
+      this.prevRead = this.curRead;
+      this.curRead = (this.w - 1 + maxLen) % maxLen;
+      this.xfadeLeft = this.xfadeLen;
+      if (this.hasClock) {
+        const m0 = this.originMusicSec + (baseTime - this.originCtxTime) * this.tapeRate;
+        this.lastSliceIdx = Math.floor((m0 + 1e-6) / this.sliceMusicSec);
+      }
+    }
     for (let i = 0; i < n; i++) {
       this.bufL[this.w] = inL ? inL[i] : 0;
       this.bufR[this.w] = inR ? inR[i] : 0;
-      if (this.cyclePos >= this.loopLen) {
-        this.cyclePos = 0;
-        this.prevRead = this.curRead;
-        this.curRead = (this.w - 1 + maxLen) % maxLen;
-        this.xfadeLeft = this.xfadeLen;
+      if (this.hasClock) {
+        const tS = baseTime + i * invSr;
+        const mSec = this.originMusicSec + (tS - this.originCtxTime) * this.tapeRate;
+        const sIdx = Math.floor((mSec + 1e-6) / this.sliceMusicSec);
+        if (sIdx !== this.lastSliceIdx) {
+          this.lastSliceIdx = sIdx;
+          this.prevRead = this.curRead;
+          // Exact sample of the Beat 1 / slice boundary is THIS sample (this.w)
+          this.curRead = this.w;
+          this.xfadeLeft = this.xfadeLen;
+        }
       }
       let sL = this.readInterp(this.bufL, this.curRead);
       let sR = this.readInterp(this.bufR, this.curRead);
@@ -377,7 +409,6 @@ class HalfTimeProcessor extends AudioWorkletProcessor {
       if (outR !== outL) outR[i] = sR;
       this.w++;
       if (this.w >= maxLen) this.w = 0;
-      this.cyclePos++;
     }
     return true;
   }
@@ -640,16 +671,19 @@ function updateFxRouting() {
   for (const tr of tracks) updateTrackStrip(tr.id);
 }
 
-function syncHalfTimePhase(musicSec = null, clearBuf = false) {
+function syncHalfTimeClock(opts = {}) {
   if (!ctx || !htNode) return;
-  const mSec = musicSec !== null ? musicSec : currentSec();
-  const sliceMusicSec = htLoopBars * barSec;
-  const loopRealSec = sliceMusicSec / tapeRate;
-  const loopLen = Math.round(loopRealSec * ctx.sampleRate);
-  const xfadeLen = Math.round(Math.min(0.032, loopRealSec * 0.08) * ctx.sampleRate);
-  const phaseInSlice = ((mSec % sliceMusicSec) + sliceMusicSec) % sliceMusicSec;
-  const syncPos = Math.round((phaseInSlice / tapeRate) * ctx.sampleRate);
-  htNode.port.postMessage({ loopLen, xfadeLen, syncPos, clear: clearBuf });
+  const msg = {
+    sliceMusicSec: htLoopBars * barSec,
+    tapeRate,
+    clear: !!opts.clear,
+    startFromNow: !!opts.startFromNow,
+  };
+  if (typeof opts.originCtxTime === 'number') {
+    msg.originCtxTime = opts.originCtxTime;
+    msg.originMusicSec = opts.originMusicSec ?? 0;
+  }
+  htNode.port.postMessage(msg);
 }
 
 // ---- Stem Loading & AudioContext Init ----
@@ -742,7 +776,7 @@ async function ensureAudio() {
         htIn.connect(htNode); htNode.connect(htHp); htHp.connect(htLp); htLp.connect(htWet); htWet.connect(master);
         htWorkletReady = true;
         updateFxRouting();
-        syncHalfTimePhase(0, true);
+        syncHalfTimeClock({ originCtxTime: ctx.currentTime, originMusicSec: 0, clear: true });
       } catch (err) {
         console.warn('AudioWorklet unavailable:', err);
       }
@@ -992,7 +1026,7 @@ async function startSongAt(stepIdx = 0, offsetInStep = 0, xfadeSec = 0) {
   const t0 = ctx.currentTime + 0.04;
   const step = queue[idx];
   const off = Math.max(0, Math.min(step.durSec - 0.05, offsetInStep));
-  syncHalfTimePhase(step.startBar * barSec + off, xfadeSec <= 0);
+  syncHalfTimeClock({ originCtxTime: t0, originMusicSec: step.startBar * barSec + off, clear: xfadeSec <= 0 });
   songNextCtxTime = scheduleSongStep(step, t0, off, xfadeSec > 0 ? xfadeSec : 0.004);
   songNextStepIdx = (idx + 1 < queue.length) ? (idx + 1) : loopIdx;
   songPausedStepIdx = idx; songPausedOffsetSec = off; playing = true;
@@ -1021,7 +1055,7 @@ async function startAt(offsetSec) {
   let pos = offsetSec;
   if (pos < l0 || pos >= l1) pos = l0;
   const t0 = ctx.currentTime + 0.04;
-  syncHalfTimePhase(pos, true);
+  syncHalfTimeClock({ originCtxTime: t0, originMusicSec: pos, clear: true });
   loopUserFiredPass = {};
   for (const tr of tracks) {
     const buf = buffers[tr.id]; if (!buf) continue;
@@ -1720,7 +1754,7 @@ function rebuildMixer() {
         if (st.htSend && !htEnabled) htEnabled = true;
         if (!st.htSend && !tracks.some((t) => trackState[t.id].htSend)) htEnabled = false;
       }
-      if (ctx && htEnabled) syncHalfTimePhase(wasOff ? 0 : currentSec(), wasOff);
+      if (ctx && htEnabled) syncHalfTimeClock({ clear: wasOff, startFromNow: wasOff });
       syncAllFxUi(); updateFxRouting(); rebuildMixer();
     };
 
@@ -2078,9 +2112,9 @@ btnHt.onclick = () => {
   // If turning master HalfTime ON with no tracks selected, auto-arm Melodies so you hear it immediately!
   if (htEnabled && !tracks.some((t) => trackState[t.id].htSend)) {
     for (const tr of tracks) trackState[tr.id].htSend = !(tr.id.startsWith('01') || tr.id.startsWith('02'));
-    if (ctx) syncHalfTimePhase(0, true);
+    if (ctx) syncHalfTimeClock({ clear: true, startFromNow: true });
   } else if (ctx && htEnabled) {
-    syncHalfTimePhase(currentSec(), false);
+    syncHalfTimeClock({ startFromNow: false });
   }
   syncAllFxUi();
   if (ctx) updateFxRouting();
@@ -2089,7 +2123,7 @@ btnHt.onclick = () => {
 document.querySelectorAll('.ht-loop').forEach((btn) => {
   btn.onclick = () => {
     htLoopBars = Number(btn.dataset.bars); syncAllFxUi();
-    if (ctx) syncHalfTimePhase(currentSec(), false);
+    if (ctx) syncHalfTimeClock({ startFromNow: true });
   };
 });
 htMixEl.oninput = () => { htMix = Number(htMixEl.value); htMixPctEl.textContent = `${Math.round(htMix * 100)}%`; updateFxRouting(); };
@@ -2104,7 +2138,7 @@ document.querySelectorAll('.ht-preset').forEach((btn) => {
       else st.htSend = !(tr.id.startsWith('01') || tr.id.startsWith('02'));
     }
     htEnabled = (p !== 'none');
-    if (ctx && htEnabled) syncHalfTimePhase(0, true);
+    if (ctx && htEnabled) syncHalfTimeClock({ clear: true, startFromNow: true });
     syncAllFxUi(); updateFxRouting(); rebuildMixer();
   };
 });
@@ -2122,7 +2156,7 @@ document.querySelectorAll('.tape-btn').forEach((btn) => {
     if (wasPlaying && songMode) { const seg = activeSongSegment(); if (seg) { curStepIdx = seg.stepIdx; curWithin = segWithin(seg); } }
     tapeRate = newRate; syncAllFxUi(); rebuildArrangement(); updateFxRouting();
     if (wasPlaying) { if (songMode) startSongAt(curStepIdx, curWithin, 0.035); else startAt(curPos); }
-    else if (ctx) syncHalfTimePhase(curPos, false);
+    else if (ctx) syncHalfTimeClock({});
   };
 });
 
