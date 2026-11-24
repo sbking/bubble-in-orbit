@@ -1,6 +1,6 @@
 {
   "title": "Bubble in Orbit \u2014 Interactive Web DAW",
-  "buildId": "64b-ce3436e2",
+  "buildId": "64b-3204185c",
   "bpm": 96.0,
   "bars": 64,
   "loopSec": 160.0,
@@ -54,9 +54,9 @@
     "Dmaj9",
     "Dm9",
     "E",
-    "Dmaj9/E",
-    "F#m9/E",
-    "E11",
+    "Dmaj9",
+    "C#m7",
+    "Bm7",
     "E9",
     "Aadd9",
     "Dmaj9",
@@ -122,7 +122,7 @@
     },
     {
       "bar": 48,
-      "label": "B49 \u2014 E1 Stratospheric Lift"
+      "label": "B49 \u2014 Descending Half-Time (D\u2192C#m\u2192Bm\u2192E)"
     },
     {
       "bar": 52,
@@ -1685,9 +1685,18 @@
     {
       "bar": 48,
       "step": 0,
-      "dur": 12.0,
-      "note": "A5",
-      "midi": 81,
+      "dur": 8.0,
+      "note": "F#6",
+      "midi": 90,
+      "vel": 0.94,
+      "quick": false
+    },
+    {
+      "bar": 48,
+      "step": 8,
+      "dur": 4.0,
+      "note": "E6",
+      "midi": 88,
       "vel": 0.9,
       "quick": false
     },
@@ -1695,60 +1704,87 @@
       "bar": 48,
       "step": 12,
       "dur": 4.0,
-      "note": "B5",
-      "midi": 83,
-      "vel": 0.92,
+      "note": "C#6",
+      "midi": 85,
+      "vel": 0.88,
       "quick": false
     },
     {
       "bar": 49,
       "step": 0,
-      "dur": 12.0,
-      "note": "C#6",
-      "midi": 85,
+      "dur": 8.0,
+      "note": "E6",
+      "midi": 88,
       "vel": 0.94,
+      "quick": false
+    },
+    {
+      "bar": 49,
+      "step": 8,
+      "dur": 4.0,
+      "note": "B5",
+      "midi": 83,
+      "vel": 0.9,
       "quick": false
     },
     {
       "bar": 49,
       "step": 12,
       "dur": 4.0,
-      "note": "E6",
-      "midi": 88,
-      "vel": 0.96,
+      "note": "G#5",
+      "midi": 80,
+      "vel": 0.88,
       "quick": false
     },
     {
       "bar": 50,
       "step": 0,
-      "dur": 10.0,
-      "note": "F#6",
-      "midi": 90,
-      "vel": 0.98,
-      "quick": false
-    },
-    {
-      "bar": 50,
-      "step": 10,
-      "dur": 6.0,
-      "note": "E6",
-      "midi": 88,
+      "dur": 8.0,
+      "note": "D6",
+      "midi": 86,
       "vel": 0.96,
       "quick": false
     },
     {
-      "bar": 51,
-      "step": 0,
+      "bar": 50,
+      "step": 8,
+      "dur": 4.0,
+      "note": "E6",
+      "midi": 88,
+      "vel": 0.94,
+      "quick": false
+    },
+    {
+      "bar": 50,
+      "step": 12,
       "dur": 4.0,
       "note": "F#6",
       "midi": 90,
-      "vel": 0.98,
+      "vel": 0.96,
       "quick": false
     },
     {
       "bar": 51,
-      "step": 4,
-      "dur": 11.5,
+      "step": 0,
+      "dur": 6.0,
+      "note": "G#6",
+      "midi": 92,
+      "vel": 1.0,
+      "quick": false
+    },
+    {
+      "bar": 51,
+      "step": 6,
+      "dur": 2.0,
+      "note": "F#6",
+      "midi": 90,
+      "vel": 0.94,
+      "quick": true
+    },
+    {
+      "bar": 51,
+      "step": 8,
+      "dur": 7.5,
       "note": "G#6",
       "midi": 92,
       "vel": 1.0,
@@ -2489,10 +2525,10 @@
       {
         "bar": 49,
         "midis": [
-          54,
-          57,
-          61,
-          68
+          52,
+          56,
+          59,
+          64
         ]
       },
       {
@@ -2501,7 +2537,7 @@
           50,
           54,
           57,
-          59
+          64
         ]
       },
       {
@@ -2865,22 +2901,22 @@
       },
       {
         "bar": 48,
-        "midi": 28,
+        "midi": 38,
         "drop": false
       },
       {
         "bar": 49,
-        "midi": 28,
+        "midi": 37,
         "drop": false
       },
       {
         "bar": 50,
-        "midi": 28,
+        "midi": 35,
         "drop": false
       },
       {
         "bar": 51,
-        "midi": 28,
+        "midi": 40,
         "drop": true
       },
       {
@@ -3740,25 +3776,55 @@
       {
         "bar": 48,
         "step": 0,
-        "dur": 16.0,
-        "midi": 78
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 48,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 81
       },
       {
         "bar": 49,
         "step": 0,
-        "dur": 16.0,
-        "midi": 81
+        "dur": 8.0,
+        "midi": 80
+      },
+      {
+        "bar": 49,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 76
       },
       {
         "bar": 50,
         "step": 0,
-        "dur": 16.0,
+        "dur": 8.0,
+        "midi": 78
+      },
+      {
+        "bar": 50,
+        "step": 8,
+        "dur": 4.0,
         "midi": 83
+      },
+      {
+        "bar": 50,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 81
       },
       {
         "bar": 51,
         "step": 0,
-        "dur": 15.5,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 51,
+        "step": 8,
+        "dur": 7.5,
         "midi": 88
       },
       {
@@ -4156,26 +4222,44 @@
       {
         "bar": 48,
         "step": 0,
-        "dur": 16.0,
+        "dur": 8.0,
         "midi": 62
+      },
+      {
+        "bar": 48,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 66
       },
       {
         "bar": 49,
         "step": 0,
-        "dur": 16.0,
-        "midi": 66
+        "dur": 8.0,
+        "midi": 61
+      },
+      {
+        "bar": 49,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 68
       },
       {
         "bar": 50,
         "step": 0,
-        "dur": 16.0,
-        "midi": 69
+        "dur": 8.0,
+        "midi": 59
+      },
+      {
+        "bar": 50,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 62
       },
       {
         "bar": 51,
         "step": 0,
         "dur": 8.0,
-        "midi": 71
+        "midi": 64
       },
       {
         "bar": 52,
