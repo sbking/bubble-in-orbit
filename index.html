@@ -79,7 +79,7 @@
 <div class="bar">
   <button id="btn-play">▶ Play [Space]</button>
   <button id="btn-mode" class="on">🎵 Song Mode</button>
-  <button id="btn-full-loop">Loop All (1–36)</button>
+  <button id="btn-full-loop">Loop All (1–40)</button>
   <button id="btn-reset">Reset Default Mix</button>
   <span class="status" id="load-status">Press Play to load &amp; listen</span>
   <div class="readout" id="readout">Bar 1.1 · 0.00s</div>
@@ -117,13 +117,15 @@
     <span><i style="background:#ff4fd8"></i>MEGA Bass / Sub</span>
     <span><i style="background:#ffd166"></i>Water-Bongo Pivots</span>
   </div>
-  <div class="hint">Press Play for the full 2:20 Song Arrangement (Intro Bloom → Pass 1 → Pass 2 → Bridge → 3-Voice Crystal Fugue) · Click any Bar or Waveform to jump into Loop Mode · Shift-click bars to loop a section · Toggle S (Solo) / M (Mute) on any stem live!</div>
+  <div class="hint">Press Play for the full 2:30 Song Arrangement (Intro Bloom → Pass 1 → Pass 2 → 8-Bar Bridge → 3-Voice Crystal Fugue, looping smoothly to Pass 1) · Click any Section Marker to jump &amp; play through (Shift-click to loop that section) · Click any Bar or Waveform to seek · Toggle S / M live!</div>
 </div>
 
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const S = await (await fetch('./session.json')).json();
+const BUILD_ID = '40b-ca964644';
+const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
+const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
 let ctx = null, master = null, initPromise = null;
 const buffers = {};
@@ -206,7 +208,7 @@ document.getElementById('btn-full-loop').textContent = `Loop All (1–${S.bars})
 let loadedCount = 0;
 async function loadOneTrack(tr) {
   if (buffers[tr.id]) return;
-  const r = await fetch(`./tracks/${tr.audio}`);
+  const r = await fetch(`./tracks/${tr.audio}?v=${ASSET_V}`);
   if (!r.ok) return;
   const decoded = await ctx.decodeAudioData(await r.arrayBuffer());
   buffers[tr.id] = decoded;
@@ -573,10 +575,26 @@ barsEl.style.gridTemplateColumns = `repeat(${Math.min(16, S.bars)}, 1fr)`;
 const barCells = [];
 for (const mk of S.markers) {
   const b = document.createElement('button'); b.className = 'mk'; b.textContent = mk.label;
-  b.onclick = () => {
-    songMode = false; updateModeBtn();
+  b.title = 'Click to jump here & play through · Shift-click to loop just this section';
+  b.onclick = (e) => {
     const nextMk = S.markers.find((x) => x.bar > mk.bar);
-    loopStartBar = mk.bar; loopEndBar = nextMk ? nextMk.bar : S.bars;
+    if (e.shiftKey) {
+      songMode = false; updateModeBtn();
+      loopStartBar = mk.bar; loopEndBar = nextMk ? nextMk.bar : S.bars;
+      syncBarUI(); startAt(mk.bar * barSec);
+      return;
+    }
+    if (songMode) {
+      const { queue } = buildSongQueue();
+      const match = queue.find((st) => !st.once && mk.bar >= st.startBar && mk.bar < st.endBar)
+        || queue.find((st) => mk.bar >= st.startBar && mk.bar < st.endBar);
+      if (match) {
+        startSongAt(match.stepIdx, (mk.bar - match.startBar) * barSec);
+        return;
+      }
+    }
+    songMode = false; updateModeBtn();
+    loopStartBar = 0; loopEndBar = S.bars;
     syncBarUI(); startAt(mk.bar * barSec);
   };
   mkEl.appendChild(b);
