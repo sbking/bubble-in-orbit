@@ -176,7 +176,10 @@
 <body>
 <div class="head-row">
   <h1 id="title">Bubble in Orbit</h1>
-  <span class="status" id="load-status">Press Play to load &amp; listen</span>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="./atlas.html" style="font-size:12px;color:#ffe066;text-decoration:none;border:1px solid rgba(255,224,102,0.45);border-radius:4px;padding:4px 9px;background:rgba(255,224,102,0.08);" title="Open the 40-Bar Interactive Music &amp; Fugue Atlas">📖 Interactive Atlas ↗</a>
+    <span class="status" id="load-status">Press Play to load &amp; listen</span>
+  </div>
 </div>
 <div class="sub" id="sub">Loading stems…</div>
 
@@ -296,7 +299,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '40b-9aae376f';
+const BUILD_ID = '40b-2d897a99';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
