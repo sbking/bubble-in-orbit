@@ -89,13 +89,13 @@
   <div class="arr-head">
     <strong style="color:var(--gold);font-size:12px;">Song Arrangement</strong>
     <select id="arr-preset">
-      <option value="0:4:Intro:intro">Intro (Bars 1–4 · Bloom)</option>
-      <option value="0:8:Pass 1 Entry:entry">Pass 1 Entry (Bars 1–8 · Grow)</option>
-      <option value="8:16:Chorus 1:full">Chorus 1 (Bars 9–16 · Full)</option>
-      <option value="0:16:Act I Full:full">Act I Full (Bars 1–16 · Full)</option>
-      <option value="16:24:Bridge + Build:full">Bridge + Long Build (Bars 17–24)</option>
-      <option value="24:32:Overdrive Fugue:full">Overdrive 3-Voice Fugue (Bars 25–32)</option>
-      <option value="16:36:Act II Full:full">Act II Full (Bars 17–36)</option>
+      <option value="0:4:Intro:intro:1">Intro (Bars 1–4 · Once)</option>
+      <option value="0:8:Pass 1 Entry:entry:0">Pass 1 Entry (Bars 1–8 · Grow)</option>
+      <option value="8:16:Chorus 1:full:0">Chorus 1 (Bars 9–16 · Full)</option>
+      <option value="0:16:Act I Full:full:0">Act I Full (Bars 1–16 · Full)</option>
+      <option value="16:28:Extended Bridge + Build:full:0">Extended Bridge + Build (Bars 17–28)</option>
+      <option value="28:36:Overdrive Fugue:full:0">Overdrive 3-Voice Fugue (Bars 29–36)</option>
+      <option value="16:40:Act II Full:full:0">Act II Full (Bars 17–40)</option>
       <option value="loop">Current Loop Selection</option>
     </select>
     <button id="btn-arr-add" style="padding:3px 9px;font-size:11px;">+ Add Section</button>
@@ -185,7 +185,7 @@ function makeDefaultArrangement() {
     return S.defaultArrangement.map((b) => ({ ...b }));
   }
   return [
-    { label: 'Intro',         startBar: 0,  endBar: 4,  repeats: 1, scene: 'intro' },
+    { label: 'Intro',         startBar: 0,  endBar: 4,  repeats: 1, scene: 'intro', once: true },
     { label: 'Pass 1 Entry',  startBar: 0,  endBar: 8,  repeats: 1, scene: 'entry' },
     { label: 'Pass 1 Chorus', startBar: 8,  endBar: 16, repeats: 1, scene: 'full' },
     { label: 'Pass 2 Full',   startBar: 0,  endBar: 16, repeats: 1, scene: 'full' },
@@ -291,17 +291,18 @@ function buildSongQueue() {
   for (let bi = 0; bi < arrangement.length; bi++) {
     const blk = arrangement[bi];
     const durSec = (blk.endBar - blk.startBar) * barSec;
-    const reps = Math.max(1, blk.repeats || 1);
+    const reps = blk.once ? 1 : Math.max(1, blk.repeats || 1);
     for (let r = 0; r < reps; r++) {
       q.push({
         stepIdx: q.length, blockIdx: bi, rep: r, totalReps: reps,
         label: blk.label, startBar: blk.startBar, endBar: blk.endBar,
-        scene: blk.scene || 'full', durSec, songStartSec: accSec,
+        scene: blk.scene || 'full', once: !!blk.once, durSec, songStartSec: accSec,
       });
       accSec += durSec;
     }
   }
-  return { queue: q, totalSec: accSec };
+  const firstLoop = q.findIndex((s) => !s.once);
+  return { queue: q, totalSec: accSec, loopIdx: firstLoop >= 0 ? firstLoop : 0 };
 }
 function fmtTime(sec) { const s = Math.max(0, Math.floor(sec)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
 function activeSongSegment() {
@@ -417,7 +418,7 @@ function scheduleSongStep(step, tStart, offsetInStep = 0, xfadeIn = 0.003) {
 
 async function startSongAt(stepIdx = 0, offsetInStep = 0, xfadeSec = 0) {
   await ensureAudio();
-  const { queue } = buildSongQueue();
+  const { queue, loopIdx } = buildSongQueue();
   if (!queue.length) { songMode = false; updateModeBtn(); return startAt(0); }
   const idx = ((stepIdx % queue.length) + queue.length) % queue.length;
   stopPlayback(xfadeSec);
@@ -425,20 +426,21 @@ async function startSongAt(stepIdx = 0, offsetInStep = 0, xfadeSec = 0) {
   const step = queue[idx];
   const off = Math.max(0, Math.min(step.durSec - 0.05, offsetInStep));
   songNextCtxTime = scheduleSongStep(step, t0, off, xfadeSec > 0 ? xfadeSec : 0.004);
-  songNextStepIdx = (idx + 1) % queue.length;
+  songNextStepIdx = (idx + 1 < queue.length) ? (idx + 1) : loopIdx;
   songPausedStepIdx = idx; songPausedOffsetSec = off; playing = true;
   document.getElementById('btn-play').textContent = '⏸ Pause [Space]';
   document.getElementById('btn-play').classList.add('on');
   songSchedTimer = setInterval(() => {
     if (!playing || !ctx || !songMode) return;
-    const { queue: curQ } = buildSongQueue();
+    const { queue: curQ, loopIdx: curLoopIdx } = buildSongQueue();
     if (!curQ.length) return;
     const now = ctx.currentTime;
     while (songSegments.length > 2 && songSegments[0].endCtx < now - 0.25) songSegments.shift();
     while (songNextCtxTime - now < 0.55) {
-      const nextStep = curQ[songNextStepIdx % curQ.length];
+      const si = songNextStepIdx < curQ.length ? songNextStepIdx : curLoopIdx;
+      const nextStep = curQ[si];
       songNextCtxTime = scheduleSongStep(nextStep, songNextCtxTime, 0, 0.003);
-      songNextStepIdx = (songNextStepIdx + 1) % curQ.length;
+      songNextStepIdx = (si + 1 < curQ.length) ? (si + 1) : curLoopIdx;
     }
   }, 90);
 }
@@ -493,9 +495,10 @@ function updateModeBtn() {
   else { btnModeEl.textContent = '🔁 Loop Mode'; btnModeEl.classList.remove('on'); }
 }
 function rebuildArrangement() {
-  const { queue, totalSec } = buildSongQueue();
+  const { queue, totalSec, loopIdx } = buildSongQueue();
   const totalBars = queue.reduce((a, x) => a + (x.endBar - x.startBar), 0);
-  arrInfoEl.textContent = `${totalBars} bars · ${fmtTime(totalSec)} total · click any block to play · click ×N or scene to edit`;
+  const loopLbl = queue[loopIdx] ? queue[loopIdx].label : 'Start';
+  arrInfoEl.textContent = `${totalBars} bars · ${fmtTime(totalSec)} · loops smoothly → ${loopLbl}`;
   arrChainEl.innerHTML = ''; arrChipEls = [];
   arrangement.forEach((blk, bi) => {
     if (bi > 0) { const ar = document.createElement('span'); ar.className = 'arr-arrow'; ar.textContent = '→'; arrChainEl.appendChild(ar); }
@@ -512,9 +515,12 @@ function rebuildArrangement() {
     top.append(lbl, brs);
 
     const ctl = document.createElement('div'); ctl.className = 'arr-chip-ctl';
-    const bRep = document.createElement('button'); bRep.className = 'arr-pill rep'; bRep.textContent = `×${blk.repeats || 1}`;
+    const bRep = document.createElement('button'); bRep.className = 'arr-pill rep'; bRep.textContent = blk.once ? 'once' : `×${blk.repeats || 1}`;
     bRep.onclick = () => {
-      blk.repeats = ((blk.repeats || 1) % 4) + 1; rebuildArrangement();
+      if (blk.once) { blk.once = false; blk.repeats = 1; }
+      else if ((blk.repeats || 1) >= 4) { blk.once = true; blk.repeats = 1; }
+      else { blk.repeats = (blk.repeats || 1) + 1; }
+      rebuildArrangement();
       if (playing && songMode) { const seg = activeSongSegment(); startSongAt(seg ? seg.stepIdx : 0, seg ? (seg.offsetInStep + (ctx.currentTime - seg.startCtx)) : 0, 0.05); }
     };
     const bSc = document.createElement('button'); bSc.className = 'arr-pill'; bSc.textContent = (SCENES[blk.scene] || SCENES.full).label;
@@ -547,11 +553,11 @@ btnModeEl.onclick = () => {
 };
 document.getElementById('btn-arr-add').onclick = () => {
   const val = document.getElementById('arr-preset').value;
-  if (val === 'loop') arrangement.push({ label: `Loop ${loopStartBar + 1}–${loopEndBar}`, startBar: loopStartBar, endBar: loopEndBar, repeats: 1, scene: 'full' });
+  if (val === 'loop') arrangement.push({ label: `Loop ${loopStartBar + 1}–${loopEndBar}`, startBar: loopStartBar, endBar: loopEndBar, repeats: 1, scene: 'full', once: false });
   else {
-    const [a, b, label, scene] = val.split(':');
+    const [a, b, label, scene, onceFlag] = val.split(':');
     const sb = Math.min(S.bars - 1, Number(a)), eb = Math.min(S.bars, Number(b));
-    if (eb > sb) arrangement.push({ label, startBar: sb, endBar: eb, repeats: 1, scene });
+    if (eb > sb) arrangement.push({ label, startBar: sb, endBar: eb, repeats: 1, scene, once: onceFlag === '1' });
   }
   rebuildArrangement();
 };
