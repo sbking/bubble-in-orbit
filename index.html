@@ -269,9 +269,10 @@
       <option value="16:28:Extended Bridge + Build:full:0">Extended Bridge + Build (Bars 17–28)</option>
       <option value="28:36:Overdrive Fugue:full:0">Overdrive 3-Voice Fugue (Bars 29–36)</option>
       <option value="16:40:Act II Full:full:0">Act II Full (Bars 17–40)</option>
-      <option value="40:44:Velvet Breakdown:full:0">Act III: Velvet Breakdown (Bars 41–44)</option>
-      <option value="44:52:Event Horizon (½T):full:0">Act III: Event Horizon Half-Time (Bars 45–52)</option>
-      <option value="52:60:E1 Pedal + E→A:full:0">Act III: E1 Pedal Stretto + Sunlit E→A (Bars 53–60)</option>
+      <option value="36:40:Calm C#m Pivot:full:0">Calm Afterglow &amp; C#m Pivot (Bars 37–40)</option>
+      <option value="40:48:Event Horizon (½T):full:0">Act III: Event Horizon Half-Time (Bars 41–48)</option>
+      <option value="48:60:E1 Pedal + 8B E→A:full:0">Act III: E1 Pedal + 8-Bar Sunlit E→A (Bars 49–60)</option>
+      <option value="56:64:Floating Sunrise (Calm):full:0">Act III: 8-Bar Drumless Sunrise (Bars 57–64)</option>
       <option value="40:64:Act III Full:full:0">Act III: Catharsis Full (Bars 41–64)</option>
       <option value="loop">Current Loop Selection</option>
     </select>
@@ -303,7 +304,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '64b-8aa4491f';
+const BUILD_ID = '64b-f2f68c8b';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
