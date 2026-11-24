@@ -177,7 +177,7 @@
 <div class="head-row">
   <h1 id="title">Bubble in Orbit</h1>
   <div style="display:flex;align-items:center;gap:10px;">
-    <a href="./atlas.html" style="font-size:12px;color:#ffe066;text-decoration:none;border:1px solid rgba(255,224,102,0.45);border-radius:4px;padding:4px 9px;background:rgba(255,224,102,0.08);" title="Open the 60-Bar Interactive Music &amp; Fugue Atlas">📖 Interactive Atlas ↗</a>
+    <a href="./atlas.html" style="font-size:12px;color:#ffe066;text-decoration:none;border:1px solid rgba(255,224,102,0.45);border-radius:4px;padding:4px 9px;background:rgba(255,224,102,0.08);" title="Open the 64-Bar Interactive Music &amp; Fugue Atlas">📖 Interactive Atlas ↗</a>
     <span class="status" id="load-status">Press Play to load &amp; listen</span>
   </div>
 </div>
@@ -187,7 +187,7 @@
 <div class="bar">
   <button id="btn-play">▶ Play [Space]</button>
   <button id="btn-mode" class="on">🎵 Song Mode</button>
-  <button id="btn-full-loop">Loop All (1–60)</button>
+  <button id="btn-full-loop">Loop All (1–64)</button>
   <button id="btn-click" title="Metronome click locked to beat grid [C]">🔔 Click</button>
   <button id="btn-bounce" title="Offline-render your full custom mix (stems + uploads + HalfTime + FX + Tape Speed) to a downloadable .wav file">⬇ Bounce WAV</button>
   <button id="btn-share" title="Copy a shareable link containing your exact mix, FX, HalfTime, and arrangement settings">🔗 Share Mix</button>
@@ -267,13 +267,14 @@
       <option value="8:16:Chorus 1:full:0">Chorus 1 (Bars 9–16 · Full)</option>
       <option value="0:16:Act I Full:full:0">Act I Full (Bars 1–16 · Full)</option>
       <option value="16:28:Extended Bridge + Build:full:0">Extended Bridge + Build (Bars 17–28)</option>
-      <option value="28:36:Overdrive Fugue:full:0">Overdrive 3-Voice Fugue (Bars 29–36)</option>
-      <option value="16:40:Act II Full:full:0">Act II Full (Bars 17–40)</option>
-      <option value="36:40:Calm C#m Pivot:full:0">Calm Afterglow &amp; C#m Pivot (Bars 37–40)</option>
-      <option value="40:48:Event Horizon (8B ½T):full:0">Act III: Event Horizon Half-Time (Bars 41–48)</option>
-      <option value="48:56:8-Bar Sunlit E→A:full:0">Act III: 8-Bar Sunlit E→A Catharsis (Bars 49–56)</option>
-      <option value="52:60:Floating Sunrise (Calm):full:0">Act III: 8-Bar Drumless Sunrise (Bars 53–60)</option>
-      <option value="40:60:Act III Full:full:0">Act III: Event Horizon + Catharsis (Bars 41–60)</option>
+      <option value="28:40:Fugue + Walk-Out:full:0">Overdrive Fugue + 4-Bar Walk-Out (Bars 29–40)</option>
+      <option value="36:40:Fugue Walk-Out Coda:full:0">Fugue Walk-Out Coda (Bars 37–40)</option>
+      <option value="16:44:Act II Full:full:0">Act II Full (Bars 17–44)</option>
+      <option value="40:44:Calm C#m Pivot:full:0">Calm Afterglow &amp; C#m Pivot (Bars 41–44)</option>
+      <option value="44:52:Event Horizon (8B ½T):full:0">Act III: Event Horizon Half-Time (Bars 45–52)</option>
+      <option value="52:60:8-Bar Sunlit E→A:full:0">Act III: 8-Bar Sunlit E→A Catharsis (Bars 53–60)</option>
+      <option value="56:64:Floating Sunrise (Calm):full:0">Act III: 8-Bar Drumless Sunrise (Bars 57–64)</option>
+      <option value="44:64:Act III Full:full:0">Act III: Event Horizon + Catharsis (Bars 45–64)</option>
       <option value="loop">Current Loop Selection</option>
     </select>
     <button id="btn-arr-add" style="padding:3px 9px;font-size:11px;">+ Add Section</button>
@@ -304,7 +305,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '60b-677c33d9';
+const BUILD_ID = '64b-73bb172f';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
@@ -542,8 +543,8 @@ function makeDefaultArrangement() {
     { label: 'Pass 1 Entry',  startBar: 0,  endBar: 8,  repeats: 1, scene: 'entry' },
     { label: 'Pass 1 Chorus', startBar: 8,  endBar: 16, repeats: 1, scene: 'full' },
     { label: 'Pass 2 Full',        startBar: 0,  endBar: 16, repeats: 1, scene: 'full' },
-    { label: 'Act II: Fugue',      startBar: 16, endBar: Math.min(40, S.bars), repeats: 1, scene: 'full' },
-    ...(S.bars > 40 ? [{ label: 'Act III: Catharsis', startBar: 40, endBar: S.bars, repeats: 1, scene: 'full' }] : []),
+    { label: 'Act II: 12B Fugue',  startBar: 16, endBar: Math.min(44, S.bars), repeats: 1, scene: 'full' },
+    ...(S.bars > 44 ? [{ label: 'Act III: Catharsis', startBar: 44, endBar: S.bars, repeats: 1, scene: 'full' }] : []),
   ];
 }
 let songMode = true;

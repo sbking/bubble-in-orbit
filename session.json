@@ -1,9 +1,9 @@
 {
   "title": "Bubble in Orbit \u2014 Interactive Web DAW",
-  "buildId": "60b-677c33d9",
+  "buildId": "64b-73bb172f",
   "bpm": 96.0,
-  "bars": 60,
-  "loopSec": 150.0,
+  "bars": 64,
+  "loopSec": 160.0,
   "key": "F# minor / A major (Act III C#m Nocturne)",
   "chords": [
     "F#m9",
@@ -34,6 +34,10 @@
     "Dmaj9",
     "Aadd9",
     "E6",
+    "Dmaj9",
+    "E6",
+    "F#m9",
+    "Aadd9",
     "Dmaj9",
     "E6",
     "F#m9",
@@ -106,27 +110,31 @@
     },
     {
       "bar": 36,
-      "label": "B37 \u2014 Calm Afterglow & C#m Pivot"
+      "label": "B37 \u2014 Fugue Walk-Out Coda"
     },
     {
       "bar": 40,
-      "label": "B41 \u2014 Event Horizon (R\u00f6yksopp C#m)"
+      "label": "B41 \u2014 Calm Afterglow & C#m Pivot"
     },
     {
       "bar": 44,
-      "label": "B45 \u2014 Event Horizon Lift (F#m\u2192D\u2192Bm\u2192E)"
+      "label": "B45 \u2014 Event Horizon (R\u00f6yksopp C#m)"
     },
     {
       "bar": 48,
-      "label": "B49 \u2014 Sunlit E\u2192A Catharsis"
+      "label": "B49 \u2014 Event Horizon Lift (F#m\u2192D\u2192Bm\u2192E)"
     },
     {
       "bar": 52,
-      "label": "B53 \u2014 Floating Sunrise (Calm)"
+      "label": "B53 \u2014 Sunlit E\u2192A Catharsis"
     },
     {
       "bar": 56,
-      "label": "B57 \u2014 Quiet Sunrise Outro"
+      "label": "B57 \u2014 Floating Sunrise (Calm)"
+    },
+    {
+      "bar": 60,
+      "label": "B61 \u2014 Quiet Sunrise Outro"
     }
   ],
   "defaultArrangement": [
@@ -163,17 +171,17 @@
       "once": false
     },
     {
-      "label": "Act II: Fugue",
+      "label": "Act II: 12B Fugue",
       "startBar": 16,
-      "endBar": 40,
+      "endBar": 44,
       "repeats": 1,
       "scene": "full",
       "once": false
     },
     {
       "label": "Act III: Catharsis",
-      "startBar": 40,
-      "endBar": 60,
+      "startBar": 44,
+      "endBar": 64,
       "repeats": 1,
       "scene": "full",
       "once": false
@@ -1362,6 +1370,150 @@
     {
       "bar": 36,
       "step": 0,
+      "dur": 4.0,
+      "note": "F#5",
+      "midi": 78,
+      "vel": 0.92,
+      "quick": false
+    },
+    {
+      "bar": 36,
+      "step": 4,
+      "dur": 2.0,
+      "note": "A5",
+      "midi": 81,
+      "vel": 0.9,
+      "quick": true
+    },
+    {
+      "bar": 36,
+      "step": 6,
+      "dur": 2.0,
+      "note": "D6",
+      "midi": 86,
+      "vel": 0.94,
+      "quick": true
+    },
+    {
+      "bar": 36,
+      "step": 8,
+      "dur": 4.0,
+      "note": "C#6",
+      "midi": 85,
+      "vel": 0.92,
+      "quick": false
+    },
+    {
+      "bar": 36,
+      "step": 12,
+      "dur": 4.0,
+      "note": "A5",
+      "midi": 81,
+      "vel": 0.88,
+      "quick": false
+    },
+    {
+      "bar": 37,
+      "step": 0,
+      "dur": 4.0,
+      "note": "B5",
+      "midi": 83,
+      "vel": 0.9,
+      "quick": false
+    },
+    {
+      "bar": 37,
+      "step": 4,
+      "dur": 2.0,
+      "note": "G#5",
+      "midi": 80,
+      "vel": 0.86,
+      "quick": true
+    },
+    {
+      "bar": 37,
+      "step": 6,
+      "dur": 2.0,
+      "note": "F#5",
+      "midi": 78,
+      "vel": 0.84,
+      "quick": true
+    },
+    {
+      "bar": 37,
+      "step": 8,
+      "dur": 4.0,
+      "note": "E5",
+      "midi": 76,
+      "vel": 0.84,
+      "quick": false
+    },
+    {
+      "bar": 37,
+      "step": 12,
+      "dur": 4.0,
+      "note": "G#5",
+      "midi": 80,
+      "vel": 0.86,
+      "quick": false
+    },
+    {
+      "bar": 38,
+      "step": 0,
+      "dur": 8.0,
+      "note": "A5",
+      "midi": 81,
+      "vel": 0.92,
+      "quick": false
+    },
+    {
+      "bar": 38,
+      "step": 8,
+      "dur": 4.0,
+      "note": "G#5",
+      "midi": 80,
+      "vel": 0.86,
+      "quick": false
+    },
+    {
+      "bar": 38,
+      "step": 12,
+      "dur": 4.0,
+      "note": "F#5",
+      "midi": 78,
+      "vel": 0.84,
+      "quick": false
+    },
+    {
+      "bar": 39,
+      "step": 0,
+      "dur": 8.0,
+      "note": "E5",
+      "midi": 76,
+      "vel": 0.84,
+      "quick": false
+    },
+    {
+      "bar": 39,
+      "step": 8,
+      "dur": 4.0,
+      "note": "C#5",
+      "midi": 73,
+      "vel": 0.8,
+      "quick": false
+    },
+    {
+      "bar": 39,
+      "step": 12,
+      "dur": 4.0,
+      "note": "E5",
+      "midi": 76,
+      "vel": 0.82,
+      "quick": false
+    },
+    {
+      "bar": 40,
+      "step": 0,
       "dur": 6.0,
       "note": "D5",
       "midi": 74,
@@ -1369,7 +1521,7 @@
       "quick": false
     },
     {
-      "bar": 36,
+      "bar": 40,
       "step": 8,
       "dur": 2.0,
       "note": "D5",
@@ -1378,7 +1530,7 @@
       "quick": true
     },
     {
-      "bar": 36,
+      "bar": 40,
       "step": 10,
       "dur": 6.0,
       "note": "F#5",
@@ -1387,7 +1539,7 @@
       "quick": false
     },
     {
-      "bar": 37,
+      "bar": 41,
       "step": 0,
       "dur": 7.8,
       "note": "E5",
@@ -1396,7 +1548,7 @@
       "quick": false
     },
     {
-      "bar": 37,
+      "bar": 41,
       "step": 8,
       "dur": 7.5,
       "note": "C#5",
@@ -1405,7 +1557,7 @@
       "quick": false
     },
     {
-      "bar": 38,
+      "bar": 42,
       "step": 0,
       "dur": 2.0,
       "note": "E5",
@@ -1414,7 +1566,7 @@
       "quick": true
     },
     {
-      "bar": 38,
+      "bar": 42,
       "step": 2,
       "dur": 12.0,
       "note": "C#5",
@@ -1423,7 +1575,7 @@
       "quick": false
     },
     {
-      "bar": 39,
+      "bar": 43,
       "step": 0,
       "dur": 4.0,
       "note": "B4",
@@ -1432,7 +1584,7 @@
       "quick": false
     },
     {
-      "bar": 39,
+      "bar": 43,
       "step": 4,
       "dur": 4.0,
       "note": "C#5",
@@ -1441,7 +1593,7 @@
       "quick": false
     },
     {
-      "bar": 39,
+      "bar": 43,
       "step": 8,
       "dur": 4.0,
       "note": "D#5",
@@ -1450,7 +1602,7 @@
       "quick": false
     },
     {
-      "bar": 39,
+      "bar": 43,
       "step": 12,
       "dur": 4.0,
       "note": "F#5",
@@ -1459,7 +1611,7 @@
       "quick": false
     },
     {
-      "bar": 40,
+      "bar": 44,
       "step": 0,
       "dur": 8.0,
       "note": "G#5",
@@ -1468,7 +1620,7 @@
       "quick": false
     },
     {
-      "bar": 40,
+      "bar": 44,
       "step": 8,
       "dur": 4.0,
       "note": "F#5",
@@ -1477,7 +1629,7 @@
       "quick": false
     },
     {
-      "bar": 40,
+      "bar": 44,
       "step": 12,
       "dur": 4.0,
       "note": "E5",
@@ -1486,7 +1638,7 @@
       "quick": false
     },
     {
-      "bar": 41,
+      "bar": 45,
       "step": 0,
       "dur": 10.0,
       "note": "E5",
@@ -1495,7 +1647,7 @@
       "quick": false
     },
     {
-      "bar": 41,
+      "bar": 45,
       "step": 10,
       "dur": 2.0,
       "note": "G#5",
@@ -1504,7 +1656,7 @@
       "quick": true
     },
     {
-      "bar": 41,
+      "bar": 45,
       "step": 12,
       "dur": 4.0,
       "note": "A5",
@@ -1513,7 +1665,7 @@
       "quick": false
     },
     {
-      "bar": 42,
+      "bar": 46,
       "step": 0,
       "dur": 10.0,
       "note": "B5",
@@ -1522,7 +1674,7 @@
       "quick": false
     },
     {
-      "bar": 42,
+      "bar": 46,
       "step": 10,
       "dur": 2.0,
       "note": "G#5",
@@ -1531,7 +1683,7 @@
       "quick": true
     },
     {
-      "bar": 42,
+      "bar": 46,
       "step": 12,
       "dur": 4.0,
       "note": "F#5",
@@ -1540,7 +1692,7 @@
       "quick": false
     },
     {
-      "bar": 43,
+      "bar": 47,
       "step": 0,
       "dur": 10.0,
       "note": "F#5",
@@ -1549,7 +1701,7 @@
       "quick": false
     },
     {
-      "bar": 43,
+      "bar": 47,
       "step": 10,
       "dur": 2.0,
       "note": "G#5",
@@ -1558,7 +1710,7 @@
       "quick": true
     },
     {
-      "bar": 43,
+      "bar": 47,
       "step": 12,
       "dur": 4.0,
       "note": "B5",
@@ -1567,7 +1719,7 @@
       "quick": false
     },
     {
-      "bar": 44,
+      "bar": 48,
       "step": 0,
       "dur": 8.0,
       "note": "A5",
@@ -1576,7 +1728,7 @@
       "quick": false
     },
     {
-      "bar": 44,
+      "bar": 48,
       "step": 8,
       "dur": 4.0,
       "note": "G#5",
@@ -1585,7 +1737,7 @@
       "quick": false
     },
     {
-      "bar": 44,
+      "bar": 48,
       "step": 12,
       "dur": 4.0,
       "note": "F#5",
@@ -1594,7 +1746,7 @@
       "quick": false
     },
     {
-      "bar": 45,
+      "bar": 49,
       "step": 0,
       "dur": 8.0,
       "note": "F#5",
@@ -1603,7 +1755,7 @@
       "quick": false
     },
     {
-      "bar": 45,
+      "bar": 49,
       "step": 8,
       "dur": 4.0,
       "note": "A5",
@@ -1612,7 +1764,7 @@
       "quick": false
     },
     {
-      "bar": 45,
+      "bar": 49,
       "step": 12,
       "dur": 4.0,
       "note": "C#6",
@@ -1621,7 +1773,7 @@
       "quick": false
     },
     {
-      "bar": 46,
+      "bar": 50,
       "step": 0,
       "dur": 8.0,
       "note": "D6",
@@ -1630,7 +1782,7 @@
       "quick": false
     },
     {
-      "bar": 46,
+      "bar": 50,
       "step": 8,
       "dur": 4.0,
       "note": "E6",
@@ -1639,7 +1791,7 @@
       "quick": false
     },
     {
-      "bar": 46,
+      "bar": 50,
       "step": 12,
       "dur": 4.0,
       "note": "F#6",
@@ -1648,7 +1800,7 @@
       "quick": false
     },
     {
-      "bar": 47,
+      "bar": 51,
       "step": 0,
       "dur": 6.0,
       "note": "G#6",
@@ -1657,7 +1809,7 @@
       "quick": false
     },
     {
-      "bar": 47,
+      "bar": 51,
       "step": 6,
       "dur": 2.0,
       "note": "F#6",
@@ -1666,7 +1818,7 @@
       "quick": true
     },
     {
-      "bar": 47,
+      "bar": 51,
       "step": 8,
       "dur": 7.5,
       "note": "G#6",
@@ -1675,7 +1827,7 @@
       "quick": false
     },
     {
-      "bar": 48,
+      "bar": 52,
       "step": 0,
       "dur": 8.0,
       "note": "A6",
@@ -1684,7 +1836,7 @@
       "quick": false
     },
     {
-      "bar": 48,
+      "bar": 52,
       "step": 8,
       "dur": 2.0,
       "note": "E6",
@@ -1693,7 +1845,7 @@
       "quick": true
     },
     {
-      "bar": 48,
+      "bar": 52,
       "step": 10,
       "dur": 2.0,
       "note": "C#6",
@@ -1702,7 +1854,7 @@
       "quick": true
     },
     {
-      "bar": 48,
+      "bar": 52,
       "step": 12,
       "dur": 2.0,
       "note": "B5",
@@ -1711,7 +1863,7 @@
       "quick": true
     },
     {
-      "bar": 48,
+      "bar": 52,
       "step": 14,
       "dur": 2.0,
       "note": "A5",
@@ -1720,7 +1872,7 @@
       "quick": true
     },
     {
-      "bar": 49,
+      "bar": 53,
       "step": 0,
       "dur": 8.0,
       "note": "F#6",
@@ -1729,7 +1881,7 @@
       "quick": false
     },
     {
-      "bar": 49,
+      "bar": 53,
       "step": 8,
       "dur": 4.0,
       "note": "E6",
@@ -1738,7 +1890,7 @@
       "quick": false
     },
     {
-      "bar": 49,
+      "bar": 53,
       "step": 12,
       "dur": 4.0,
       "note": "D6",
@@ -1747,7 +1899,7 @@
       "quick": false
     },
     {
-      "bar": 50,
+      "bar": 54,
       "step": 0,
       "dur": 8.0,
       "note": "C#6",
@@ -1756,7 +1908,7 @@
       "quick": false
     },
     {
-      "bar": 50,
+      "bar": 54,
       "step": 8,
       "dur": 4.0,
       "note": "A5",
@@ -1765,7 +1917,7 @@
       "quick": false
     },
     {
-      "bar": 50,
+      "bar": 54,
       "step": 12,
       "dur": 4.0,
       "note": "G#5",
@@ -1774,7 +1926,7 @@
       "quick": false
     },
     {
-      "bar": 51,
+      "bar": 55,
       "step": 0,
       "dur": 8.0,
       "note": "E5",
@@ -1783,7 +1935,7 @@
       "quick": false
     },
     {
-      "bar": 51,
+      "bar": 55,
       "step": 8,
       "dur": 4.0,
       "note": "G#5",
@@ -1792,7 +1944,7 @@
       "quick": false
     },
     {
-      "bar": 51,
+      "bar": 55,
       "step": 12,
       "dur": 4.0,
       "note": "B5",
@@ -1801,7 +1953,7 @@
       "quick": false
     },
     {
-      "bar": 52,
+      "bar": 56,
       "step": 0,
       "dur": 8.0,
       "note": "C#6",
@@ -1810,7 +1962,7 @@
       "quick": false
     },
     {
-      "bar": 52,
+      "bar": 56,
       "step": 8,
       "dur": 8.0,
       "note": "A5",
@@ -1819,7 +1971,7 @@
       "quick": false
     },
     {
-      "bar": 53,
+      "bar": 57,
       "step": 0,
       "dur": 8.0,
       "note": "A5",
@@ -1828,7 +1980,7 @@
       "quick": false
     },
     {
-      "bar": 53,
+      "bar": 57,
       "step": 8,
       "dur": 8.0,
       "note": "F#5",
@@ -1837,7 +1989,7 @@
       "quick": false
     },
     {
-      "bar": 54,
+      "bar": 58,
       "step": 0,
       "dur": 8.0,
       "note": "A5",
@@ -1846,7 +1998,7 @@
       "quick": false
     },
     {
-      "bar": 54,
+      "bar": 58,
       "step": 8,
       "dur": 8.0,
       "note": "F#5",
@@ -1855,7 +2007,7 @@
       "quick": false
     },
     {
-      "bar": 55,
+      "bar": 59,
       "step": 0,
       "dur": 8.0,
       "note": "G#5",
@@ -1864,7 +2016,7 @@
       "quick": false
     },
     {
-      "bar": 55,
+      "bar": 59,
       "step": 8,
       "dur": 8.0,
       "note": "E5",
@@ -1873,7 +2025,7 @@
       "quick": false
     },
     {
-      "bar": 56,
+      "bar": 60,
       "step": 8,
       "dur": 2.0,
       "note": "D5",
@@ -1882,7 +2034,7 @@
       "quick": true
     },
     {
-      "bar": 56,
+      "bar": 60,
       "step": 10,
       "dur": 6.0,
       "note": "F#5",
@@ -1891,7 +2043,7 @@
       "quick": false
     },
     {
-      "bar": 57,
+      "bar": 61,
       "step": 0,
       "dur": 7.8,
       "note": "E5",
@@ -1900,7 +2052,7 @@
       "quick": false
     },
     {
-      "bar": 57,
+      "bar": 61,
       "step": 8,
       "dur": 7.5,
       "note": "C#5",
@@ -1909,7 +2061,7 @@
       "quick": false
     },
     {
-      "bar": 58,
+      "bar": 62,
       "step": 0,
       "dur": 2.0,
       "note": "E5",
@@ -1918,7 +2070,7 @@
       "quick": true
     },
     {
-      "bar": 58,
+      "bar": 62,
       "step": 2,
       "dur": 12.0,
       "note": "D5",
@@ -1927,7 +2079,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 63,
       "step": 0,
       "dur": 4.0,
       "note": "B4",
@@ -1936,7 +2088,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 63,
       "step": 4,
       "dur": 4.0,
       "note": "C#5",
@@ -1945,7 +2097,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 63,
       "step": 8,
       "dur": 4.0,
       "note": "B4",
@@ -1954,7 +2106,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 63,
       "step": 12,
       "dur": 4.0,
       "note": "G#4",
@@ -2301,9 +2453,9 @@
       {
         "bar": 37,
         "midis": [
-          52,
-          57,
+          56,
           59,
+          61,
           64
         ]
       },
@@ -2319,37 +2471,37 @@
       {
         "bar": 39,
         "midis": [
-          54,
-          56,
+          52,
+          57,
           59,
-          63
+          61
         ]
       },
       {
         "bar": 40,
         "midis": [
-          52,
-          56,
-          59,
-          63
+          54,
+          57,
+          61,
+          64
         ]
       },
       {
         "bar": 41,
         "midis": [
           52,
-          56,
+          57,
           59,
-          61
+          64
         ]
       },
       {
         "bar": 42,
         "midis": [
-          52,
           54,
-          56,
-          59
+          57,
+          61,
+          68
         ]
       },
       {
@@ -2364,46 +2516,46 @@
       {
         "bar": 44,
         "midis": [
-          54,
-          57,
-          61,
-          68
+          52,
+          56,
+          59,
+          63
         ]
       },
       {
         "bar": 45,
         "midis": [
-          54,
-          57,
-          61,
-          64
+          52,
+          56,
+          59,
+          61
         ]
       },
       {
         "bar": 46,
         "midis": [
-          50,
+          52,
           54,
-          57,
-          64
+          56,
+          59
         ]
       },
       {
         "bar": 47,
         "midis": [
-          52,
+          54,
           56,
           59,
-          66
+          63
         ]
       },
       {
         "bar": 48,
         "midis": [
-          52,
+          54,
           57,
-          59,
-          61
+          61,
+          68
         ]
       },
       {
@@ -2418,19 +2570,19 @@
       {
         "bar": 50,
         "midis": [
+          50,
           54,
           57,
-          61,
-          68
+          64
         ]
       },
       {
         "bar": 51,
         "midis": [
+          52,
           56,
           59,
-          61,
-          64
+          66
         ]
       },
       {
@@ -2472,18 +2624,18 @@
       {
         "bar": 56,
         "midis": [
-          54,
+          52,
           57,
-          61,
-          64
+          59,
+          61
         ]
       },
       {
         "bar": 57,
         "midis": [
-          52,
+          54,
           57,
-          59,
+          61,
           64
         ]
       },
@@ -2493,11 +2645,47 @@
           54,
           57,
           61,
-          64
+          68
         ]
       },
       {
         "bar": 59,
+        "midis": [
+          56,
+          59,
+          61,
+          64
+        ]
+      },
+      {
+        "bar": 60,
+        "midis": [
+          54,
+          57,
+          61,
+          64
+        ]
+      },
+      {
+        "bar": 61,
+        "midis": [
+          52,
+          57,
+          59,
+          64
+        ]
+      },
+      {
+        "bar": 62,
+        "midis": [
+          54,
+          57,
+          61,
+          64
+        ]
+      },
+      {
+        "bar": 63,
         "midis": [
           52,
           56,
@@ -2694,62 +2882,62 @@
       },
       {
         "bar": 37,
-        "midi": 37,
-        "drop": true
+        "midi": 40,
+        "drop": false
       },
       {
         "bar": 38,
         "midi": 30,
-        "drop": true
-      },
-      {
-        "bar": 39,
-        "midi": 32,
-        "drop": true
-      },
-      {
-        "bar": 40,
-        "midi": 37,
         "drop": false
       },
       {
-        "bar": 41,
+        "bar": 39,
         "midi": 33,
         "drop": false
       },
       {
-        "bar": 42,
-        "midi": 28,
-        "drop": false
-      },
-      {
-        "bar": 43,
-        "midi": 32,
-        "drop": false
-      },
-      {
-        "bar": 44,
-        "midi": 30,
-        "drop": false
-      },
-      {
-        "bar": 45,
+        "bar": 40,
         "midi": 38,
         "drop": false
       },
       {
+        "bar": 41,
+        "midi": 37,
+        "drop": true
+      },
+      {
+        "bar": 42,
+        "midi": 30,
+        "drop": true
+      },
+      {
+        "bar": 43,
+        "midi": 32,
+        "drop": true
+      },
+      {
+        "bar": 44,
+        "midi": 37,
+        "drop": false
+      },
+      {
+        "bar": 45,
+        "midi": 33,
+        "drop": false
+      },
+      {
         "bar": 46,
-        "midi": 35,
+        "midi": 28,
         "drop": false
       },
       {
         "bar": 47,
-        "midi": 40,
-        "drop": true
+        "midi": 32,
+        "drop": false
       },
       {
         "bar": 48,
-        "midi": 33,
+        "midi": 30,
         "drop": false
       },
       {
@@ -2759,13 +2947,13 @@
       },
       {
         "bar": 50,
-        "midi": 30,
+        "midi": 35,
         "drop": false
       },
       {
         "bar": 51,
         "midi": 40,
-        "drop": false
+        "drop": true
       },
       {
         "bar": 52,
@@ -2775,35 +2963,55 @@
       {
         "bar": 53,
         "midi": 38,
-        "drop": true
+        "drop": false
       },
       {
         "bar": 54,
         "midi": 30,
-        "drop": true
+        "drop": false
       },
       {
         "bar": 55,
         "midi": 40,
-        "drop": true
+        "drop": false
       },
       {
         "bar": 56,
-        "midi": 38,
-        "drop": true
+        "midi": 33,
+        "drop": false
       },
       {
         "bar": 57,
-        "midi": 37,
+        "midi": 38,
         "drop": true
       },
       {
         "bar": 58,
-        "midi": 38,
+        "midi": 30,
         "drop": true
       },
       {
         "bar": 59,
+        "midi": 40,
+        "drop": true
+      },
+      {
+        "bar": 60,
+        "midi": 38,
+        "drop": true
+      },
+      {
+        "bar": 61,
+        "midi": 37,
+        "drop": true
+      },
+      {
+        "bar": 62,
+        "midi": 38,
+        "drop": true
+      },
+      {
+        "bar": 63,
         "midi": 32,
         "drop": true
       }
@@ -3448,212 +3656,224 @@
       {
         "bar": 36,
         "step": 0,
+        "dur": 4.0,
+        "midi": 81
+      },
+      {
+        "bar": 36,
+        "step": 4,
+        "dur": 4.0,
+        "midi": 86
+      },
+      {
+        "bar": 36,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 88
+      },
+      {
+        "bar": 36,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 86
+      },
+      {
+        "bar": 37,
+        "step": 0,
+        "dur": 4.0,
+        "midi": 88
+      },
+      {
+        "bar": 37,
+        "step": 4,
+        "dur": 4.0,
+        "midi": 83
+      },
+      {
+        "bar": 37,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 85
+      },
+      {
+        "bar": 37,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 83
+      },
+      {
+        "bar": 38,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 85
+      },
+      {
+        "bar": 38,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 83
+      },
+      {
+        "bar": 38,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 81
+      },
+      {
+        "bar": 39,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 39,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 40,
+        "step": 0,
         "dur": 7.5,
         "midi": 78
       },
       {
-        "bar": 36,
+        "bar": 40,
         "step": 10,
         "dur": 6.0,
         "midi": 81
       },
       {
-        "bar": 37,
+        "bar": 41,
         "step": 0,
         "dur": 7.8,
         "midi": 81
       },
       {
-        "bar": 37,
+        "bar": 41,
         "step": 8,
         "dur": 7.5,
         "midi": 76
       },
       {
-        "bar": 38,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 38,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 80
-      },
-      {
-        "bar": 39,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 78
-      },
-      {
-        "bar": 39,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
-        "bar": 40,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
-        "bar": 40,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 80
-      },
-      {
-        "bar": 41,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 85
-      },
-      {
-        "bar": 41,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
         "bar": 42,
         "step": 0,
         "dur": 8.0,
-        "midi": 88
+        "midi": 81
       },
       {
         "bar": 42,
         "step": 8,
         "dur": 8.0,
-        "midi": 83
+        "midi": 80
       },
       {
         "bar": 43,
         "step": 0,
         "dur": 8.0,
-        "midi": 87
+        "midi": 78
       },
       {
         "bar": 43,
         "step": 8,
         "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 44,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 44,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 80
+      },
+      {
+        "bar": 45,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 85
+      },
+      {
+        "bar": 45,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 46,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 88
+      },
+      {
+        "bar": 46,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 47,
+        "step": 0,
+        "dur": 8.0,
         "midi": 87
       },
       {
-        "bar": 44,
+        "bar": 47,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 87
+      },
+      {
+        "bar": 48,
         "step": 0,
         "dur": 8.0,
         "midi": 85
       },
       {
-        "bar": 44,
+        "bar": 48,
         "step": 8,
         "dur": 4.0,
         "midi": 83
       },
       {
-        "bar": 44,
+        "bar": 48,
         "step": 12,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 45,
+        "bar": 49,
         "step": 0,
         "dur": 8.0,
         "midi": 81
       },
       {
-        "bar": 45,
+        "bar": 49,
         "step": 8,
         "dur": 8.0,
         "midi": 88
       },
       {
-        "bar": 46,
+        "bar": 50,
         "step": 0,
         "dur": 8.0,
         "midi": 78
       },
       {
-        "bar": 46,
+        "bar": 50,
         "step": 8,
         "dur": 4.0,
         "midi": 83
       },
       {
-        "bar": 46,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 81
-      },
-      {
-        "bar": 47,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
-        "bar": 47,
-        "step": 8,
-        "dur": 7.5,
-        "midi": 88
-      },
-      {
-        "bar": 48,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 88
-      },
-      {
-        "bar": 48,
-        "step": 8,
-        "dur": 4.0,
-        "midi": 85
-      },
-      {
-        "bar": 48,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 88
-      },
-      {
-        "bar": 49,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 49,
-        "step": 8,
-        "dur": 4.0,
-        "midi": 85
-      },
-      {
-        "bar": 49,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 81
-      },
-      {
-        "bar": 50,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 50,
-        "step": 8,
-        "dur": 4.0,
-        "midi": 78
-      },
-      {
         "bar": 50,
         "step": 12,
         "dur": 4.0,
-        "midi": 76
+        "midi": 81
       },
       {
         "bar": 51,
@@ -3664,8 +3884,8 @@
       {
         "bar": 51,
         "step": 8,
-        "dur": 8.0,
-        "midi": 80
+        "dur": 7.5,
+        "midi": 88
       },
       {
         "bar": 52,
@@ -3676,101 +3896,167 @@
       {
         "bar": 52,
         "step": 8,
-        "dur": 8.0,
+        "dur": 4.0,
+        "midi": 85
+      },
+      {
+        "bar": 52,
+        "step": 12,
+        "dur": 4.0,
         "midi": 88
       },
       {
         "bar": 53,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 53,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 85
+      },
+      {
+        "bar": 53,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 81
+      },
+      {
+        "bar": 54,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 54,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 78
+      },
+      {
+        "bar": 54,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 76
+      },
+      {
+        "bar": 55,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 55,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 80
+      },
+      {
+        "bar": 56,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 88
+      },
+      {
+        "bar": 56,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 88
+      },
+      {
+        "bar": 57,
         "step": 0,
         "dur": 8.0,
         "midi": 86
       },
       {
-        "bar": 53,
+        "bar": 57,
         "step": 8,
         "dur": 8.0,
         "midi": 81
       },
       {
-        "bar": 54,
+        "bar": 58,
         "step": 0,
         "dur": 8.0,
         "midi": 85
       },
       {
-        "bar": 54,
+        "bar": 58,
         "step": 8,
         "dur": 8.0,
         "midi": 85
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 0,
         "dur": 8.0,
         "midi": 83
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 8,
         "dur": 8.0,
         "midi": 83
       },
       {
-        "bar": 56,
+        "bar": 60,
         "step": 0,
         "dur": 7.5,
         "midi": 78
       },
       {
-        "bar": 56,
+        "bar": 60,
         "step": 10,
         "dur": 6.0,
         "midi": 81
       },
       {
-        "bar": 57,
+        "bar": 61,
         "step": 0,
         "dur": 7.8,
         "midi": 81
       },
       {
-        "bar": 57,
+        "bar": 61,
         "step": 8,
         "dur": 7.5,
         "midi": 76
       },
       {
-        "bar": 58,
+        "bar": 62,
         "step": 0,
         "dur": 2.0,
         "midi": 81
       },
       {
-        "bar": 58,
+        "bar": 62,
         "step": 2,
         "dur": 12.0,
         "midi": 78
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 0,
         "dur": 4.0,
         "midi": 80
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 4,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 8,
         "dur": 4.0,
         "midi": 80
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 12,
         "dur": 4.0,
         "midi": 83
@@ -3894,62 +4180,62 @@
       {
         "bar": 36,
         "step": 0,
-        "dur": 12.0,
+        "dur": 8.0,
         "midi": 62
       },
       {
-        "bar": 40,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 61
-      },
-      {
-        "bar": 40,
+        "bar": 36,
         "step": 8,
         "dur": 8.0,
-        "midi": 64
+        "midi": 66
       },
       {
-        "bar": 41,
+        "bar": 37,
         "step": 0,
         "dur": 8.0,
         "midi": 64
       },
       {
-        "bar": 41,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 61
-      },
-      {
-        "bar": 42,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 64
-      },
-      {
-        "bar": 42,
+        "bar": 37,
         "step": 8,
         "dur": 8.0,
         "midi": 68
       },
       {
-        "bar": 43,
+        "bar": 38,
         "step": 0,
         "dur": 8.0,
-        "midi": 63
+        "midi": 66
       },
       {
-        "bar": 43,
+        "bar": 38,
         "step": 8,
         "dur": 8.0,
-        "midi": 66
+        "midi": 61
+      },
+      {
+        "bar": 39,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 64
+      },
+      {
+        "bar": 39,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 69
+      },
+      {
+        "bar": 40,
+        "step": 0,
+        "dur": 12.0,
+        "midi": 62
       },
       {
         "bar": 44,
         "step": 0,
         "dur": 8.0,
-        "midi": 66
+        "midi": 61
       },
       {
         "bar": 44,
@@ -3961,142 +4247,190 @@
         "bar": 45,
         "step": 0,
         "dur": 8.0,
-        "midi": 62
+        "midi": 64
       },
       {
         "bar": 45,
         "step": 8,
         "dur": 8.0,
-        "midi": 66
+        "midi": 61
       },
       {
         "bar": 46,
         "step": 0,
         "dur": 8.0,
-        "midi": 59
+        "midi": 64
       },
       {
         "bar": 46,
         "step": 8,
         "dur": 8.0,
-        "midi": 62
+        "midi": 68
       },
       {
         "bar": 47,
         "step": 0,
         "dur": 8.0,
-        "midi": 64
+        "midi": 63
+      },
+      {
+        "bar": 47,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 66
       },
       {
         "bar": 48,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 66
+      },
+      {
+        "bar": 48,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 64
+      },
+      {
+        "bar": 49,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 62
+      },
+      {
+        "bar": 49,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 66
+      },
+      {
+        "bar": 50,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 59
+      },
+      {
+        "bar": 50,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 62
+      },
+      {
+        "bar": 51,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 64
+      },
+      {
+        "bar": 52,
         "step": 0,
         "dur": 4.0,
         "midi": 69
       },
       {
-        "bar": 48,
+        "bar": 52,
         "step": 4,
         "dur": 4.0,
         "midi": 73
       },
       {
-        "bar": 48,
+        "bar": 52,
         "step": 8,
         "dur": 4.0,
         "midi": 76
       },
       {
-        "bar": 48,
+        "bar": 52,
         "step": 12,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 49,
+        "bar": 53,
         "step": 0,
         "dur": 10.0,
         "midi": 78
       },
       {
-        "bar": 49,
+        "bar": 53,
         "step": 10,
         "dur": 2.0,
         "midi": 76
       },
       {
-        "bar": 49,
+        "bar": 53,
         "step": 12,
         "dur": 4.0,
         "midi": 74
       },
       {
-        "bar": 50,
+        "bar": 54,
         "step": 0,
         "dur": 8.0,
         "midi": 66
       },
       {
-        "bar": 50,
+        "bar": 54,
         "step": 8,
         "dur": 8.0,
         "midi": 73
       },
       {
-        "bar": 51,
+        "bar": 55,
         "step": 0,
         "dur": 8.0,
         "midi": 64
       },
       {
-        "bar": 51,
+        "bar": 55,
         "step": 8,
         "dur": 8.0,
         "midi": 68
       },
       {
-        "bar": 52,
+        "bar": 56,
         "step": 0,
         "dur": 8.0,
         "midi": 76
       },
       {
-        "bar": 52,
+        "bar": 56,
         "step": 8,
         "dur": 8.0,
         "midi": 73
       },
       {
-        "bar": 53,
+        "bar": 57,
         "step": 0,
         "dur": 12.0,
         "midi": 69
       },
       {
-        "bar": 53,
+        "bar": 57,
         "step": 12,
         "dur": 4.0,
         "midi": 74
       },
       {
-        "bar": 54,
+        "bar": 58,
         "step": 0,
         "dur": 8.0,
         "midi": 66
       },
       {
-        "bar": 54,
+        "bar": 58,
         "step": 8,
         "dur": 8.0,
         "midi": 69
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 0,
         "dur": 8.0,
         "midi": 71
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 8,
         "dur": 8.0,
         "midi": 68
@@ -4276,22 +4610,22 @@
       {
         "bar": 31,
         "step": 13.0,
-        "vel": 0.56
+        "vel": 0.48
       },
       {
         "bar": 31,
         "step": 13.5,
-        "vel": 0.63
+        "vel": 0.55
       },
       {
         "bar": 31,
         "step": 14.0,
-        "vel": 0.72
+        "vel": 0.62
       },
       {
         "bar": 31,
         "step": 15.0,
-        "vel": 0.68
+        "vel": 0.58
       },
       {
         "bar": 33,
@@ -4311,135 +4645,170 @@
       {
         "bar": 35,
         "step": 13.0,
-        "vel": 0.51
+        "vel": 0.53
       },
       {
         "bar": 35,
         "step": 13.5,
-        "vel": 0.58
+        "vel": 0.6
       },
       {
         "bar": 35,
         "step": 14.0,
-        "vel": 0.66
+        "vel": 0.68
       },
       {
         "bar": 35,
         "step": 15.0,
-        "vel": 0.62
+        "vel": 0.64
       },
       {
         "bar": 37,
+        "step": 14.5,
+        "vel": 0.41
+      },
+      {
+        "bar": 37,
+        "step": 15.0,
+        "vel": 0.46
+      },
+      {
+        "bar": 37,
+        "step": 15.5,
+        "vel": 0.52
+      },
+      {
+        "bar": 39,
+        "step": 13.0,
+        "vel": 0.42
+      },
+      {
+        "bar": 39,
+        "step": 13.5,
+        "vel": 0.48
+      },
+      {
+        "bar": 39,
+        "step": 14.0,
+        "vel": 0.54
+      },
+      {
+        "bar": 39,
+        "step": 15.0,
+        "vel": 0.51
+      },
+      {
+        "bar": 41,
         "step": 14.5,
         "vel": 0.33
       },
       {
-        "bar": 37,
+        "bar": 41,
         "step": 15.0,
         "vel": 0.37
       },
       {
-        "bar": 37,
+        "bar": 41,
         "step": 15.5,
         "vel": 0.42
       },
       {
-        "bar": 39,
+        "bar": 43,
         "step": 14.5,
         "vel": 0.37
       },
       {
-        "bar": 39,
+        "bar": 43,
         "step": 15.0,
         "vel": 0.42
       },
       {
-        "bar": 39,
+        "bar": 43,
         "step": 15.5,
         "vel": 0.48
       },
       {
-        "bar": 43,
+        "bar": 47,
         "step": 13.0,
         "vel": 0.45
       },
       {
-        "bar": 43,
+        "bar": 47,
         "step": 13.5,
         "vel": 0.51
       },
       {
-        "bar": 43,
+        "bar": 47,
         "step": 14.0,
         "vel": 0.58
       },
       {
-        "bar": 43,
+        "bar": 47,
         "step": 15.0,
         "vel": 0.55
       },
       {
-        "bar": 47,
+        "bar": 51,
         "step": 13.0,
         "vel": 0.56
       },
       {
-        "bar": 47,
+        "bar": 51,
         "step": 13.5,
         "vel": 0.63
       },
       {
-        "bar": 47,
+        "bar": 51,
         "step": 14.0,
         "vel": 0.72
       },
       {
-        "bar": 47,
+        "bar": 51,
         "step": 15.0,
         "vel": 0.68
       },
       {
-        "bar": 51,
+        "bar": 55,
         "step": 14.5,
         "vel": 0.37
       },
       {
-        "bar": 51,
+        "bar": 55,
         "step": 15.0,
         "vel": 0.42
       },
       {
-        "bar": 51,
+        "bar": 55,
         "step": 15.5,
         "vel": 0.48
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 14.5,
         "vel": 0.33
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 15.0,
         "vel": 0.37
       },
       {
-        "bar": 55,
+        "bar": 59,
         "step": 15.5,
         "vel": 0.42
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 14.5,
         "vel": 0.37
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 15.0,
         "vel": 0.42
       },
       {
-        "bar": 59,
+        "bar": 63,
         "step": 15.5,
         "vel": 0.48
       }
