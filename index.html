@@ -41,6 +41,7 @@
   button.solo { background: #594414; border-color: var(--gold); color: var(--gold); }
   button.mute { background: #4d1f26; border-color: #ff6b7a; color: #ffb3bc; }
   button.ht-on { background: #3b1d6e; border-color: var(--purple); color: #f3dcff; box-shadow: 0 0 10px #c77dff44; }
+  button.ht-armed { background: #211838; border-color: #62468f; color: #9c88bd; }
   button.fx-active { background: #163b52; border-color: var(--acc); color: #d6f7ff; }
   button.rec { background: #4d1624; border-color: var(--red); color: #ffc2cc; }
   button.rec.recording { background: #a81533; border-color: #ff9eb0; color: #fff; box-shadow: 0 0 12px #ff4d6d88; }
@@ -209,8 +210,8 @@
     <button class="fx-pill ht-loop on" data-bars="1">1B</button>
     <button class="fx-pill ht-loop" data-bars="2">2B</button>
     <span class="fx-lbl">Mix</span>
-    <input id="ht-mix" type="range" min="0" max="1" step="0.02" value="0.80" style="width:64px;">
-    <span class="fx-val" id="ht-mix-pct">80%</span>
+    <input id="ht-mix" type="range" min="0" max="1" step="0.02" value="1.00" style="width:64px;">
+    <span class="fx-val" id="ht-mix-pct">100%</span>
     <span class="fx-lbl">Send:</span>
     <button class="fx-pill ht-preset" data-preset="melodies" title="Enable ½T on all melodic &amp; ambient stems (keep drums &amp; bass normal)">Melodies</button>
     <button class="fx-pill ht-preset" data-preset="leads" title="Enable ½T on Lead, Harmony, Fugue V3, and Prelude">Leads</button>
@@ -295,7 +296,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '40b-4acb50e6';
+const BUILD_ID = '40b-7140af3b';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
@@ -409,13 +410,12 @@ let userTrackSeq = 1;
 
 const tracks = S.tracks.map((tr) => ({ ...tr, isUser: false }));
 const trackState = {};
-function defaultHtSend(id) { return !(id.startsWith('01') || id.startsWith('02')); }
 function makeTrackState(tr) {
   return {
     gain: tr.defaultGain ?? 1,
     mute: !!tr.defaultMute,
     solo: false,
-    htSend: tr.isUser ? false : defaultHtSend(tr.id),
+    htSend: false,
     pan: 0,
     eqLow: 0,    // -12..+12 dB @ 120 Hz
     eqHigh: 0,   // -12..+12 dB @ 4.5 kHz
@@ -445,7 +445,7 @@ let playStartCtx = 0, playOffsetSec = 0;
 let loopOneShotTimer = null, loopUserFiredPass = {};
 
 // Creative FX + Master State
-let htEnabled = false, htLoopBars = 1, htMix = 0.80;
+let htEnabled = false, htLoopBars = 1, htMix = 1.0;
 let revReturn = 0.65, delDivBeats = 0.75, delFeedback = 0.38, delReturn = 0.65;
 let tapeRate = 1.0, masterVol = 0.92;
 let clickEnabled = false, clickTimer = null, lastClickBeatKey = -1;
@@ -1709,9 +1709,20 @@ function rebuildMixer() {
     bM.onclick = () => { st.mute = !st.mute; applyGains(); rebuildMixer(); };
 
     const bHt = document.createElement('button'); bHt.textContent = '½T';
-    bHt.title = 'Send this track to the HalfTime FX bus';
-    if (st.htSend) bHt.classList.add('ht-on');
-    bHt.onclick = () => { st.htSend = !st.htSend; bHt.classList.toggle('ht-on', st.htSend); updateTrackStrip(tr.id); };
+    bHt.title = 'Toggle HalfTime FX (0.5× speed, -1 octave) on this track';
+    if (st.htSend) bHt.classList.add(htEnabled ? 'ht-on' : 'ht-armed');
+    bHt.onclick = () => {
+      const wasOff = !htEnabled;
+      if (st.htSend && !htEnabled) {
+        htEnabled = true;
+      } else {
+        st.htSend = !st.htSend;
+        if (st.htSend && !htEnabled) htEnabled = true;
+        if (!st.htSend && !tracks.some((t) => trackState[t.id].htSend)) htEnabled = false;
+      }
+      if (ctx && htEnabled) syncHalfTimePhase(wasOff ? 0 : currentSec(), wasOff);
+      syncAllFxUi(); updateFxRouting(); rebuildMixer();
+    };
 
     const bFx = document.createElement('button'); bFx.textContent = 'FX';
     bFx.title = 'Open per-track Channel Strip (Pan, EQ, DJ Filter, Reverb/Delay Sends)';
@@ -2037,7 +2048,7 @@ document.getElementById('master-vol').value = masterVol;
 document.getElementById('master-vol').oninput = (e) => { masterVol = Number(e.target.value); updateFxRouting(); };
 
 document.getElementById('btn-reset').onclick = () => {
-  htEnabled = false; htLoopBars = 1; htMix = 0.80; tapeRate = 1.0; masterVol = 0.92;
+  htEnabled = false; htLoopBars = 1; htMix = 1.0; tapeRate = 1.0; masterVol = 0.92;
   revReturn = 0.65; delDivBeats = 0.75; delFeedback = 0.38; delReturn = 0.65;
   for (const tr of tracks) trackState[tr.id] = makeTrackState(tr);
   syncAllFxUi();
@@ -2064,8 +2075,16 @@ syncAllFxUi();
 
 btnHt.onclick = () => {
   htEnabled = !htEnabled;
+  // If turning master HalfTime ON with no tracks selected, auto-arm Melodies so you hear it immediately!
+  if (htEnabled && !tracks.some((t) => trackState[t.id].htSend)) {
+    for (const tr of tracks) trackState[tr.id].htSend = !(tr.id.startsWith('01') || tr.id.startsWith('02'));
+    if (ctx) syncHalfTimePhase(0, true);
+  } else if (ctx && htEnabled) {
+    syncHalfTimePhase(currentSec(), false);
+  }
   syncAllFxUi();
-  if (ctx) { if (htEnabled) syncHalfTimePhase(currentSec(), false); updateFxRouting(); }
+  if (ctx) updateFxRouting();
+  rebuildMixer();
 };
 document.querySelectorAll('.ht-loop').forEach((btn) => {
   btn.onclick = () => {
@@ -2084,7 +2103,9 @@ document.querySelectorAll('.ht-preset').forEach((btn) => {
       else if (p === 'leads') st.htSend = tr.id.startsWith('04') || tr.id.startsWith('05') || tr.id.startsWith('06');
       else st.htSend = !(tr.id.startsWith('01') || tr.id.startsWith('02'));
     }
-    updateFxRouting(); rebuildMixer();
+    htEnabled = (p !== 'none');
+    if (ctx && htEnabled) syncHalfTimePhase(0, true);
+    syncAllFxUi(); updateFxRouting(); rebuildMixer();
   };
 });
 revRetEl.oninput = () => { revReturn = Number(revRetEl.value); revRetPctEl.textContent = `${Math.round(revReturn * 100)}%`; updateFxRouting(); };
