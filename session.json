@@ -1,10 +1,10 @@
 {
   "title": "Bubble in Orbit \u2014 Interactive Web DAW",
-  "buildId": "64b-3204185c",
+  "buildId": "60b-677c33d9",
   "bpm": 96.0,
-  "bars": 64,
-  "loopSec": 160.0,
-  "key": "F# minor / A major (Act III C#m & Dm9)",
+  "bars": 60,
+  "loopSec": 150.0,
+  "key": "F# minor / A major (Act III C#m Nocturne)",
   "chords": [
     "F#m9",
     "Dmaj9",
@@ -48,15 +48,11 @@
     "G#m7",
     "C#m9",
     "Amaj9",
-    "E/B",
-    "Badd9",
+    "Eadd9",
+    "G#m7",
     "F#m9",
     "Dmaj9",
-    "Dm9",
-    "E",
-    "Dmaj9",
-    "C#m7",
-    "Bm7",
+    "Bm11",
     "E9",
     "Aadd9",
     "Dmaj9",
@@ -114,27 +110,23 @@
     },
     {
       "bar": 40,
-      "label": "B41 \u2014 Event Horizon (Half-Time C#m)"
+      "label": "B41 \u2014 Event Horizon (R\u00f6yksopp C#m)"
     },
     {
       "bar": 44,
-      "label": "B45 \u2014 Pivot Home (Dm9!)"
+      "label": "B45 \u2014 Event Horizon Lift (F#m\u2192D\u2192Bm\u2192E)"
     },
     {
       "bar": 48,
-      "label": "B49 \u2014 Descending Half-Time (D\u2192C#m\u2192Bm\u2192E)"
+      "label": "B49 \u2014 Sunlit E\u2192A Catharsis"
     },
     {
       "bar": 52,
-      "label": "B53 \u2014 Sunlit E\u2192A Catharsis"
+      "label": "B53 \u2014 Floating Sunrise (Calm)"
     },
     {
       "bar": 56,
-      "label": "B57 \u2014 Floating Sunrise (Calm)"
-    },
-    {
-      "bar": 60,
-      "label": "B61 \u2014 Quiet Sunrise Outro"
+      "label": "B57 \u2014 Quiet Sunrise Outro"
     }
   ],
   "defaultArrangement": [
@@ -181,7 +173,7 @@
     {
       "label": "Act III: Catharsis",
       "startBar": 40,
-      "endBar": 64,
+      "endBar": 60,
       "repeats": 1,
       "scene": "full",
       "once": false
@@ -1523,20 +1515,20 @@
     {
       "bar": 42,
       "step": 0,
-      "dur": 8.0,
+      "dur": 10.0,
       "note": "B5",
       "midi": 83,
-      "vel": 0.96,
+      "vel": 0.94,
       "quick": false
     },
     {
       "bar": 42,
-      "step": 8,
-      "dur": 4.0,
+      "step": 10,
+      "dur": 2.0,
       "note": "G#5",
       "midi": 80,
-      "vel": 0.9,
-      "quick": false
+      "vel": 0.88,
+      "quick": true
     },
     {
       "bar": 42,
@@ -1550,28 +1542,28 @@
     {
       "bar": 43,
       "step": 0,
-      "dur": 6.0,
+      "dur": 10.0,
       "note": "F#5",
       "midi": 78,
-      "vel": 0.88,
+      "vel": 0.9,
       "quick": false
     },
     {
       "bar": 43,
-      "step": 6,
+      "step": 10,
       "dur": 2.0,
-      "note": "D#5",
-      "midi": 75,
-      "vel": 0.84,
+      "note": "G#5",
+      "midi": 80,
+      "vel": 0.88,
       "quick": true
     },
     {
       "bar": 43,
-      "step": 8,
-      "dur": 8.0,
-      "note": "F#5",
-      "midi": 78,
-      "vel": 0.92,
+      "step": 12,
+      "dur": 4.0,
+      "note": "B5",
+      "midi": 83,
+      "vel": 0.94,
       "quick": false
     },
     {
@@ -1630,114 +1622,6 @@
     },
     {
       "bar": 46,
-      "step": 0,
-      "dur": 8.0,
-      "note": "C6",
-      "midi": 84,
-      "vel": 0.96,
-      "quick": false
-    },
-    {
-      "bar": 46,
-      "step": 8,
-      "dur": 4.0,
-      "note": "A5",
-      "midi": 81,
-      "vel": 0.9,
-      "quick": false
-    },
-    {
-      "bar": 46,
-      "step": 12,
-      "dur": 4.0,
-      "note": "F5",
-      "midi": 77,
-      "vel": 0.88,
-      "quick": false
-    },
-    {
-      "bar": 47,
-      "step": 0,
-      "dur": 6.0,
-      "note": "G#5",
-      "midi": 80,
-      "vel": 0.92,
-      "quick": false
-    },
-    {
-      "bar": 47,
-      "step": 6,
-      "dur": 2.0,
-      "note": "B5",
-      "midi": 83,
-      "vel": 0.94,
-      "quick": true
-    },
-    {
-      "bar": 47,
-      "step": 8,
-      "dur": 8.0,
-      "note": "E6",
-      "midi": 88,
-      "vel": 0.98,
-      "quick": false
-    },
-    {
-      "bar": 48,
-      "step": 0,
-      "dur": 8.0,
-      "note": "F#6",
-      "midi": 90,
-      "vel": 0.94,
-      "quick": false
-    },
-    {
-      "bar": 48,
-      "step": 8,
-      "dur": 4.0,
-      "note": "E6",
-      "midi": 88,
-      "vel": 0.9,
-      "quick": false
-    },
-    {
-      "bar": 48,
-      "step": 12,
-      "dur": 4.0,
-      "note": "C#6",
-      "midi": 85,
-      "vel": 0.88,
-      "quick": false
-    },
-    {
-      "bar": 49,
-      "step": 0,
-      "dur": 8.0,
-      "note": "E6",
-      "midi": 88,
-      "vel": 0.94,
-      "quick": false
-    },
-    {
-      "bar": 49,
-      "step": 8,
-      "dur": 4.0,
-      "note": "B5",
-      "midi": 83,
-      "vel": 0.9,
-      "quick": false
-    },
-    {
-      "bar": 49,
-      "step": 12,
-      "dur": 4.0,
-      "note": "G#5",
-      "midi": 80,
-      "vel": 0.88,
-      "quick": false
-    },
-    {
-      "bar": 50,
       "step": 0,
       "dur": 8.0,
       "note": "D6",
@@ -1746,7 +1630,7 @@
       "quick": false
     },
     {
-      "bar": 50,
+      "bar": 46,
       "step": 8,
       "dur": 4.0,
       "note": "E6",
@@ -1755,16 +1639,16 @@
       "quick": false
     },
     {
-      "bar": 50,
+      "bar": 46,
       "step": 12,
       "dur": 4.0,
       "note": "F#6",
       "midi": 90,
-      "vel": 0.96,
+      "vel": 0.98,
       "quick": false
     },
     {
-      "bar": 51,
+      "bar": 47,
       "step": 0,
       "dur": 6.0,
       "note": "G#6",
@@ -1773,7 +1657,7 @@
       "quick": false
     },
     {
-      "bar": 51,
+      "bar": 47,
       "step": 6,
       "dur": 2.0,
       "note": "F#6",
@@ -1782,7 +1666,7 @@
       "quick": true
     },
     {
-      "bar": 51,
+      "bar": 47,
       "step": 8,
       "dur": 7.5,
       "note": "G#6",
@@ -1791,7 +1675,7 @@
       "quick": false
     },
     {
-      "bar": 52,
+      "bar": 48,
       "step": 0,
       "dur": 8.0,
       "note": "A6",
@@ -1800,7 +1684,7 @@
       "quick": false
     },
     {
-      "bar": 52,
+      "bar": 48,
       "step": 8,
       "dur": 2.0,
       "note": "E6",
@@ -1809,7 +1693,7 @@
       "quick": true
     },
     {
-      "bar": 52,
+      "bar": 48,
       "step": 10,
       "dur": 2.0,
       "note": "C#6",
@@ -1818,7 +1702,7 @@
       "quick": true
     },
     {
-      "bar": 52,
+      "bar": 48,
       "step": 12,
       "dur": 2.0,
       "note": "B5",
@@ -1827,7 +1711,7 @@
       "quick": true
     },
     {
-      "bar": 52,
+      "bar": 48,
       "step": 14,
       "dur": 2.0,
       "note": "A5",
@@ -1836,7 +1720,7 @@
       "quick": true
     },
     {
-      "bar": 53,
+      "bar": 49,
       "step": 0,
       "dur": 8.0,
       "note": "F#6",
@@ -1845,7 +1729,7 @@
       "quick": false
     },
     {
-      "bar": 53,
+      "bar": 49,
       "step": 8,
       "dur": 4.0,
       "note": "E6",
@@ -1854,7 +1738,7 @@
       "quick": false
     },
     {
-      "bar": 53,
+      "bar": 49,
       "step": 12,
       "dur": 4.0,
       "note": "D6",
@@ -1863,7 +1747,7 @@
       "quick": false
     },
     {
-      "bar": 54,
+      "bar": 50,
       "step": 0,
       "dur": 8.0,
       "note": "C#6",
@@ -1872,7 +1756,7 @@
       "quick": false
     },
     {
-      "bar": 54,
+      "bar": 50,
       "step": 8,
       "dur": 4.0,
       "note": "A5",
@@ -1881,7 +1765,7 @@
       "quick": false
     },
     {
-      "bar": 54,
+      "bar": 50,
       "step": 12,
       "dur": 4.0,
       "note": "G#5",
@@ -1890,7 +1774,7 @@
       "quick": false
     },
     {
-      "bar": 55,
+      "bar": 51,
       "step": 0,
       "dur": 8.0,
       "note": "E5",
@@ -1899,7 +1783,7 @@
       "quick": false
     },
     {
-      "bar": 55,
+      "bar": 51,
       "step": 8,
       "dur": 4.0,
       "note": "G#5",
@@ -1908,7 +1792,7 @@
       "quick": false
     },
     {
-      "bar": 55,
+      "bar": 51,
       "step": 12,
       "dur": 4.0,
       "note": "B5",
@@ -1917,7 +1801,7 @@
       "quick": false
     },
     {
-      "bar": 56,
+      "bar": 52,
       "step": 0,
       "dur": 8.0,
       "note": "C#6",
@@ -1926,7 +1810,7 @@
       "quick": false
     },
     {
-      "bar": 56,
+      "bar": 52,
       "step": 8,
       "dur": 8.0,
       "note": "A5",
@@ -1935,7 +1819,7 @@
       "quick": false
     },
     {
-      "bar": 57,
+      "bar": 53,
       "step": 0,
       "dur": 8.0,
       "note": "A5",
@@ -1944,7 +1828,7 @@
       "quick": false
     },
     {
-      "bar": 57,
+      "bar": 53,
       "step": 8,
       "dur": 8.0,
       "note": "F#5",
@@ -1953,7 +1837,7 @@
       "quick": false
     },
     {
-      "bar": 58,
+      "bar": 54,
       "step": 0,
       "dur": 8.0,
       "note": "A5",
@@ -1962,7 +1846,7 @@
       "quick": false
     },
     {
-      "bar": 58,
+      "bar": 54,
       "step": 8,
       "dur": 8.0,
       "note": "F#5",
@@ -1971,7 +1855,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 55,
       "step": 0,
       "dur": 8.0,
       "note": "G#5",
@@ -1980,7 +1864,7 @@
       "quick": false
     },
     {
-      "bar": 59,
+      "bar": 55,
       "step": 8,
       "dur": 8.0,
       "note": "E5",
@@ -1989,7 +1873,7 @@
       "quick": false
     },
     {
-      "bar": 60,
+      "bar": 56,
       "step": 8,
       "dur": 2.0,
       "note": "D5",
@@ -1998,7 +1882,7 @@
       "quick": true
     },
     {
-      "bar": 60,
+      "bar": 56,
       "step": 10,
       "dur": 6.0,
       "note": "F#5",
@@ -2007,7 +1891,7 @@
       "quick": false
     },
     {
-      "bar": 61,
+      "bar": 57,
       "step": 0,
       "dur": 7.8,
       "note": "E5",
@@ -2016,7 +1900,7 @@
       "quick": false
     },
     {
-      "bar": 61,
+      "bar": 57,
       "step": 8,
       "dur": 7.5,
       "note": "C#5",
@@ -2025,7 +1909,7 @@
       "quick": false
     },
     {
-      "bar": 62,
+      "bar": 58,
       "step": 0,
       "dur": 2.0,
       "note": "E5",
@@ -2034,7 +1918,7 @@
       "quick": true
     },
     {
-      "bar": 62,
+      "bar": 58,
       "step": 2,
       "dur": 12.0,
       "note": "D5",
@@ -2043,7 +1927,7 @@
       "quick": false
     },
     {
-      "bar": 63,
+      "bar": 59,
       "step": 0,
       "dur": 4.0,
       "note": "B4",
@@ -2052,7 +1936,7 @@
       "quick": false
     },
     {
-      "bar": 63,
+      "bar": 59,
       "step": 4,
       "dur": 4.0,
       "note": "C#5",
@@ -2061,7 +1945,7 @@
       "quick": false
     },
     {
-      "bar": 63,
+      "bar": 59,
       "step": 8,
       "dur": 4.0,
       "note": "B4",
@@ -2070,7 +1954,7 @@
       "quick": false
     },
     {
-      "bar": 63,
+      "bar": 59,
       "step": 12,
       "dur": 4.0,
       "note": "G#4",
@@ -2463,18 +2347,18 @@
         "bar": 42,
         "midis": [
           52,
+          54,
           56,
-          59,
-          66
+          59
         ]
       },
       {
         "bar": 43,
         "midis": [
-          51,
           54,
+          56,
           59,
-          61
+          63
         ]
       },
       {
@@ -2498,9 +2382,9 @@
       {
         "bar": 46,
         "midis": [
-          53,
+          50,
+          54,
           57,
-          60,
           64
         ]
       },
@@ -2510,11 +2394,20 @@
           52,
           56,
           59,
-          64
+          66
         ]
       },
       {
         "bar": 48,
+        "midis": [
+          52,
+          57,
+          59,
+          61
+        ]
+      },
+      {
+        "bar": 49,
         "midis": [
           54,
           57,
@@ -2523,30 +2416,21 @@
         ]
       },
       {
-        "bar": 49,
-        "midis": [
-          52,
-          56,
-          59,
-          64
-        ]
-      },
-      {
         "bar": 50,
         "midis": [
-          50,
           54,
           57,
-          64
+          61,
+          68
         ]
       },
       {
         "bar": 51,
         "midis": [
-          52,
           56,
           59,
-          66
+          61,
+          64
         ]
       },
       {
@@ -2588,18 +2472,18 @@
       {
         "bar": 56,
         "midis": [
-          52,
+          54,
           57,
-          59,
-          61
+          61,
+          64
         ]
       },
       {
         "bar": 57,
         "midis": [
-          54,
+          52,
           57,
-          61,
+          59,
           64
         ]
       },
@@ -2609,47 +2493,11 @@
           54,
           57,
           61,
-          68
+          64
         ]
       },
       {
         "bar": 59,
-        "midis": [
-          56,
-          59,
-          61,
-          64
-        ]
-      },
-      {
-        "bar": 60,
-        "midis": [
-          54,
-          57,
-          61,
-          64
-        ]
-      },
-      {
-        "bar": 61,
-        "midis": [
-          52,
-          57,
-          59,
-          64
-        ]
-      },
-      {
-        "bar": 62,
-        "midis": [
-          54,
-          57,
-          61,
-          64
-        ]
-      },
-      {
-        "bar": 63,
         "midis": [
           52,
           56,
@@ -2842,7 +2690,7 @@
       {
         "bar": 36,
         "midi": 38,
-        "drop": true
+        "drop": false
       },
       {
         "bar": 37,
@@ -2871,12 +2719,12 @@
       },
       {
         "bar": 42,
-        "midi": 35,
+        "midi": 28,
         "drop": false
       },
       {
         "bar": 43,
-        "midi": 35,
+        "midi": 32,
         "drop": false
       },
       {
@@ -2891,33 +2739,33 @@
       },
       {
         "bar": 46,
-        "midi": 38,
+        "midi": 35,
         "drop": false
       },
       {
         "bar": 47,
         "midi": 40,
-        "drop": false
+        "drop": true
       },
       {
         "bar": 48,
-        "midi": 38,
+        "midi": 33,
         "drop": false
       },
       {
         "bar": 49,
-        "midi": 37,
+        "midi": 38,
         "drop": false
       },
       {
         "bar": 50,
-        "midi": 35,
+        "midi": 30,
         "drop": false
       },
       {
         "bar": 51,
         "midi": 40,
-        "drop": true
+        "drop": false
       },
       {
         "bar": 52,
@@ -2927,55 +2775,35 @@
       {
         "bar": 53,
         "midi": 38,
-        "drop": false
+        "drop": true
       },
       {
         "bar": 54,
         "midi": 30,
-        "drop": false
+        "drop": true
       },
       {
         "bar": 55,
         "midi": 40,
-        "drop": false
+        "drop": true
       },
       {
         "bar": 56,
-        "midi": 33,
+        "midi": 38,
         "drop": true
       },
       {
         "bar": 57,
-        "midi": 38,
-        "drop": true
-      },
-      {
-        "bar": 58,
-        "midi": 30,
-        "drop": true
-      },
-      {
-        "bar": 59,
-        "midi": 40,
-        "drop": true
-      },
-      {
-        "bar": 60,
-        "midi": 38,
-        "drop": true
-      },
-      {
-        "bar": 61,
         "midi": 37,
         "drop": true
       },
       {
-        "bar": 62,
+        "bar": 58,
         "midi": 38,
         "drop": true
       },
       {
-        "bar": 63,
+        "bar": 59,
         "midi": 32,
         "drop": true
       }
@@ -3705,7 +3533,7 @@
         "bar": 43,
         "step": 0,
         "dur": 8.0,
-        "midi": 83
+        "midi": 87
       },
       {
         "bar": 43,
@@ -3747,139 +3575,133 @@
         "bar": 46,
         "step": 0,
         "dur": 8.0,
-        "midi": 89
-      },
-      {
-        "bar": 46,
-        "step": 8,
-        "dur": 4.0,
-        "midi": 88
-      },
-      {
-        "bar": 46,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 86
-      },
-      {
-        "bar": 47,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
-        "bar": 47,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 80
-      },
-      {
-        "bar": 48,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 48,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 49,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 80
-      },
-      {
-        "bar": 49,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 76
-      },
-      {
-        "bar": 50,
-        "step": 0,
-        "dur": 8.0,
         "midi": 78
       },
       {
-        "bar": 50,
+        "bar": 46,
         "step": 8,
         "dur": 4.0,
         "midi": 83
       },
       {
-        "bar": 50,
+        "bar": 46,
         "step": 12,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 51,
+        "bar": 47,
         "step": 0,
         "dur": 8.0,
         "midi": 83
       },
       {
-        "bar": 51,
+        "bar": 47,
         "step": 8,
         "dur": 7.5,
         "midi": 88
       },
       {
-        "bar": 52,
+        "bar": 48,
         "step": 0,
         "dur": 8.0,
         "midi": 88
       },
       {
-        "bar": 52,
+        "bar": 48,
         "step": 8,
         "dur": 4.0,
         "midi": 85
       },
       {
-        "bar": 52,
+        "bar": 48,
         "step": 12,
         "dur": 4.0,
         "midi": 88
       },
       {
-        "bar": 53,
+        "bar": 49,
         "step": 0,
         "dur": 8.0,
         "midi": 81
       },
       {
-        "bar": 53,
+        "bar": 49,
         "step": 8,
         "dur": 4.0,
         "midi": 85
       },
       {
-        "bar": 53,
+        "bar": 49,
         "step": 12,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 54,
+        "bar": 50,
         "step": 0,
         "dur": 8.0,
         "midi": 81
       },
       {
-        "bar": 54,
+        "bar": 50,
         "step": 8,
         "dur": 4.0,
         "midi": 78
       },
       {
-        "bar": 54,
+        "bar": 50,
         "step": 12,
         "dur": 4.0,
         "midi": 76
+      },
+      {
+        "bar": 51,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 83
+      },
+      {
+        "bar": 51,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 80
+      },
+      {
+        "bar": 52,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 88
+      },
+      {
+        "bar": 52,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 88
+      },
+      {
+        "bar": 53,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 86
+      },
+      {
+        "bar": 53,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 81
+      },
+      {
+        "bar": 54,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 85
+      },
+      {
+        "bar": 54,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 85
       },
       {
         "bar": 55,
@@ -3891,112 +3713,64 @@
         "bar": 55,
         "step": 8,
         "dur": 8.0,
-        "midi": 80
-      },
-      {
-        "bar": 56,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 88
-      },
-      {
-        "bar": 56,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 88
-      },
-      {
-        "bar": 57,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 86
-      },
-      {
-        "bar": 57,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 81
-      },
-      {
-        "bar": 58,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 85
-      },
-      {
-        "bar": 58,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 85
-      },
-      {
-        "bar": 59,
-        "step": 0,
-        "dur": 8.0,
         "midi": 83
       },
       {
-        "bar": 59,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 83
-      },
-      {
-        "bar": 60,
+        "bar": 56,
         "step": 0,
         "dur": 7.5,
         "midi": 78
       },
       {
-        "bar": 60,
+        "bar": 56,
         "step": 10,
         "dur": 6.0,
         "midi": 81
       },
       {
-        "bar": 61,
+        "bar": 57,
         "step": 0,
         "dur": 7.8,
         "midi": 81
       },
       {
-        "bar": 61,
+        "bar": 57,
         "step": 8,
         "dur": 7.5,
         "midi": 76
       },
       {
-        "bar": 62,
+        "bar": 58,
         "step": 0,
         "dur": 2.0,
         "midi": 81
       },
       {
-        "bar": 62,
+        "bar": 58,
         "step": 2,
         "dur": 12.0,
         "midi": 78
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 0,
         "dur": 4.0,
         "midi": 80
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 4,
         "dur": 4.0,
         "midi": 81
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 8,
         "dur": 4.0,
         "midi": 80
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 12,
         "dur": 4.0,
         "midi": 83
@@ -4151,27 +3925,27 @@
         "bar": 42,
         "step": 0,
         "dur": 8.0,
-        "midi": 68
+        "midi": 64
       },
       {
         "bar": 42,
         "step": 8,
         "dur": 8.0,
-        "midi": 64
+        "midi": 68
       },
       {
         "bar": 43,
         "step": 0,
-        "dur": 8.0,
-        "midi": 66
-      },
-      {
-        "bar": 43,
-        "step": 8,
         "dur": 8.0,
         "midi": 63
       },
       {
+        "bar": 43,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 66
+      },
+      {
         "bar": 44,
         "step": 0,
         "dur": 8.0,
@@ -4197,63 +3971,75 @@
       },
       {
         "bar": 46,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 65
-      },
-      {
-        "bar": 46,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 69
-      },
-      {
-        "bar": 47,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 64
-      },
-      {
-        "bar": 47,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 68
-      },
-      {
-        "bar": 48,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 62
-      },
-      {
-        "bar": 48,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 66
-      },
-      {
-        "bar": 49,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 61
-      },
-      {
-        "bar": 49,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 68
-      },
-      {
-        "bar": 50,
         "step": 0,
         "dur": 8.0,
         "midi": 59
       },
       {
-        "bar": 50,
+        "bar": 46,
         "step": 8,
         "dur": 8.0,
         "midi": 62
+      },
+      {
+        "bar": 47,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 64
+      },
+      {
+        "bar": 48,
+        "step": 0,
+        "dur": 4.0,
+        "midi": 69
+      },
+      {
+        "bar": 48,
+        "step": 4,
+        "dur": 4.0,
+        "midi": 73
+      },
+      {
+        "bar": 48,
+        "step": 8,
+        "dur": 4.0,
+        "midi": 76
+      },
+      {
+        "bar": 48,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 81
+      },
+      {
+        "bar": 49,
+        "step": 0,
+        "dur": 10.0,
+        "midi": 78
+      },
+      {
+        "bar": 49,
+        "step": 10,
+        "dur": 2.0,
+        "midi": 76
+      },
+      {
+        "bar": 49,
+        "step": 12,
+        "dur": 4.0,
+        "midi": 74
+      },
+      {
+        "bar": 50,
+        "step": 0,
+        "dur": 8.0,
+        "midi": 66
+      },
+      {
+        "bar": 50,
+        "step": 8,
+        "dur": 8.0,
+        "midi": 73
       },
       {
         "bar": 51,
@@ -4262,115 +4048,55 @@
         "midi": 64
       },
       {
-        "bar": 52,
-        "step": 0,
-        "dur": 4.0,
-        "midi": 69
-      },
-      {
-        "bar": 52,
-        "step": 4,
-        "dur": 4.0,
-        "midi": 73
-      },
-      {
-        "bar": 52,
-        "step": 8,
-        "dur": 4.0,
-        "midi": 76
-      },
-      {
-        "bar": 52,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 81
-      },
-      {
-        "bar": 53,
-        "step": 0,
-        "dur": 10.0,
-        "midi": 78
-      },
-      {
-        "bar": 53,
-        "step": 10,
-        "dur": 2.0,
-        "midi": 76
-      },
-      {
-        "bar": 53,
-        "step": 12,
-        "dur": 4.0,
-        "midi": 74
-      },
-      {
-        "bar": 54,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 66
-      },
-      {
-        "bar": 54,
-        "step": 8,
-        "dur": 8.0,
-        "midi": 73
-      },
-      {
-        "bar": 55,
-        "step": 0,
-        "dur": 8.0,
-        "midi": 64
-      },
-      {
-        "bar": 55,
+        "bar": 51,
         "step": 8,
         "dur": 8.0,
         "midi": 68
       },
       {
-        "bar": 56,
+        "bar": 52,
         "step": 0,
         "dur": 8.0,
         "midi": 76
       },
       {
-        "bar": 56,
+        "bar": 52,
         "step": 8,
         "dur": 8.0,
         "midi": 73
       },
       {
-        "bar": 57,
+        "bar": 53,
         "step": 0,
         "dur": 12.0,
         "midi": 69
       },
       {
-        "bar": 57,
+        "bar": 53,
         "step": 12,
         "dur": 4.0,
         "midi": 74
       },
       {
-        "bar": 58,
+        "bar": 54,
         "step": 0,
         "dur": 8.0,
         "midi": 66
       },
       {
-        "bar": 58,
+        "bar": 54,
         "step": 8,
         "dur": 8.0,
         "midi": 69
       },
       {
-        "bar": 59,
+        "bar": 55,
         "step": 0,
         "dur": 8.0,
         "midi": 71
       },
       {
-        "bar": 59,
+        "bar": 55,
         "step": 8,
         "dur": 8.0,
         "midi": 68
@@ -4655,85 +4381,65 @@
       {
         "bar": 47,
         "step": 13.0,
-        "vel": 0.5
-      },
-      {
-        "bar": 47,
-        "step": 13.5,
         "vel": 0.56
       },
       {
         "bar": 47,
-        "step": 14.0,
-        "vel": 0.64
-      },
-      {
-        "bar": 47,
-        "step": 15.0,
-        "vel": 0.6
-      },
-      {
-        "bar": 51,
-        "step": 13.0,
-        "vel": 0.56
-      },
-      {
-        "bar": 51,
         "step": 13.5,
         "vel": 0.63
       },
       {
-        "bar": 51,
+        "bar": 47,
         "step": 14.0,
         "vel": 0.72
       },
       {
-        "bar": 51,
+        "bar": 47,
         "step": 15.0,
         "vel": 0.68
       },
       {
-        "bar": 55,
+        "bar": 51,
         "step": 14.5,
         "vel": 0.37
       },
       {
-        "bar": 55,
+        "bar": 51,
         "step": 15.0,
         "vel": 0.42
       },
       {
-        "bar": 55,
+        "bar": 51,
         "step": 15.5,
         "vel": 0.48
       },
       {
-        "bar": 59,
+        "bar": 55,
         "step": 14.5,
         "vel": 0.33
       },
       {
-        "bar": 59,
+        "bar": 55,
         "step": 15.0,
         "vel": 0.37
       },
       {
-        "bar": 59,
+        "bar": 55,
         "step": 15.5,
         "vel": 0.42
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 14.5,
         "vel": 0.37
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 15.0,
         "vel": 0.42
       },
       {
-        "bar": 63,
+        "bar": 59,
         "step": 15.5,
         "vel": 0.48
       }

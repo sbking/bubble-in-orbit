@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bubble in Orbit — Interactive 64-Bar Atlas</title>
+<title>Bubble in Orbit — Interactive 60-Bar Atlas</title>
 <style>
 :root {
   --ink: #060912;
@@ -222,19 +222,19 @@ body.code-open #code { transform: none; }
 <section class="view active" id="home">
   <div class="home-text">
     <h1>Bubble in Orbit</h1>
-    <p class="lede">All sixty-four bars across three acts — Act I's floating orbit, Act II's Zero-G Bridge &amp; 3-voice crystal Bach fugue, a calm drumless G♯m7 pivot into Act III's 12-bar Röyksopp-style Event Horizon half-time journey (C♯m → Dm9 → Dmaj9–C♯m7–Bm7–E9), and an 8-bar sunlit E → A catharsis dissolving into a weightless drumless sunrise.</p>
+    <p class="lede">All sixty bars across three acts — Act I's floating orbit, Act II's Zero-G Bridge &amp; 3-voice crystal Bach fugue, a calm drumless G♯m7 pivot into Act III's 8-bar Röyksopp Event Horizon half-time drop, and an 8-bar sunlit E → A catharsis dissolving into a weightless drumless sunrise.</p>
     <p>Time runs clockwise from the top, one spoke per bar. Pitch rises outward from the core: MEGA Bass and Tectonic Sub hug the centre; Wavestation Pads and Fugue Voice 3 orbit mid-ring; Voice 1 Lead and Voice 2 Halo ride the rim. Click any bar on the ring to jump straight there.</p>
-    <p>Each floating bubble is an interactive laboratory built from the real 64-bar note data and stems — press <kbd style="font:11.5px var(--mono);border:1px solid var(--line);padding:1px 4px;border-radius:3px;">C</kbd> inside any station to inspect the live DSP code running in your browser.</p>
+    <p>Each floating bubble is an interactive laboratory built from the real 60-bar note data and stems — press <kbd style="font:11.5px var(--mono);border:1px solid var(--line);padding:1px 4px;border-radius:3px;">C</kbd> inside any station to inspect the live DSP code running in your browser.</p>
     <div class="play-row">
-      <button class="btn play" id="homePlay">▶ Play 64-bar arc</button>
+      <button class="btn play" id="homePlay">▶ Play 60-bar arc</button>
       <div class="seg" id="homeScope">
-        <button class="btn on" data-v="all">All 64</button>
+        <button class="btn on" data-v="all">All 60</button>
         <button class="btn" data-v="act1">Act I (1–16)</button>
         <button class="btn" data-v="act2">Act II (17–40)</button>
-        <button class="btn" data-v="act3">Act III (41–64)</button>
+        <button class="btn" data-v="act3">Act III (41–60)</button>
       </div>
     </div>
-    <div class="status" id="homeStatus">Streaming all 12 active stems from your 64-bar 3-act mix.</div>
+    <div class="status" id="homeStatus">Streaming all 12 active stems from your 60-bar 3-act mix.</div>
     <p class="note speaker" style="margin-top:6px;">Your Tectonic Sub (36–69 Hz) sits below what laptop speakers can reproduce — headphones unlock the floor.</p>
     <div class="legend">
       <span><i style="background:#ff4fd8"></i>bass</span>
@@ -256,7 +256,7 @@ body.code-open #code { transform: none; }
     <div class="prose">
       <p>For the first forty bars, every chord draws from the same seven-note pool — <em>A major</em> and <em>F♯ minor</em> simultaneously. Follow the pink arrows: every E chord dodges A and steps to F♯m9 or Dmaj9 instead, so gravity never locks in.</p>
       <p>Switch to <strong>Act II (17–40)</strong> to inspect the Zero-G Bridge and try <em>Why Bm9 clashed</em> (the C♯-vs-D rub we fixed by rebuilding on F♯m9).</p>
-      <p>Then open <strong>Act III (41–64)</strong>: after a calm drumless <code>F♯m9 → G♯m7</code> pivot on Bars 39–40 (three held pivot tones + a smooth <code>G♯ → C♯</code> bass fifth!), the harmony glides into <em>C♯ minor</em> Event Horizon, borrows a weeping minor-iv <code>Dm9</code> on Bar 47, walks smoothly down a melancholic half-time <code>Dmaj9 → C♯m7 → Bm7 → E9</code> cadence across Bars 49–52, and finally unleashes the song's <strong>ONLY true gold E → A resolution</strong> on Bar 53!</p>
+      <p>Then open <strong>Act III (41–60)</strong>: after a calm drumless <code>F♯m9 → G♯m7</code> pivot on Bars 39–40 (three held pivot tones + a smooth <code>G♯ → C♯</code> bass fifth!), the harmony glides into <em>C♯ minor</em> Event Horizon (<code>C♯m9 → Amaj9 → Eadd9 → G♯m7</code>), cascades through three consecutive falling-3rd chords (<code>F♯m9 → Dmaj9 → Bm11 → E9</code>), and unleashes the song's <strong>ONLY true gold E → A resolution</strong> on Bar 49!</p>
     </div>
   </div>
   <div class="col-inst">
@@ -265,7 +265,7 @@ body.code-open #code { transform: none; }
       <div class="seg" id="floatScope">
         <button class="btn on" data-v="act1">Act I (1–16)</button>
         <button class="btn" data-v="act2">Act II (17–40)</button>
-        <button class="btn" data-v="act3">Act III (41–64)</button>
+        <button class="btn" data-v="act3">Act III (41–60)</button>
       </div>
       <div class="seg" id="floatVersions"></div>
     </div>
@@ -281,7 +281,7 @@ body.code-open #code { transform: none; }
     <h2>The Bach fugue</h2>
     <div class="prose" id="fugueProse1">
       <p>Act II ignites a real <strong>three-voice Baroque fugue</strong> across Bars 25–36 — using three members of the exact same Surge XT FM2 crystal family so the voices lock like glass organ pipes: <em>Subject</em> (V1), <em>Real Answer</em> (V2), <em>Retrograde</em> crossing Forward, and <strong>Voice 3</strong> entering an octave below in half-note <em>Augmentation</em>.</p>
-      <p>Flip the score toggle to <strong>Act III Half-Time &amp; Catharsis (Bars 49–60)</strong> to inspect the melancholic descending <code>Dmaj9 → C♯m7 → Bm7 → E9</code> half-time lead-in climbing to <code>G♯6 → A6</code>, while <strong>Voice 3 weaves the literal Act I Bar 1–4 &amp; Bar 5–8 melodies</strong> as a radiant 8-bar cantus firmus underneath!</p>
+      <p>Flip the score toggle to <strong>Act III Event Horizon &amp; Catharsis (Bars 45–56)</strong> to inspect the unstoppable climb across <code>F♯m9 → Dmaj9 → Bm11 → E9</code> into <code>G♯6 → A6</code>, while <strong>Voice 3 weaves the literal Act I Bar 1–4 &amp; Bar 5–8 melodies</strong> as a radiant 8-bar cantus firmus underneath!</p>
       <p>Every simultaneous attack is scanned live for consonance — zero counterpoint clashes across both acts. Click any badge or bar to audition it live.</p>
     </div>
     <div class="prose" id="fugueProse2" hidden>
@@ -298,7 +298,7 @@ body.code-open #code { transform: none; }
       </div>
       <div class="seg" id="fugueAct">
         <button class="btn on" data-v="act2">Act II Fugue (B25–36)</button>
-        <button class="btn" data-v="act3">Act III ½T &amp; E→A (B49–60)</button>
+        <button class="btn" data-v="act3">Act III ½T &amp; E→A (B45–56)</button>
       </div>
     </div>
     <div class="part on" id="fuguePart1">
@@ -364,7 +364,7 @@ body.code-open #code { transform: none; }
           <button class="btn" data-v="bass">Bass</button><button class="btn" data-v="sub">Sub</button><button class="btn on" data-v="both">Both</button>
         </div>
         <div class="seg" id="floorJump">
-          <button class="btn on" data-b="0">B1</button><button class="btn" data-b="10">B11 Hit</button><button class="btn" data-b="24">B25 Rise</button><button class="btn" data-b="30">B31 Fugue</button><button class="btn" data-b="40">B41 ½T</button><button class="btn" data-b="48">B49 D→Bm</button>
+          <button class="btn on" data-b="0">B1</button><button class="btn" data-b="10">B11 Hit</button><button class="btn" data-b="24">B25 Rise</button><button class="btn" data-b="30">B31 Fugue</button><button class="btn" data-b="40">B41 ½T</button><button class="btn" data-b="48">B49 E→A</button>
         </div>
         <button class="btn" id="floorMono">Fold to mono</button>
         <button class="btn" id="floorPair">D1+E1 tones</button>
@@ -469,7 +469,7 @@ body.code-open #code { transform: none; }
         <div class="seg" id="vecPreset">
           <button class="btn on" data-v="ambient">Ambient Orbit (B1–16)</button>
           <button class="btn" data-v="fugue">Crystal Fugue (B29–36)</button>
-          <button class="btn" data-v="catharsis">Act III E→A (B49–60)</button>
+          <button class="btn" data-v="catharsis">Act III E→A (B45–56)</button>
         </div>
         <button class="btn rec" id="vecRec">Record a path</button>
         <button class="btn" id="vecClear" disabled>Clear path</button>
@@ -539,12 +539,12 @@ body.code-open #code { transform: none; }
       <div class="orbit-slot"></div>
       <h2>Now you can ask for this</h2>
       <div class="prose">
-        <p>Copyable prompts tied directly to the 64-bar 3-act composition, its Bach fugue &amp; E1 pedal catharsis, and the live Web DAW — plus a direct jump back to the mixer to upload tracks, record overdubs, or bounce a custom WAV.</p>
+        <p>Copyable prompts tied directly to the 60-bar 3-act composition, its Bach fugue, Event Horizon half-time &amp; Sunlit E → A catharsis, and the live Web DAW — plus a direct jump back to the mixer to upload tracks, record overdubs, or bounce a custom WAV.</p>
       </div>
       <div style="margin-top:12px;">
-        <a class="btn play" id="askDawBtn" href="https://sbking.github.io/bubble-in-orbit/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Open Live 64-Bar Web DAW ↗</a>
+        <a class="btn play" id="askDawBtn" href="https://sbking.github.io/bubble-in-orbit/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Open Live 60-Bar Web DAW ↗</a>
       </div>
-      <p class="sign">Bubble in Orbit — 64-Bar Interactive Atlas<br>Expanded from Travis's original interactive study.</p>
+      <p class="sign">Bubble in Orbit — 60-Bar Interactive Atlas<br>Expanded from Travis's original interactive study.</p>
     </div>
     <div class="lists">
       <div id="askList"></div>
@@ -561,8 +561,8 @@ body.code-open #code { transform: none; }
 /* =====================================================================
    Embedded 40-Bar Composition Data (generated from session.json + build_36bar_arc.py)
    ===================================================================== */
-const SONG = {"bpm":96.0,"bars":64,"loopSec":160.0,"chords":["F#m9","Dmaj9","Aadd9","E/G#","F#m9","Dmaj9","Aadd9","E","Dmaj9","E6","F#m9","Aadd9","Dmaj9","A/C#","Dmaj9","E/G#","F#m9","Dmaj9","Aadd9","E6","F#m9","Dmaj9","Aadd9","E6","F#m9","Dmaj9","Aadd9","E6","Dmaj9","E6","F#m9","Aadd9","Dmaj9","E6","F#m9","Aadd9","Dmaj9","A/C#","F#m9","G#m7","C#m9","Amaj9","E/B","Badd9","F#m9","Dmaj9","Dm9","E","Dmaj9","C#m7","Bm7","E9","Aadd9","Dmaj9","F#m9","E6","Aadd9","Dmaj9","F#m9","E6","Dmaj9","A/C#","Dmaj9","E/G#"],"pads":[[54,57,61,68],[54,57,61,64],[52,57,59,61],[52,56,59,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[52,56,59,64],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[52,57,59,64],[54,57,61,64],[52,56,59,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[52,57,59,64],[54,57,61,68],[54,56,59,63],[52,56,59,63],[52,56,59,61],[52,56,59,66],[51,54,59,61],[54,57,61,68],[54,57,61,64],[53,57,60,64],[52,56,59,64],[54,57,61,64],[52,56,59,64],[50,54,57,64],[52,56,59,66],[52,57,59,61],[54,57,61,64],[54,57,61,68],[56,59,61,64],[52,57,59,61],[54,57,61,64],[54,57,61,68],[56,59,61,64],[54,57,61,64],[52,57,59,64],[54,57,61,64],[52,56,59,64]],"bass":[30,38,33,32,30,38,33,40,38,40,30,33,38,37,38,32,30,38,33,40,30,38,33,40,30,38,33,40,38,40,30,33,38,40,30,33,38,37,30,32,37,33,35,35,30,38,38,40,38,37,35,40,33,38,30,40,33,38,30,40,38,37,38,32],"bassDrop":[false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,true,false,false,false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,true,true,true,true,true,true,true,true],"melody":[[0,0,6.5,66],[0,8,2.0,73],[0,10,2.0,76],[0,12,2.0,80],[0,14,2.0,81],[1,0,10.5,78],[1,12,2.0,80],[1,14,2.0,81],[2,0,9.5,76],[2,14,2.0,80],[3,0,5.8,76],[3,6,2.0,74],[3,8,7.5,73],[4,8,4.0,78],[4,12,4.0,80],[5,0,12.0,81],[6,0,7.8,83],[6,8,7.8,85],[7,0,6.0,83],[7,6,9.0,80],[8,8,4.0,83],[8,12,4.0,81],[9,0,5.8,80],[9,6,2.0,78],[9,8,4.0,80],[9,12,4.0,83],[10,0,14.0,81],[11,0,2.0,80],[11,2,6.0,78],[11,8,6.5,76],[12,8,2.0,74],[12,10,6.0,78],[13,0,7.8,76],[13,8,7.5,73],[14,0,2.0,76],[14,2,12.0,74],[15,0,4.0,71],[15,4,4.0,73],[15,8,4.0,71],[15,12,4.0,68],[16,0,5.5,66],[24,0,2.0,66],[24,2,2.0,73],[24,4,3.0,81],[24,7,1.0,80],[24,8,2.0,78],[24,10,2.0,76],[24,12,2.0,73],[24,14,2.0,81],[25,0,3.0,78],[25,3,1.0,76],[25,4,2.0,74],[25,6,2.0,81],[25,8,2.0,78],[25,10,2.0,85],[25,12,2.0,81],[25,14,2.0,78],[26,0,2.0,88],[26,2,2.0,85],[26,4,2.0,81],[26,6,2.0,76],[26,8,2.0,81],[26,10,1.0,83],[26,11,1.0,85],[26,12,4.0,88],[27,0,1.0,80],[27,1,1.0,83],[27,2,2.0,88],[27,4,2.0,85],[27,6,2.0,83],[27,8,7.5,80],[28,0,2.0,86],[28,2,2.0,81],[28,4,2.0,78],[28,6,2.0,74],[28,8,1.0,76],[28,9,1.0,78],[28,10,2.0,81],[28,12,4.0,85],[29,0,2.0,83],[29,2,2.0,76],[29,4,2.0,80],[29,6,2.0,83],[29,8,2.0,85],[29,10,2.0,83],[29,12,2.0,80],[29,14,2.0,88],[30,0,8.0,81],[30,8,1.0,81],[30,9,1.0,80],[30,10,1.0,81],[30,11,1.0,85],[30,12,4.0,90],[31,0,2.0,88],[31,2,1.0,85],[31,3,1.0,83],[31,4,2.0,81],[31,6,2.0,76],[31,8,2.0,81],[31,10,2.0,83],[31,12,4.0,85],[32,0,3.0,90],[32,3,1.0,88],[32,4,2.0,86],[32,6,2.0,81],[32,8,2.0,86],[32,10,2.0,85],[32,12,4.0,81],[33,0,2.0,83],[33,2,1.0,80],[33,3,1.0,78],[33,4,2.0,76],[33,6,2.0,83],[33,8,2.0,85],[33,10,2.0,88],[33,12,4.0,83],[34,0,2.0,85],[34,2,2.0,90],[34,4,1.0,88],[34,5,1.0,85],[34,6,2.0,81],[34,8,2.0,85],[34,10,2.0,81],[34,12,4.0,78],[35,0,2.0,76],[35,2,2.0,81],[35,4,2.0,83],[35,6,2.0,85],[35,8,2.0,83],[35,10,2.0,81],[35,12,4.0,76],[36,0,6.0,74],[36,8,2.0,74],[36,10,6.0,78],[37,0,7.8,76],[37,8,7.5,73],[38,0,2.0,76],[38,2,12.0,73],[39,0,4.0,71],[39,4,4.0,73],[39,8,4.0,75],[39,12,4.0,78],[40,0,8.0,80],[40,8,4.0,78],[40,12,4.0,76],[41,0,10.0,76],[41,10,2.0,80],[41,12,4.0,81],[42,0,8.0,83],[42,8,4.0,80],[42,12,4.0,78],[43,0,6.0,78],[43,6,2.0,75],[43,8,8.0,78],[44,0,8.0,81],[44,8,4.0,80],[44,12,4.0,78],[45,0,8.0,78],[45,8,4.0,81],[45,12,4.0,85],[46,0,8.0,84],[46,8,4.0,81],[46,12,4.0,77],[47,0,6.0,80],[47,6,2.0,83],[47,8,8.0,88],[48,0,8.0,90],[48,8,4.0,88],[48,12,4.0,85],[49,0,8.0,88],[49,8,4.0,83],[49,12,4.0,80],[50,0,8.0,86],[50,8,4.0,88],[50,12,4.0,90],[51,0,6.0,92],[51,6,2.0,90],[51,8,7.5,92],[52,0,8.0,93],[52,8,2.0,88],[52,10,2.0,85],[52,12,2.0,83],[52,14,2.0,81],[53,0,8.0,90],[53,8,4.0,88],[53,12,4.0,86],[54,0,8.0,85],[54,8,4.0,81],[54,12,4.0,80],[55,0,8.0,76],[55,8,4.0,80],[55,12,4.0,83],[56,0,8.0,85],[56,8,8.0,81],[57,0,8.0,81],[57,8,8.0,78],[58,0,8.0,81],[58,8,8.0,78],[59,0,8.0,80],[59,8,8.0,76],[60,8,2.0,74],[60,10,6.0,78],[61,0,7.8,76],[61,8,7.5,73],[62,0,2.0,76],[62,2,12.0,74],[63,0,4.0,71],[63,4,4.0,73],[63,8,4.0,71],[63,12,4.0,68]],"harmony":[[0,0,6.5,81],[0,12,2.0,83],[0,14,2.0,85],[1,0,10.5,81],[1,12,2.0,83],[1,14,2.0,85],[2,0,9.5,81],[2,14,2.0,83],[3,0,5.8,80],[3,6,2.0,78],[3,8,7.5,80],[4,0,6.5,81],[4,8,4.0,81],[4,12,4.0,83],[5,0,12.0,85],[6,0,7.8,85],[6,8,7.8,88],[7,0,6.0,88],[7,6,9.0,83],[8,0,7.8,85],[8,8,4.0,86],[8,12,4.0,85],[9,0,7.8,83],[9,8,7.8,88],[10,0,14.0,85],[11,0,2.0,83],[11,2,12.0,81],[12,0,7.5,78],[12,10,6.0,81],[13,0,7.8,81],[13,8,7.5,76],[14,0,2.0,81],[14,2,12.0,78],[15,0,4.0,80],[15,4,4.0,81],[15,8,4.0,80],[15,12,4.0,83],[24,8,3.0,85],[24,11,1.0,81],[24,12,2.0,80],[24,14,2.0,78],[25,0,2.0,81],[25,2,2.0,78],[25,4,3.0,86],[25,7,1.0,85],[25,8,2.0,81],[25,10,2.0,78],[25,12,4.0,86],[26,0,2.0,85],[26,2,2.0,81],[26,4,2.0,76],[26,6,2.0,81],[26,8,2.0,88],[26,10,2.0,81],[26,12,2.0,83],[26,14,2.0,85],[27,0,2.0,83],[27,2,2.0,80],[27,4,4.0,88],[27,8,7.5,88],[28,0,2.0,78],[28,2,2.0,81],[28,4,2.0,86],[28,6,1.0,88],[28,7,1.0,86],[28,8,4.0,81],[28,12,4.0,88],[29,0,4.0,88],[29,4,2.0,83],[29,6,2.0,80],[29,8,4.0,88],[29,12,4.0,83],[30,0,2.0,85],[30,2,2.0,81],[30,4,2.0,78],[30,6,2.0,85],[30,8,4.0,88],[30,12,4.0,85],[31,0,4.0,81],[31,4,2.0,85],[31,6,2.0,83],[31,8,8.0,88],[32,0,2.0,81],[32,2,2.0,86],[32,4,2.0,78],[32,6,2.0,86],[32,8,4.0,90],[32,12,4.0,88],[33,0,2.0,88],[33,2,2.0,83],[33,4,4.0,80],[33,8,2.0,88],[33,10,2.0,83],[33,12,4.0,88],[34,0,2.0,81],[34,2,2.0,85],[34,4,2.0,81],[34,6,2.0,78],[34,8,2.0,90],[34,10,1.0,88],[34,11,1.0,85],[34,12,4.0,81],[35,0,4.0,85],[35,4,4.0,88],[35,8,4.0,88],[35,12,4.0,81],[36,0,7.5,78],[36,10,6.0,81],[37,0,7.8,81],[37,8,7.5,76],[38,0,8.0,81],[38,8,8.0,80],[39,0,8.0,78],[39,8,8.0,83],[40,0,8.0,83],[40,8,8.0,80],[41,0,8.0,85],[41,8,8.0,83],[42,0,8.0,88],[42,8,8.0,83],[43,0,8.0,83],[43,8,8.0,87],[44,0,8.0,85],[44,8,4.0,83],[44,12,4.0,81],[45,0,8.0,81],[45,8,8.0,88],[46,0,8.0,89],[46,8,4.0,88],[46,12,4.0,86],[47,0,8.0,83],[47,8,8.0,80],[48,0,8.0,81],[48,8,8.0,81],[49,0,8.0,80],[49,8,8.0,76],[50,0,8.0,78],[50,8,4.0,83],[50,12,4.0,81],[51,0,8.0,83],[51,8,7.5,88],[52,0,8.0,88],[52,8,4.0,85],[52,12,4.0,88],[53,0,8.0,81],[53,8,4.0,85],[53,12,4.0,81],[54,0,8.0,81],[54,8,4.0,78],[54,12,4.0,76],[55,0,8.0,83],[55,8,8.0,80],[56,0,8.0,88],[56,8,8.0,88],[57,0,8.0,86],[57,8,8.0,81],[58,0,8.0,85],[58,8,8.0,85],[59,0,8.0,83],[59,8,8.0,83],[60,0,7.5,78],[60,10,6.0,81],[61,0,7.8,81],[61,8,7.5,76],[62,0,2.0,81],[62,2,12.0,78],[63,0,4.0,80],[63,4,4.0,81],[63,8,4.0,80],[63,12,4.0,83]],"fugueV3":[[28,0.0,8.0,66],[28,8.0,8.0,69],[29,0.0,8.0,68],[29,8.0,8.0,71],[30,0.0,8.0,66],[30,8.0,4.0,69],[30,12.0,4.0,73],[31,0.0,8.0,64],[31,8.0,8.0,69],[32,0.0,8.0,62],[32,8.0,8.0,66],[33,0.0,8.0,64],[33,8.0,8.0,68],[34,0.0,4.0,66],[34,4.0,4.0,69],[34,8.0,4.0,73],[34,12.0,4.0,69],[35,0.0,8.0,73],[35,8.0,8.0,69],[36,0.0,12.0,62],[40,0.0,8.0,61],[40,8.0,8.0,64],[41,0.0,8.0,64],[41,8.0,8.0,61],[42,0.0,8.0,68],[42,8.0,8.0,64],[43,0.0,8.0,66],[43,8.0,8.0,63],[44,0.0,8.0,66],[44,8.0,8.0,64],[45,0.0,8.0,62],[45,8.0,8.0,66],[46,0.0,8.0,65],[46,8.0,8.0,69],[47,0.0,8.0,64],[47,8.0,8.0,68],[48,0.0,8.0,62],[48,8.0,8.0,66],[49,0.0,8.0,61],[49,8.0,8.0,68],[50,0.0,8.0,59],[50,8.0,8.0,62],[51,0.0,8.0,64],[52,0.0,4.0,69],[52,4.0,4.0,73],[52,8.0,4.0,76],[52,12.0,4.0,81],[53,0.0,10.0,78],[53,10.0,2.0,76],[53,12.0,4.0,74],[54,0.0,8.0,66],[54,8.0,8.0,73],[55,0.0,8.0,64],[55,8.0,8.0,68],[56,0.0,8.0,76],[56,8.0,8.0,73],[57,0.0,12.0,69],[57,12.0,4.0,74],[58,0.0,8.0,66],[58,8.0,8.0,69],[59,0.0,8.0,71],[59,8.0,8.0,68]]};
-const BUILD_ID = '64b-3204185c';
+const SONG = {"bpm":96.0,"bars":60,"loopSec":150.0,"chords":["F#m9","Dmaj9","Aadd9","E/G#","F#m9","Dmaj9","Aadd9","E","Dmaj9","E6","F#m9","Aadd9","Dmaj9","A/C#","Dmaj9","E/G#","F#m9","Dmaj9","Aadd9","E6","F#m9","Dmaj9","Aadd9","E6","F#m9","Dmaj9","Aadd9","E6","Dmaj9","E6","F#m9","Aadd9","Dmaj9","E6","F#m9","Aadd9","Dmaj9","A/C#","F#m9","G#m7","C#m9","Amaj9","Eadd9","G#m7","F#m9","Dmaj9","Bm11","E9","Aadd9","Dmaj9","F#m9","E6","Aadd9","Dmaj9","F#m9","E6","Dmaj9","A/C#","Dmaj9","E/G#"],"pads":[[54,57,61,68],[54,57,61,64],[52,57,59,61],[52,56,59,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[52,56,59,64],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[52,57,59,64],[54,57,61,64],[52,56,59,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,68],[54,57,61,64],[52,57,59,61],[56,59,61,64],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[56,59,61,64],[54,57,61,68],[52,57,59,61],[54,57,61,64],[52,57,59,64],[54,57,61,68],[54,56,59,63],[52,56,59,63],[52,56,59,61],[52,54,56,59],[54,56,59,63],[54,57,61,68],[54,57,61,64],[50,54,57,64],[52,56,59,66],[52,57,59,61],[54,57,61,64],[54,57,61,68],[56,59,61,64],[52,57,59,61],[54,57,61,64],[54,57,61,68],[56,59,61,64],[54,57,61,64],[52,57,59,64],[54,57,61,64],[52,56,59,64]],"bass":[30,38,33,32,30,38,33,40,38,40,30,33,38,37,38,32,30,38,33,40,30,38,33,40,30,38,33,40,38,40,30,33,38,40,30,33,38,37,30,32,37,33,28,32,30,38,35,40,33,38,30,40,33,38,30,40,38,37,38,32],"bassDrop":[false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,true,false,false,false,false,false,false,false,false,false,true,true,true,false,false,false,false,false,false,false,true,false,false,false,false,false,true,true,true,true,true,true,true],"melody":[[0,0,6.5,66],[0,8,2.0,73],[0,10,2.0,76],[0,12,2.0,80],[0,14,2.0,81],[1,0,10.5,78],[1,12,2.0,80],[1,14,2.0,81],[2,0,9.5,76],[2,14,2.0,80],[3,0,5.8,76],[3,6,2.0,74],[3,8,7.5,73],[4,8,4.0,78],[4,12,4.0,80],[5,0,12.0,81],[6,0,7.8,83],[6,8,7.8,85],[7,0,6.0,83],[7,6,9.0,80],[8,8,4.0,83],[8,12,4.0,81],[9,0,5.8,80],[9,6,2.0,78],[9,8,4.0,80],[9,12,4.0,83],[10,0,14.0,81],[11,0,2.0,80],[11,2,6.0,78],[11,8,6.5,76],[12,8,2.0,74],[12,10,6.0,78],[13,0,7.8,76],[13,8,7.5,73],[14,0,2.0,76],[14,2,12.0,74],[15,0,4.0,71],[15,4,4.0,73],[15,8,4.0,71],[15,12,4.0,68],[16,0,5.5,66],[24,0,2.0,66],[24,2,2.0,73],[24,4,3.0,81],[24,7,1.0,80],[24,8,2.0,78],[24,10,2.0,76],[24,12,2.0,73],[24,14,2.0,81],[25,0,3.0,78],[25,3,1.0,76],[25,4,2.0,74],[25,6,2.0,81],[25,8,2.0,78],[25,10,2.0,85],[25,12,2.0,81],[25,14,2.0,78],[26,0,2.0,88],[26,2,2.0,85],[26,4,2.0,81],[26,6,2.0,76],[26,8,2.0,81],[26,10,1.0,83],[26,11,1.0,85],[26,12,4.0,88],[27,0,1.0,80],[27,1,1.0,83],[27,2,2.0,88],[27,4,2.0,85],[27,6,2.0,83],[27,8,7.5,80],[28,0,2.0,86],[28,2,2.0,81],[28,4,2.0,78],[28,6,2.0,74],[28,8,1.0,76],[28,9,1.0,78],[28,10,2.0,81],[28,12,4.0,85],[29,0,2.0,83],[29,2,2.0,76],[29,4,2.0,80],[29,6,2.0,83],[29,8,2.0,85],[29,10,2.0,83],[29,12,2.0,80],[29,14,2.0,88],[30,0,8.0,81],[30,8,1.0,81],[30,9,1.0,80],[30,10,1.0,81],[30,11,1.0,85],[30,12,4.0,90],[31,0,2.0,88],[31,2,1.0,85],[31,3,1.0,83],[31,4,2.0,81],[31,6,2.0,76],[31,8,2.0,81],[31,10,2.0,83],[31,12,4.0,85],[32,0,3.0,90],[32,3,1.0,88],[32,4,2.0,86],[32,6,2.0,81],[32,8,2.0,86],[32,10,2.0,85],[32,12,4.0,81],[33,0,2.0,83],[33,2,1.0,80],[33,3,1.0,78],[33,4,2.0,76],[33,6,2.0,83],[33,8,2.0,85],[33,10,2.0,88],[33,12,4.0,83],[34,0,2.0,85],[34,2,2.0,90],[34,4,1.0,88],[34,5,1.0,85],[34,6,2.0,81],[34,8,2.0,85],[34,10,2.0,81],[34,12,4.0,78],[35,0,2.0,76],[35,2,2.0,81],[35,4,2.0,83],[35,6,2.0,85],[35,8,2.0,83],[35,10,2.0,81],[35,12,4.0,76],[36,0,6.0,74],[36,8,2.0,74],[36,10,6.0,78],[37,0,7.8,76],[37,8,7.5,73],[38,0,2.0,76],[38,2,12.0,73],[39,0,4.0,71],[39,4,4.0,73],[39,8,4.0,75],[39,12,4.0,78],[40,0,8.0,80],[40,8,4.0,78],[40,12,4.0,76],[41,0,10.0,76],[41,10,2.0,80],[41,12,4.0,81],[42,0,10.0,83],[42,10,2.0,80],[42,12,4.0,78],[43,0,10.0,78],[43,10,2.0,80],[43,12,4.0,83],[44,0,8.0,81],[44,8,4.0,80],[44,12,4.0,78],[45,0,8.0,78],[45,8,4.0,81],[45,12,4.0,85],[46,0,8.0,86],[46,8,4.0,88],[46,12,4.0,90],[47,0,6.0,92],[47,6,2.0,90],[47,8,7.5,92],[48,0,8.0,93],[48,8,2.0,88],[48,10,2.0,85],[48,12,2.0,83],[48,14,2.0,81],[49,0,8.0,90],[49,8,4.0,88],[49,12,4.0,86],[50,0,8.0,85],[50,8,4.0,81],[50,12,4.0,80],[51,0,8.0,76],[51,8,4.0,80],[51,12,4.0,83],[52,0,8.0,85],[52,8,8.0,81],[53,0,8.0,81],[53,8,8.0,78],[54,0,8.0,81],[54,8,8.0,78],[55,0,8.0,80],[55,8,8.0,76],[56,8,2.0,74],[56,10,6.0,78],[57,0,7.8,76],[57,8,7.5,73],[58,0,2.0,76],[58,2,12.0,74],[59,0,4.0,71],[59,4,4.0,73],[59,8,4.0,71],[59,12,4.0,68]],"harmony":[[0,0,6.5,81],[0,12,2.0,83],[0,14,2.0,85],[1,0,10.5,81],[1,12,2.0,83],[1,14,2.0,85],[2,0,9.5,81],[2,14,2.0,83],[3,0,5.8,80],[3,6,2.0,78],[3,8,7.5,80],[4,0,6.5,81],[4,8,4.0,81],[4,12,4.0,83],[5,0,12.0,85],[6,0,7.8,85],[6,8,7.8,88],[7,0,6.0,88],[7,6,9.0,83],[8,0,7.8,85],[8,8,4.0,86],[8,12,4.0,85],[9,0,7.8,83],[9,8,7.8,88],[10,0,14.0,85],[11,0,2.0,83],[11,2,12.0,81],[12,0,7.5,78],[12,10,6.0,81],[13,0,7.8,81],[13,8,7.5,76],[14,0,2.0,81],[14,2,12.0,78],[15,0,4.0,80],[15,4,4.0,81],[15,8,4.0,80],[15,12,4.0,83],[24,8,3.0,85],[24,11,1.0,81],[24,12,2.0,80],[24,14,2.0,78],[25,0,2.0,81],[25,2,2.0,78],[25,4,3.0,86],[25,7,1.0,85],[25,8,2.0,81],[25,10,2.0,78],[25,12,4.0,86],[26,0,2.0,85],[26,2,2.0,81],[26,4,2.0,76],[26,6,2.0,81],[26,8,2.0,88],[26,10,2.0,81],[26,12,2.0,83],[26,14,2.0,85],[27,0,2.0,83],[27,2,2.0,80],[27,4,4.0,88],[27,8,7.5,88],[28,0,2.0,78],[28,2,2.0,81],[28,4,2.0,86],[28,6,1.0,88],[28,7,1.0,86],[28,8,4.0,81],[28,12,4.0,88],[29,0,4.0,88],[29,4,2.0,83],[29,6,2.0,80],[29,8,4.0,88],[29,12,4.0,83],[30,0,2.0,85],[30,2,2.0,81],[30,4,2.0,78],[30,6,2.0,85],[30,8,4.0,88],[30,12,4.0,85],[31,0,4.0,81],[31,4,2.0,85],[31,6,2.0,83],[31,8,8.0,88],[32,0,2.0,81],[32,2,2.0,86],[32,4,2.0,78],[32,6,2.0,86],[32,8,4.0,90],[32,12,4.0,88],[33,0,2.0,88],[33,2,2.0,83],[33,4,4.0,80],[33,8,2.0,88],[33,10,2.0,83],[33,12,4.0,88],[34,0,2.0,81],[34,2,2.0,85],[34,4,2.0,81],[34,6,2.0,78],[34,8,2.0,90],[34,10,1.0,88],[34,11,1.0,85],[34,12,4.0,81],[35,0,4.0,85],[35,4,4.0,88],[35,8,4.0,88],[35,12,4.0,81],[36,0,7.5,78],[36,10,6.0,81],[37,0,7.8,81],[37,8,7.5,76],[38,0,8.0,81],[38,8,8.0,80],[39,0,8.0,78],[39,8,8.0,83],[40,0,8.0,83],[40,8,8.0,80],[41,0,8.0,85],[41,8,8.0,83],[42,0,8.0,88],[42,8,8.0,83],[43,0,8.0,87],[43,8,8.0,87],[44,0,8.0,85],[44,8,4.0,83],[44,12,4.0,81],[45,0,8.0,81],[45,8,8.0,88],[46,0,8.0,78],[46,8,4.0,83],[46,12,4.0,81],[47,0,8.0,83],[47,8,7.5,88],[48,0,8.0,88],[48,8,4.0,85],[48,12,4.0,88],[49,0,8.0,81],[49,8,4.0,85],[49,12,4.0,81],[50,0,8.0,81],[50,8,4.0,78],[50,12,4.0,76],[51,0,8.0,83],[51,8,8.0,80],[52,0,8.0,88],[52,8,8.0,88],[53,0,8.0,86],[53,8,8.0,81],[54,0,8.0,85],[54,8,8.0,85],[55,0,8.0,83],[55,8,8.0,83],[56,0,7.5,78],[56,10,6.0,81],[57,0,7.8,81],[57,8,7.5,76],[58,0,2.0,81],[58,2,12.0,78],[59,0,4.0,80],[59,4,4.0,81],[59,8,4.0,80],[59,12,4.0,83]],"fugueV3":[[28,0.0,8.0,66],[28,8.0,8.0,69],[29,0.0,8.0,68],[29,8.0,8.0,71],[30,0.0,8.0,66],[30,8.0,4.0,69],[30,12.0,4.0,73],[31,0.0,8.0,64],[31,8.0,8.0,69],[32,0.0,8.0,62],[32,8.0,8.0,66],[33,0.0,8.0,64],[33,8.0,8.0,68],[34,0.0,4.0,66],[34,4.0,4.0,69],[34,8.0,4.0,73],[34,12.0,4.0,69],[35,0.0,8.0,73],[35,8.0,8.0,69],[36,0.0,12.0,62],[40,0.0,8.0,61],[40,8.0,8.0,64],[41,0.0,8.0,64],[41,8.0,8.0,61],[42,0.0,8.0,64],[42,8.0,8.0,68],[43,0.0,8.0,63],[43,8.0,8.0,66],[44,0.0,8.0,66],[44,8.0,8.0,64],[45,0.0,8.0,62],[45,8.0,8.0,66],[46,0.0,8.0,59],[46,8.0,8.0,62],[47,0.0,8.0,64],[48,0.0,4.0,69],[48,4.0,4.0,73],[48,8.0,4.0,76],[48,12.0,4.0,81],[49,0.0,10.0,78],[49,10.0,2.0,76],[49,12.0,4.0,74],[50,0.0,8.0,66],[50,8.0,8.0,73],[51,0.0,8.0,64],[51,8.0,8.0,68],[52,0.0,8.0,76],[52,8.0,8.0,73],[53,0.0,12.0,69],[53,12.0,4.0,74],[54,0.0,8.0,66],[54,8.0,8.0,69],[55,0.0,8.0,71],[55,8.0,8.0,68]]};
+const BUILD_ID = '60b-677c33d9';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -884,8 +884,8 @@ const orbitCv = $('#orbit');
 const ORBIT_NOTES = [];
 (function buildOrbitNotes() {
   for (let b = 0; b < BARS; b++) {
-    if (!BASS_DROP[b] || b === 7 || b === 27 || b === 51) {
-      const len = (b === 7 || b === 27 || b === 51) ? 7.8 : 15.5;
+    if (!BASS_DROP[b] || b === 7 || b === 27 || b === 47) {
+      const len = (b === 7 || b === 27 || b === 47) ? 7.8 : 15.5;
       ORBIT_NOTES.push({ band: 'bass', bar: b, midi: BASS[b], t0: b * 16, t1: b * 16 + len, color: STEMS.bass.color, w: 4.5 });
     }
     for (const m of PADS[b]) ORBIT_NOTES.push({ band: 'pads', bar: b, midi: m, t0: b * 16 + 0.3, t1: b * 16 + 15.6, color: STEMS.pads.color, w: 2.8, alpha: 0.45 });
@@ -900,9 +900,9 @@ const ORBIT_ARCS = [
   { b0: 16, b1: 24, label: 'Zero-G Bridge',        col: '#6c7ae0' },
   { b0: 24, b1: 36, label: '3-Voice Bach Fugue',   col: '#ff4fd8' },
   { b0: 36, b1: 40, label: 'Calm Pivot (G♯m7)',    col: '#e76f51' },
-  { b0: 40, b1: 52, label: 'Event Horizon ½T',     col: '#c77dff' },
-  { b0: 52, b1: 56, label: 'Sunlit E→A',           col: '#ffe066' },
-  { b0: 56, b1: 64, label: 'Floating Sunrise',     col: '#80ffaa' },
+  { b0: 40, b1: 48, label: 'Event Horizon ½T',     col: '#c77dff' },
+  { b0: 48, b1: 52, label: 'Sunlit E→A',           col: '#ffe066' },
+  { b0: 52, b1: 60, label: 'Floating Sunrise',     col: '#80ffaa' },
 ];
 
 const BUBBLES = [
@@ -1209,13 +1209,13 @@ function smoothestPath(a, b) {
 
 const ROMAN_A = {
   'A': 'I', 'F#m9': 'vi', 'Dmaj9': 'IV', 'Aadd9': 'I', 'Amaj9': 'I', 'E/G#': 'V⁶', 'E/B': 'V⁶⁴',
-  'E': 'V', 'E6': 'V(6)', 'E11': 'V¹¹', 'E9': 'V⁹', 'A/C#': 'I⁶', 'Dm9': 'iv', 'C#7': 'V⁷/vi',
-  'Bm9 (!)': 'ii', 'Bm7': 'ii⁷', 'C#m9': 'iii', 'C#m7': 'iii⁷', 'G#m7': 'vii', 'B6': 'II', 'Badd9': 'II', 'Dmaj9/E': 'IV/V', 'F#m9/E': 'vi/V',
+  'E': 'V', 'Eadd9': 'V', 'E6': 'V(6)', 'E11': 'V¹¹', 'E9': 'V⁹', 'A/C#': 'I⁶', 'Dm9': 'iv', 'C#7': 'V⁷/vi',
+  'Bm9 (!)': 'ii', 'Bm7': 'ii⁷', 'Bm11': 'ii¹¹', 'C#m9': 'iii', 'C#m7': 'iii⁷', 'G#m7': 'vii', 'B6': 'II', 'Badd9': 'II', 'Dmaj9/E': 'IV/V', 'F#m9/E': 'vi/V',
 };
 const ROMAN_FS = {
   'A': 'III', 'F#m9': 'i', 'Dmaj9': 'VI', 'Aadd9': 'III', 'Amaj9': 'III', 'E/G#': 'VII⁶', 'E/B': 'VII⁶⁴',
-  'E': 'VII', 'E6': 'VII(6)', 'E11': 'VII¹¹', 'E9': 'VII⁹', 'A/C#': 'III⁶', 'Dm9': 'out', 'C#7': 'V⁷',
-  'Bm9 (!)': 'iv (!)', 'Bm7': 'iv⁷', 'C#m9': 'v', 'C#m7': 'v⁷', 'G#m7': 'v/v', 'B6': 'IV', 'Badd9': 'IV', 'Dmaj9/E': 'VI/VII', 'F#m9/E': 'i/VII',
+  'E': 'VII', 'Eadd9': 'VII', 'E6': 'VII(6)', 'E11': 'VII¹¹', 'E9': 'VII⁹', 'A/C#': 'III⁶', 'Dm9': 'out', 'C#7': 'V⁷',
+  'Bm9 (!)': 'iv (!)', 'Bm7': 'iv⁷', 'Bm11': 'iv¹¹', 'C#m9': 'v', 'C#m7': 'v⁷', 'G#m7': 'v/v', 'B6': 'IV', 'Badd9': 'IV', 'Dmaj9/E': 'VI/VII', 'F#m9/E': 'i/VII',
 };
 const romanOf = (table, name) => table[name] || table[name.split('/')[0]] || '';
 function floatRange() {
@@ -1371,7 +1371,7 @@ function drawFloats(now) {
       const x0 = xOf(i), x1 = ni === 0 ? w - right + 8 : xOf(ni), y = top - 62;
       g.strokeStyle = lands ? '#ffe066' : 'rgba(255,175,204,0.92)'; g.lineWidth = lands ? 2.4 : 1.8;
       g.beginPath(); g.moveTo(x0, y + 7); g.quadraticCurveTo((x0 + x1) / 2, y - 10, x1, y + 7); g.stroke();
-      if (lands && b0 + i === 51) {
+      if (lands && b0 + i === 47) {
         g.fillStyle = '#ffe066'; g.font = `700 10px ${sans}`; g.textAlign = 'center';
         g.fillText('E → A!', (x0 + x1) / 2, y - 8);
       }
@@ -1413,11 +1413,10 @@ const FUGUE_DEVICES_ACT2 = [
   { bar: 34, name: 'B35 · 2-Beat Stretto',      desc: 'Tight 2-beat overlapping canon echo of F♯6–E6–C♯6–A5 over MEGA Bass Hit #3.' },
 ];
 const FUGUE_DEVICES_ACT3 = [
-  { bar: 48, name: 'B49 · Descending Half-Time',     desc: 'Röyksopp half-time pocket continues over melancholic descending Dmaj9 → C♯m7 → Bm7 bassline!' },
-  { bar: 50, name: 'B51 · Soulful Bm7 Lift',         desc: 'Bm7 (Orbital Shimmer ducks C♯ cleanly!) lifts D6 → E6 → F♯6 toward the dominant.' },
-  { bar: 51, name: 'B52 · G♯6 + Vacuum Launch',      desc: 'Soaring G♯6 sings across the Bar 52 Beats 3–4 zero-gravity vacuum, poised 1 half-step below A6!' },
-  { bar: 52, name: 'B53 · Sunlit E→A + Act I B1–4',  desc: 'THE ONLY TRUE E → A RESOLUTION! V1 lands on A6 while V3 sings the literal Act I Bar 1–4 melody underneath!' },
-  { bar: 56, name: 'B57 · Floating Sunrise (Calm)',  desc: 'Bar 57 touchdown + underwater bass dive-down into 8 calm bars of Rhodes sunrise (V3 sings Act I Bar 5–8)!' },
+  { bar: 44, name: 'B45 · Falling-3rds Lift',        desc: 'F♯m9 → Dmaj9 → Bm11 cascades three consecutive falling thirds into an unstoppable melodic climb!' },
+  { bar: 47, name: 'B48 · G♯6 + Vacuum Launch',      desc: 'Soaring G♯6 sings across the Bar 48 Beats 3–4 zero-gravity vacuum, poised 1 half-step below A6!' },
+  { bar: 48, name: 'B49 · Sunlit E→A + Act I B1–4',  desc: 'THE ONLY TRUE E → A RESOLUTION! V1 lands on A6 while V3 sings the literal Act I Bar 1–4 melody underneath!' },
+  { bar: 52, name: 'B53 · Floating Sunrise (Calm)',  desc: 'Bar 53 touchdown + underwater bass dive-down into 8 calm bars of Rhodes sunrise (V3 sings Act I Bar 5–8)!' },
 ];
 const INTERVAL_NAMES = ['U', 'm2', 'M2', 'm3', 'M3', 'P4', 'TT', 'P5', 'm6', 'M6', 'm7', 'M7'];
 function intervalLabel(m1, m2) {
@@ -1459,7 +1458,7 @@ const fugue = {
   part: 1, act: 'act2', session: null, v1: true, v2: true, v3: true, v3Alt: false, bed: true, gains: {},
   xform: 'forward', xOrig: true, xSession: null, xStart: 0,
 };
-function fugueRange() { return fugue.act === 'act3' ? [48, 60] : [24, 36]; }
+function fugueRange() { return fugue.act === 'act3' ? [44, 56] : [24, 36]; }
 function buildFugueTags() {
   const box = $('#fugueTags'); box.innerHTML = '';
   const list = fugue.act === 'act3' ? FUGUE_DEVICES_ACT3 : FUGUE_DEVICES_ACT2;
@@ -1505,7 +1504,7 @@ async function fuguePlay(fromBar = null) {
   }
   applyFugueGains();
   $('#fugueStatus').textContent = fugue.act === 'act3'
-    ? 'Bars 49–60 looping: E1 Pedal Stretto → 8-Bar Sunlit E → A Catharsis (solo V3 to hear Act I Bars 1–8 cantus firmus!).'
+    ? 'Bars 45–56 looping: Event Horizon Lift → 8-Bar Sunlit E → A Catharsis (solo V3 to hear Act I Bars 1–8 cantus firmus!).'
     : 'Bars 25–36 looping. Solo any voice or swap V3 between Surge XT Deep Glass and 1977 Rhodes!';
 }
 function fugueStop() { if (fugue.session) fugue.session.end(); fugue.session = null; setPlayBtn($('#st-fugue [data-act=play1]'), false, '▶ Play Fugue'); }
@@ -1586,7 +1585,7 @@ function drawFugueScore(now) {
   const curBar = fugue.session ? Math.floor(loopTime() / BAR) : -1;
   $$('#fugueTags .ftag').forEach(el => {
     const tb = Number(el.dataset.bar);
-    el.classList.toggle('here', curBar === tb || (tb === 28 && curBar === 29) || (tb === 30 && curBar === 31) || (tb === 34 && curBar === 35) || (tb === 48 && curBar === 49) || (tb === 52 && curBar >= 52 && curBar < 56) || (tb === 56 && curBar >= 56 && curBar < 60));
+    el.classList.toggle('here', curBar === tb || (tb === 28 && curBar === 29) || (tb === 30 && curBar === 31) || (tb === 34 && curBar === 35) || (tb === 44 && curBar >= 44 && curBar < 47) || (tb === 48 && curBar >= 48 && curBar < 52) || (tb === 52 && curBar >= 52 && curBar < 56));
   });
   for (let i = 0; i <= N; i++) {
     const b = b0 + i, x = left + (i / N) * plotW;
@@ -2311,7 +2310,7 @@ function drawSeq() {
 const VEC_PRESETS = {
   ambient:   { layers: ['pads', 'bellHalo', 'shimmer', 'rhodes'], b0: 0,  b1: 16 },
   fugue:     { layers: ['pads', 'lead', 'bellHalo', 'fugueV3'],   b0: 28, b1: 36 },
-  catharsis: { layers: ['pads', 'lead', 'bellHalo', 'fugueV3'],   b0: 48, b1: 60 },
+  catharsis: { layers: ['pads', 'lead', 'bellHalo', 'fugueV3'],   b0: 44, b1: 56 },
 };
 const vec = { part: 1, preset: 'ambient', x: 0.3, y: 0.3, session: null, gains: [], path: null, recording: false, dragging: false, levels: [], status: $('#vecStatus'), meters: [] };
 

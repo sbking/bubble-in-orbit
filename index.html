@@ -177,7 +177,7 @@
 <div class="head-row">
   <h1 id="title">Bubble in Orbit</h1>
   <div style="display:flex;align-items:center;gap:10px;">
-    <a href="./atlas.html" style="font-size:12px;color:#ffe066;text-decoration:none;border:1px solid rgba(255,224,102,0.45);border-radius:4px;padding:4px 9px;background:rgba(255,224,102,0.08);" title="Open the 64-Bar Interactive Music &amp; Fugue Atlas">📖 Interactive Atlas ↗</a>
+    <a href="./atlas.html" style="font-size:12px;color:#ffe066;text-decoration:none;border:1px solid rgba(255,224,102,0.45);border-radius:4px;padding:4px 9px;background:rgba(255,224,102,0.08);" title="Open the 60-Bar Interactive Music &amp; Fugue Atlas">📖 Interactive Atlas ↗</a>
     <span class="status" id="load-status">Press Play to load &amp; listen</span>
   </div>
 </div>
@@ -187,7 +187,7 @@
 <div class="bar">
   <button id="btn-play">▶ Play [Space]</button>
   <button id="btn-mode" class="on">🎵 Song Mode</button>
-  <button id="btn-full-loop">Loop All (1–64)</button>
+  <button id="btn-full-loop">Loop All (1–60)</button>
   <button id="btn-click" title="Metronome click locked to beat grid [C]">🔔 Click</button>
   <button id="btn-bounce" title="Offline-render your full custom mix (stems + uploads + HalfTime + FX + Tape Speed) to a downloadable .wav file">⬇ Bounce WAV</button>
   <button id="btn-share" title="Copy a shareable link containing your exact mix, FX, HalfTime, and arrangement settings">🔗 Share Mix</button>
@@ -270,10 +270,10 @@
       <option value="28:36:Overdrive Fugue:full:0">Overdrive 3-Voice Fugue (Bars 29–36)</option>
       <option value="16:40:Act II Full:full:0">Act II Full (Bars 17–40)</option>
       <option value="36:40:Calm C#m Pivot:full:0">Calm Afterglow &amp; C#m Pivot (Bars 37–40)</option>
-      <option value="40:52:Event Horizon (12B ½T):full:0">Act III: Event Horizon + Descending Half-Time (Bars 41–52)</option>
-      <option value="48:60:Descending ½T + 8B E→A:full:0">Act III: D→C#m→Bm→E + 8-Bar Sunlit E→A (Bars 49–60)</option>
-      <option value="56:64:Floating Sunrise (Calm):full:0">Act III: 8-Bar Drumless Sunrise (Bars 57–64)</option>
-      <option value="40:64:Act III Full:full:0">Act III: Catharsis Full (Bars 41–64)</option>
+      <option value="40:48:Event Horizon (8B ½T):full:0">Act III: Event Horizon Half-Time (Bars 41–48)</option>
+      <option value="48:56:8-Bar Sunlit E→A:full:0">Act III: 8-Bar Sunlit E→A Catharsis (Bars 49–56)</option>
+      <option value="52:60:Floating Sunrise (Calm):full:0">Act III: 8-Bar Drumless Sunrise (Bars 53–60)</option>
+      <option value="40:60:Act III Full:full:0">Act III: Event Horizon + Catharsis (Bars 41–60)</option>
       <option value="loop">Current Loop Selection</option>
     </select>
     <button id="btn-arr-add" style="padding:3px 9px;font-size:11px;">+ Add Section</button>
@@ -304,7 +304,7 @@
 <div class="mixer" id="mixer"></div>
 
 <script type="module">
-const BUILD_ID = '64b-3204185c';
+const BUILD_ID = '60b-677c33d9';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
