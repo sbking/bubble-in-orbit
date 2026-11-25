@@ -1,6 +1,6 @@
 {
   "title": "Bubble in Orbit \u2014 Interactive Web DAW",
-  "buildId": "64b-73bb172f",
+  "buildId": "64b-568a13e6",
   "bpm": 96.0,
   "bars": 64,
   "loopSec": 160.0,
@@ -4821,7 +4821,8 @@
       "color": "#ff8a65",
       "audio": "01_drums.m4a",
       "defaultGain": 1.0,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "vpi7ebyYvHu9mbx6vZe8eL2Yu3m8mLx7vZm8er2XCwG+mLt5vJi8e72ZvHq9l7x4vZi7ebyYvHu9mbx6vZe8eHYFRwB1BUgAdQVIAHUFRwF1BU0AfAZNCIMJTQuKDU0PbxccIIBrijKdiK5psrMOAcfG/ZnKwf+z2cH9msrE/7DNxv2YysH/s9nB/ZrKxP+wxKXWebeSvXixjql0qW+GTs0GAAAAAC0AAAAtAAAAOgC6TYVeuU+JX79PhV65T4xfv02FXrlPiV+/T4VevlIBAM+u4YTGrOOfyKvihsaLlFi/BiUAAAAAAAAAJQAAAAAAAAAlAAAAAAAAACUAAAAAAA=="
     },
     {
       "id": "01t2_titily_wood",
@@ -4829,7 +4830,8 @@
       "color": "#f4a261",
       "audio": "01t2_titily_wood.m4a",
       "defaultGain": 1.05,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "GQEAAAAAAAAAAAAAAAAAuRoBAAAAAAAAAAAAAAAAAMgdAQAAAAAAAAAAAAAAAADNHAEAAAAAAKwdAQAAAAAA8B0BAAAAAAAAAAAAAAAAAIoYAQAAAAAAAAAAAAAAAACWIQEAAAAAALsoAQAAAAAA+xwBAAAAAADVLwEAAAAAAOgdAQAAAAAA4yEBAAAAAADdHwEAAAAAALIeAQAAAAAAyBcBAAAAAACSGAEAAAAAAKwYAQAAAAAAAAAAAAAAAADRFwEAAAAAAAAAAAAAAAAA/yEBAAAAAAAAAAAAAAAAAKAhAQAAAAAAAAAAAAAAAACKHQEAAAAAAAAAAAAAAAAAqA=="
     },
     {
       "id": "02_bass_mega_phaser",
@@ -4837,7 +4839,8 @@
       "color": "#ff4fd8",
       "audio": "02_bass_mega_phaser.m4a",
       "defaultGain": 0.58,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "29HR3t7W3tjT29jX2cXQ29vRz97d1tXV0drY18zQKxTh4eXW5eDhztXQ0trZycje4eHl1t7j5dbK2OLi1s7X3pIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWLDxDVlF/jZ6eudbt/+YBAOHf5Nni4ePc2dTU19nNyt/h3+TZ4t/f19jV1NbVz8fd4d3k1N7b2s/W09PRytHJ1uqaYyYAAAAAAAAAAAAAABbf4N3c3NTGzdrLyd/Pys3f2NbN1+TZ2sLT4N/Y4dAAANjWy+DY4NnV0NbU1OLW/9zmnGorAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFA=="
     },
     {
       "id": "02s1_sub_tectonic",
@@ -4845,7 +4848,8 @@
       "color": "#5e60ce",
       "audio": "02s1_sub_tectonic.m4a",
       "defaultGain": 0.56,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "xsjIx8DBwcDGyMjJxsrJycbHx8nAwMDBxsfJyMTEBBLAwMDBxMTGxcbIyMfGycrJwMDAwMLFxsXAwMDBx8jJyoyKioyGhoaHi4uLjYmJiYmMjY+SjY+Qk5iZm56cnp+ip6yxt7W6v8TP1Nvh6O8ABejn5+fo6enp9/n59/j49/nj5OTl6unp6Pf39vn7+fr72tbSzczJxcC8ubWwq6mjn5SKioqPi4uLj46Ojqe2xtju7e7v+vz+/vf3+Pn6/P39+vn9+/Lz8vP49/v96PIBCv78/P/n6Ojo8O7v8evs7e6Tk5OTk46OjpKSkpKSkZGRkY6OjpSPj4+Tjo6Ok5OTnQ=="
     },
     {
       "id": "03_pads",
@@ -4853,7 +4857,8 @@
       "color": "#7ae7ff",
       "audio": "03_pads.m4a",
       "defaultGain": 1.08,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "yqmUdaiCg4aKloSFjJyFe7KZlXWngoKFiZaEhYychXuxrJiY1dikosCznoeru5SMsd2YmKrIipGrw6+Zq8Cbj9W6upDQoqalq7uqpq27t6XYvbqQ0KOnpKu6q6avu7el2L25kc+kqKSruaulsLq4pfPXs7P6/sO74tu1nsjXq6bR/bGz+/3CuuLdtJ7I16ymyv+kp+jrtKvR0KaTuMyfmsP3pqe82JWfpcirlKm6oaOmy52iqce3tcLxo56ns6Ciw6ixksyipaS35pucu9+hntjmyKjY9bKxyrqyoPjXwrL24L2cyO6jpLuwqJXkxrOk6NOrp73Ylp+608Opts6qpg=="
     },
     {
       "id": "04p3_prelude_synth",
@@ -4861,7 +4866,8 @@
       "color": "#64dfdf",
       "audio": "04p3_prelude_synth.m4a",
       "defaultGain": 0.56,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "ZranquDEg1lyp7LXy86OZFq4rLblvXxMeLGs0bOykkxBnuq+y8eVXFux5bnQ2byNSrL/sdijumJbq9O/xrWSXVerp6XbuoxCeKyxyLbBllZjsrO03cGFSXKtr8bGt5ZcWK2mr+HKkFNuqbLByLOLV1uP3MHVxJpWW53ZxtXNq5RMn97ExquXWV222sLfy6SKU53rvMq8mGFYruK/ysCvhk+a4MnIwaZeYK3guc3NsoFYnLy8tLSpdlqgv9nc0LiRWLasq9y6n1SS4OPJ0rqTTH6msNnGwpVeWancvr/Hh159sLjZ0M2RUmC15MbCz5lZRqzbxLWls1ZJmsu2ytGZSQ=="
     },
     {
       "id": "04p1_prelude_harp",
@@ -4869,7 +4875,8 @@
       "color": "#56cfe1",
       "audio": "04p1_prelude_harp.m4a",
       "defaultGain": 0.88,
-      "defaultMute": true
+      "defaultMute": true,
+      "peaksB64": "Yoioxqyyg1hxl5XhyaSRamuIqMWssYRZcZeW4s20oXZ9lOvTxeizmISswtS74au2mobTwrTBtXx5i+G+vbuYbHCUudS5xJRlfKao+9e2ooaCnrbWucSVZnymqfzatqSGgp621bnElGZ7pqn827WmhoWW/t7N7b2lkbjO3sLhuL6pn/ng0eq8pZK4zt7B3rm9pI/i1L7No458mKzAscSYj3pvsqiboZZuZnyRo5mJdGl3k7GlsMmqqYyOwM3/vpqLdKG42MPIjmmVqLG6vLiyd6DGwuPp9J9xir7R3cmhn25+m4qjrrBvT2GFlKOagIhmYWq6qJWelnFlc7yqoJiUWA=="
     },
     {
       "id": "05v3_surge_glass",
@@ -4877,7 +4884,8 @@
       "color": "#8ce7ff",
       "audio": "05v3_surge_glass.m4a",
       "defaultGain": 1.1,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "lImiw6nIx4WVpIJ0qKuhlC0Nr5GMaVQaouGfiMbCYEMXB6XJireZu99gVTWF35auJgnB0LSQnYG6vZ2DeHmEr5CIDwUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACtrWxoqnbvq6prqPixc6xVrDf5KnhrLy5oW25r9i3rJ2u886i07fSxtOutbzKz6uuwcW7jNCuraOEZ4ipnZyaodl8tca5sZuRkIaAYm+BodDPVKGlzryTlLzR4r69+dLE1laAtsPXwaLCgKvR0LLbvtrHzbm4ksnGqYGEi4yWnLjaj3xiglyb/6J2zsqOW4mROhKTybXAkpWWqaSDdZKCrw=="
     },
     {
       "id": "06h_halo_surge",
@@ -4885,7 +4893,8 @@
       "color": "#ffafcc",
       "audio": "06h_halo_surge.m4a",
       "defaultGain": 0.66,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "n2EHmaCPbJiWjl2irNG7Zp1fgoudgq0Klo2Ms5ebk5Z+iKh3lHaurJeWjXCVlIJulf96hpSAfmikwLyscYeLozUCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOc3LnKv6qjnMaXkKeeopq7t5uS592Lpb+/nJS3xbXL56GZnJnUqq2fx51/rou2lp+5rZvEvo+NgZ+Vl5F0e5nfhoeUcXNbnouUYeuwn6mvpJJooHqWhamTkYmTY4dXg46fk419ucjKwJqLlaTY06yjoqGWf7aHjYufkqqpkk+uotCiyI+FaI+Xj3iMq4Wci7iAgIZ8eV/qvZupcqGHlg=="
     },
     {
       "id": "06h2_angel_halo",
@@ -4893,7 +4902,8 @@
       "color": "#ffc8dd",
       "audio": "06h2_angel_halo.m4a",
       "defaultGain": 0.66,
-      "defaultMute": true
+      "defaultMute": true,
+      "peaksB64": "oHg5hIh6ZK6MelV3xcS1tp14YJ3fial0ga7LoLK+p4a6o/Ho/6LHm8i3qKignIJqs6mVg4d+x4m7tbSxpYCitE0aAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACTnZvZme2wpKviyKnYnM6xp7713s7Kz8Cgwrm0xJ7L063R5JzOtcXA5aOv/+CsjNe01cfttK3Qpaa7jG+afMekmJGMc76AlmqtlbqR0pu6jcKtuofJmM+b0MnPuvyk5JfI74d5w5/3xtjRr5jTq6qa6O3ag526jHjK1s2m3t3Uma+sx7jbdKCkgqamk3iH5Xl9gX52qHa0lp+Qloijow=="
     },
     {
       "id": "06c_overdrive_choir",
@@ -4901,7 +4911,8 @@
       "color": "#a8dadc",
       "audio": "06c_overdrive_choir.m4a",
       "defaultGain": 0.56,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4JpqHqNfc2gvLywrcV7tIWDbMJ7vWOUgL3Qua+nfbSCg2zIfrJkmn++vbyHo3evgINGSS0CAAAAAAAAAAAAAAKNkKxppWHwn7tznoWkcMCXm2SraJ2nzp7BdJxoq3EqBJ7/pK/GxdHVwLyymr1xrne9uY14qYZvucG8soqXja50FQIAAAAAAAAAAAAAAAAAAA=="
     },
     {
       "id": "06d_fugue_rhodes",
@@ -4909,7 +4920,8 @@
       "color": "#e9c46a",
       "audio": "06d_fugue_rhodes.m4a",
       "defaultGain": 0.6,
-      "defaultMute": true
+      "defaultMute": true,
+      "peaksB64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKZwtFeVM6xKunPO2NNMpVWob/RzyFHAPsry/8jZZp9QlV7PZLNKpDKrYqZKrUGMSH1PQC0DAAAAAAAAAAAAAACLRahGtEedRqFAqj+BS65htnLNSZFsz2WHNaN12FAoArHo1tHtYKrb4HTjXcFLpUOkOI5TjUEonbBfmTmPS3w5GgEAAAAAAAAAAAAAAAAAAA=="
     },
     {
       "id": "07c_fx_harp_chimes",
@@ -4917,7 +4929,8 @@
       "color": "#ffea85",
       "audio": "07c_fx_harp_chimes.m4a",
       "defaultGain": 0.96,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "VgwBAAAAAAAAAAAAAAAqbj8RAQAAAAAAAAAAAAAAV7x9GgEAAAAAAAAAAAAAAB5YSgsAAAAAAAAAAAAAAABIY0kLAAAAAAAAAAAAAAAAH0Y3CgEAAAAAAAAAAAAAAAQYDgAAAAAAAAAAAAAAAEBv04ccAQAAAAAAAAAAAAAANIhQFQEAAAAAAAAAAAAAAEx7ZQ0AAAAAAAAAAAAAAChjq2QNAAAAAAAAAAAAAAAASH9uDwEAAAAAAAAAAAAAAC9aSAoAAAAAAAAAAAAAAEWF/7AeAQAAAAAAAAAAAAAjW3E3EQEAAAAAAAAAAAAAACxkOAwAAAAAAAAAAAAAAAAmdw=="
     },
     {
       "id": "08b_warm_rhodes_tremolo",
@@ -4925,7 +4938,8 @@
       "color": "#e76f51",
       "audio": "08b_warm_rhodes_tremolo.m4a",
       "defaultGain": 0.44,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "tGB4WJ1kama4U3tftVqdZa9geFidZGpmuFN7X6tUOAifYHFZu2uVVqJia1y0WINVl19xWbZIgkyeWXNgtlqdZcRrVjKtcE82xVxBLtV9SznFa1YyrXBPNsVcQS7VfUs5sV94WJ1kama4U3tfrGg+B59gcVm7a5VWomJrXLRYg1WXX3FZu2uVVqJia1y0WINVpmiZYNZ8vXDDdpJqzmXPcNaWnlnzjq1q5pyjbsWL0YbbdUYysHJQN8xrQDDNZT82v2tWMq1wTzbFazslnlc+CrFfiVGYZGpmp2FrXNd/6J/wl4ti2I6lXOSco27mr8+Z5peeWfOOrWrjkqZk/5fQgQ=="
     },
     {
       "id": "09c_world_nebula_shimmer",
@@ -4933,7 +4947,8 @@
       "color": "#90e0ef",
       "audio": "09c_world_nebula_shimmer.m4a",
       "defaultGain": 0.36,
-      "defaultMute": false
+      "defaultMute": false,
+      "peaksB64": "saLAw+Ccv6WXqJd8gZ6pxXyPkpidn6qXx8mrg8Hqz9T1mNvX8aCut6yThoKCoqy9eaO7nYyVuYWrlpqHr8nGxOCErszMgrumkKiGi4Ogo8J8lMOaq6uopcais4zD4tje6IXR9c+QrbamjHCRhqinuoqe45ygncGIo5mUlLC4y9bdeJDErK+ok6iubo+KoqG5e4ncs8GknqPDpqWlx9Hj6NSRtv+7p6yroo5pko2DeXpZb8Nvb2l3UnlpZJ2Om8bMxX+V4aq6oYySimSLhKWdqol7yLG7pI+6vKSGuc7W8fK9rdr3rp6wnLSKdIeZpKOjlW7HlZmQkpmXgnG5q7Te3w=="
     }
   ]
 }
