@@ -4,6 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bubble in Orbit — Interactive Web DAW</title>
+<meta name="description" content="A 64-bar interactive WebAudio DAW: 15 stereo stems, 3-voice fugue score, HalfTime FX, tape speed, live mic overdub, and shareable mixes in the browser.">
+<meta name="theme-color" content="#060912">
+<link rel="canonical" href="https://sbking.github.io/bubble-in-orbit/">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bubble in Orbit">
+<meta property="og:url" content="https://sbking.github.io/bubble-in-orbit/">
+<meta property="og:title" content="Bubble in Orbit — Interactive Web DAW">
+<meta property="og:description" content="A 64-bar interactive WebAudio DAW: 15 stereo stems, 3-voice fugue score, HalfTime FX, tape speed, live mic overdub, and shareable mixes in the browser.">
+<meta property="og:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-cbbf8b5c">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bubble in Orbit interactive WebAudio DAW showing the 64-bar counterpoint piano roll aligned above color-coded multi-track stereo waveforms and studio mixer controls.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bubble in Orbit — Interactive Web DAW">
+<meta name="twitter:description" content="A 64-bar interactive WebAudio DAW: 15 stereo stems, 3-voice fugue score, HalfTime FX, tape speed, live mic overdub, and shareable mixes in the browser.">
+<meta name="twitter:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-cbbf8b5c">
+<meta name="twitter:image:alt" content="Bubble in Orbit interactive WebAudio DAW showing the 64-bar counterpoint piano roll aligned above color-coded multi-track stereo waveforms and studio mixer controls.">
 <style>
   :root {
     --ink: #060912;
@@ -1273,7 +1292,7 @@
 </div>
 
 <script type="module">
-const BUILD_ID = '64b-568a13e6';
+const BUILD_ID = '64b-cbbf8b5c';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
