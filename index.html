@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://sbking.github.io/bubble-in-orbit/">
 <meta property="og:title" content="Bubble in Orbit — Interactive Web DAW">
 <meta property="og:description" content="A 64-bar interactive WebAudio DAW: 15 stereo stems, 3-voice fugue score, HalfTime FX, tape speed, live mic overdub, and shareable mixes in the browser.">
-<meta property="og:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-cbbf8b5c">
+<meta property="og:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-31c316eb">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bubble in Orbit — Interactive Web DAW">
 <meta name="twitter:description" content="A 64-bar interactive WebAudio DAW: 15 stereo stems, 3-voice fugue score, HalfTime FX, tape speed, live mic overdub, and shareable mixes in the browser.">
-<meta name="twitter:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-cbbf8b5c">
+<meta name="twitter:image" content="https://sbking.github.io/bubble-in-orbit/og-image.png?v=64b-31c316eb">
 <meta name="twitter:image:alt" content="Bubble in Orbit interactive WebAudio DAW showing the 64-bar counterpoint piano roll aligned above color-coded multi-track stereo waveforms and studio mixer controls.">
 <style>
   :root {
@@ -810,6 +810,13 @@
     background: var(--surface-0); border: 1px solid var(--line);
     border-radius: 3px; padding: 2px 5px; white-space: nowrap;
   }
+  .modal-credits {
+    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line-subtle);
+    font: 400 11px/1.5 var(--sans); color: var(--faint);
+  }
+  .modal-credits strong { font-weight: 600; color: var(--dim); }
+  .modal-credits a { color: var(--acc); text-decoration: none; }
+  .modal-credits a:hover { text-decoration: underline; }
 
   /* ---- Responsive Breakpoints ---- */
   @media (max-width: 1180px) {
@@ -1288,11 +1295,14 @@
       <div class="kb-row"><span>Mix Snapshots 1–6</span><kbd>1 – 6</kbd></div>
       <div class="kb-row"><span>Reset Any Slider</span><kbd>Double-Click</kbd></div>
     </div>
+    <div class="modal-credits">
+      <strong>Sound Credits:</strong> 1977 Rhodes samples from <a href="https://github.com/sfzinstruments/jlearman.jRhodes3d" target="_blank" rel="noopener">jRhodes3d</a> by Jeff Learman (CC0 for music / CC BY 4.0). Synth &amp; DSP stems rendered with <a href="https://surge-synthesizer.github.io/" target="_blank" rel="noopener">Surge XT</a>, <a href="https://michaelwillis.github.io/dragonfly-reverb/" target="_blank" rel="noopener">Dragonfly Hall Reverb</a>, <a href="https://chowdsp.com/products.html#tape" target="_blank" rel="noopener">CHOW Tape Model</a>, and custom synthesis.
+    </div>
   </div>
 </div>
 
 <script type="module">
-const BUILD_ID = '64b-cbbf8b5c';
+const BUILD_ID = '64b-31c316eb';
 const S = await (await fetch(`./session.json?v=${BUILD_ID}`, { cache: 'no-store' })).json();
 const ASSET_V = encodeURIComponent(S.buildId || BUILD_ID);
 const AC = window.AudioContext || window.webkitAudioContext;
